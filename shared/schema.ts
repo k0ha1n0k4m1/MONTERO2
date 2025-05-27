@@ -48,8 +48,8 @@ export const insertUserSchema = createInsertSchema(users).omit({
 });
 
 export const loginSchema = z.object({
-  email: z.string().email("Please enter a valid email"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  email: z.string().email("Пожалуйста, введите корректный email"),
+  password: z.string().min(6, "Пароль должен содержать минимум 6 символов"),
 });
 
 export const registerSchema = insertUserSchema.extend({

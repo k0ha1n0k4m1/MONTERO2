@@ -72,9 +72,9 @@ export function useAuth() {
   });
 
   return {
-    user: user?.user,
+    user: user?.user || user,
     isLoading,
-    isAuthenticated: !!user?.user,
+    isAuthenticated: !!(user?.user || user),
     login: loginMutation.mutateAsync,
     register: registerMutation.mutateAsync,
     logout: logoutMutation.mutateAsync,

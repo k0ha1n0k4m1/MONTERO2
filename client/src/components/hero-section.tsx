@@ -1,0 +1,33 @@
+import { Button } from "@/components/ui/button"
+
+export default function HeroSection() {
+  const scrollToProducts = () => {
+    const productsSection = document.getElementById('products')
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  return (
+    <section className="pt-16 bg-white">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-32">
+        <div className="text-center fade-in">
+          <h2 className="text-5xl lg:text-7xl font-light tracking-wider text-foreground mb-8">
+            MONTERO
+          </h2>
+          <p className="text-lg lg:text-xl font-light text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Ultra-minimalist fashion for the modern individual. Discover our curated collection of premium essentials.
+          </p>
+          <div className="mt-12">
+            <Button 
+              onClick={scrollToProducts}
+              className="bg-foreground text-background px-8 py-3 text-sm font-light tracking-wide hover:bg-muted-foreground transition-colors duration-300"
+            >
+              EXPLORE COLLECTION
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

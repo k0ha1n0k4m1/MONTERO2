@@ -79,6 +79,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           <DialogTitle className="text-center text-2xl font-light">
             {isLogin ? "Вход" : "Регистрация"}
           </DialogTitle>
+          <DialogDescription className="text-center text-sm text-muted-foreground">
+            {isLogin ? "Войдите в свой аккаунт" : "Создайте новый аккаунт в MONTERO"}
+          </DialogDescription>
         </DialogHeader>
 
         {isLogin ? (

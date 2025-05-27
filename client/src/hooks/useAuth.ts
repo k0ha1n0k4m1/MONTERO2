@@ -41,12 +41,24 @@ export function useAuth() {
         },
       });
       
+      const responseText = await response.text();
+      console.log("Response status:", response.status);
+      console.log("Response text:", responseText);
+      
       if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || "Registration failed");
+        try {
+          const error = JSON.parse(responseText);
+          throw new Error(error.message || "Registration failed");
+        } catch (e) {
+          throw new Error("Registration failed - server error");
+        }
       }
       
-      return response.json();
+      try {
+        return JSON.parse(responseText);
+      } catch (e) {
+        throw new Error("Invalid response from server");
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/auth/me"] });

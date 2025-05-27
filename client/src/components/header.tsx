@@ -3,6 +3,7 @@ import { Link, useLocation } from "wouter"
 import { Search, User, ShoppingBag, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Input } from "@/components/ui/input"
 import { useCart } from "@/hooks/use-cart"
 import { cn } from "@/lib/utils"
 
@@ -18,6 +19,8 @@ export default function Header() {
   const [location] = useLocation()
   const { getTotalItems, toggleCart } = useCart()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
+  const [userMenuOpen, setUserMenuOpen] = useState(false)
   
   // Extract category from URL path
   const currentCategory = location.startsWith('/category/') 
@@ -60,13 +63,64 @@ export default function Header() {
           
           {/* Actions */}
           <div className="flex items-center space-x-6">
-            <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
-              <Search className="h-5 w-5" />
-            </Button>
+            <Sheet open={searchOpen} onOpenChange={setSearchOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
+                  <Search className="h-5 w-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="top" className="h-auto bg-white">
+                <div className="max-w-2xl mx-auto py-8">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Input 
+                      placeholder="Search products..." 
+                      className="pl-10 h-12 text-lg border-border focus:border-foreground"
+                      autoFocus
+                    />
+                  </div>
+                  <p className="text-center text-muted-foreground mt-4 text-sm">
+                    Start typing to search our collection
+                  </p>
+                </div>
+              </SheetContent>
+            </Sheet>
             
-            <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
-              <User className="h-5 w-5" />
-            </Button>
+            <Sheet open={userMenuOpen} onOpenChange={setUserMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
+                  <User className="h-5 w-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-full sm:max-w-md bg-white">
+                <div className="py-6">
+                  <h3 className="text-xl font-light text-foreground mb-6">Account</h3>
+                  <div className="space-y-4">
+                    <Button variant="outline" className="w-full justify-start font-light">
+                      Sign In
+                    </Button>
+                    <Button variant="outline" className="w-full justify-start font-light">
+                      Create Account
+                    </Button>
+                    <hr className="border-border" />
+                    <div className="space-y-3">
+                      <Button variant="ghost" className="w-full justify-start text-muted-foreground font-light">
+                        Order History
+                      </Button>
+                      <Button variant="ghost" className="w-full justify-start text-muted-foreground font-light">
+                        Wishlist
+                      </Button>
+                      <Button variant="ghost" className="w-full justify-start text-muted-foreground font-light">
+                        Account Settings
+                      </Button>
+                      <Button variant="ghost" className="w-full justify-start text-muted-foreground font-light">
+                        Help & Support
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
             
             <Button 
               variant="ghost" 

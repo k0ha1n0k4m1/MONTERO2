@@ -59,9 +59,11 @@ export default function Header() {
           <div className="flex-shrink-0">
             <Link href="/">
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-black font-bold text-lg shadow-lg">
-                  M⭐
-                </div>
+                <img 
+                  src="/attached_assets/sign.jpg" 
+                  alt="MONTERO Logo" 
+                  className="w-8 h-8 rounded-full shadow-lg"
+                />
                 <h1 className="text-2xl font-light tracking-wider text-foreground hover:text-accent transition-colors duration-300">
                   MONTERO
                 </h1>

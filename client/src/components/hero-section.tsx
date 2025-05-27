@@ -14,9 +14,11 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-32 relative z-10">
         <div className="text-center fade-in">
           <div className="flex items-center justify-center space-x-4 mb-8">
-            <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-black font-bold text-2xl shadow-xl">
-              M⭐
-            </div>
+            <img 
+              src="/attached_assets/sign.jpg" 
+              alt="MONTERO Logo" 
+              className="w-16 h-16 rounded-full shadow-xl"
+            />
           </div>
           <h2 className="text-5xl lg:text-7xl font-light tracking-wider text-foreground mb-8 bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
             MONTERO

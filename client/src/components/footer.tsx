@@ -21,9 +21,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div>
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-6 h-6 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-black font-bold text-sm">
-                M⭐
-              </div>
+              <img 
+                src="/attached_assets/sign.jpg" 
+                alt="MONTERO Logo" 
+                className="w-6 h-6 rounded-full shadow-lg"
+              />
               <h4 className="text-2xl font-light text-foreground">MONTERO</h4>
             </div>
             <p className="text-muted-foreground font-light text-sm leading-relaxed">

@@ -32,9 +32,9 @@ export default function Footer() {
               {footerLinks.shop.map((link) => (
                 <li key={link.name}>
                   <Link href={link.href}>
-                    <a className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-light">
+                    <span className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-light cursor-pointer">
                       {link.name}
-                    </a>
+                    </span>
                   </Link>
                 </li>
               ))}
@@ -47,9 +47,9 @@ export default function Footer() {
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
                   <Link href={link.href}>
-                    <a className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-light">
+                    <span className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-light cursor-pointer">
                       {link.name}
-                    </a>
+                    </span>
                   </Link>
                 </li>
               ))}

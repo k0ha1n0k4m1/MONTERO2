@@ -126,17 +126,41 @@ export default function Header() {
                         </div>
                         <hr className="border-border" />
                         <div className="space-y-3">
-                          <Button variant="ghost" className="w-full justify-start text-muted-foreground font-light">
-                            История заказов
+                          <Button 
+                            variant="ghost" 
+                            className="w-full justify-start text-muted-foreground font-light"
+                            asChild
+                          >
+                            <Link href="/orders" onClick={() => setUserMenuOpen(false)}>
+                              История заказов
+                            </Link>
                           </Button>
-                          <Button variant="ghost" className="w-full justify-start text-muted-foreground font-light">
-                            Избранное
+                          <Button 
+                            variant="ghost" 
+                            className="w-full justify-start text-muted-foreground font-light"
+                            asChild
+                          >
+                            <Link href="/wishlist" onClick={() => setUserMenuOpen(false)}>
+                              Избранное
+                            </Link>
                           </Button>
-                          <Button variant="ghost" className="w-full justify-start text-muted-foreground font-light">
-                            Настройки аккаунта
+                          <Button 
+                            variant="ghost" 
+                            className="w-full justify-start text-muted-foreground font-light"
+                            asChild
+                          >
+                            <Link href="/profile" onClick={() => setUserMenuOpen(false)}>
+                              Настройки аккаунта
+                            </Link>
                           </Button>
-                          <Button variant="ghost" className="w-full justify-start text-muted-foreground font-light">
-                            Помощь и поддержка
+                          <Button 
+                            variant="ghost" 
+                            className="w-full justify-start text-muted-foreground font-light"
+                            asChild
+                          >
+                            <Link href="/support" onClick={() => setUserMenuOpen(false)}>
+                              Помощь и поддержка
+                            </Link>
                           </Button>
                           <hr className="border-border" />
                           <Button 

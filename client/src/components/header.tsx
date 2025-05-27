@@ -39,7 +39,7 @@ export default function Header() {
           <nav className="hidden md:flex space-x-12">
             {navigation.map((item) => (
               <Link key={item.name} href={item.href}>
-                <span className={cn(
+                <div className={cn(
                   "text-sm font-light transition-colors duration-300 relative group cursor-pointer",
                   currentCategory === item.name 
                     ? "text-foreground" 
@@ -50,7 +50,7 @@ export default function Header() {
                     "absolute -bottom-1 left-0 h-px bg-foreground transition-all duration-300",
                     currentCategory === item.name ? "w-full" : "w-0 group-hover:w-full"
                   )} />
-                </span>
+                </div>
               </Link>
             ))}
           </nav>
@@ -96,7 +96,7 @@ export default function Header() {
                       {navigation.map((item) => (
                         <li key={item.name}>
                           <Link href={item.href}>
-                            <span 
+                            <div 
                               className={cn(
                                 "text-lg font-light transition-colors duration-300 cursor-pointer",
                                 currentCategory === item.name ? "text-foreground" : "text-muted-foreground"
@@ -104,7 +104,7 @@ export default function Header() {
                               onClick={() => setMobileMenuOpen(false)}
                             >
                               {item.name}
-                            </span>
+                            </div>
                           </Link>
                         </li>
                       ))}

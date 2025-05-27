@@ -1,9 +1,16 @@
-import type { Express } from "express";
+import type { Express, Request } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertCartItemSchema, loginSchema, registerSchema } from "@shared/schema";
 import session from "express-session";
 import MemoryStore from "memorystore";
+
+// Extend session data interface
+declare module 'express-session' {
+  interface SessionData {
+    userId: number;
+  }
+}
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup sessions
@@ -23,7 +30,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   }));
 
   // Authentication middleware
-  const requireAuth = (req: any, res: any, next: any) => {
+  const requireAuth = (req: Request, res: any, next: any) => {
     if (!req.session.userId) {
       return res.status(401).json({ message: "Authentication required" });
     }
@@ -31,7 +38,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   };
 
   // Auth routes
-  app.post("/api/auth/register", async (req, res) => {
+  app.post("/api/auth/register", async (req: Request, res) => {
     try {
       const result = registerSchema.safeParse(req.body);
       if (!result.success) {
@@ -64,7 +71,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/auth/login", async (req, res) => {
+  app.post("/api/auth/login", async (req: Request, res) => {
     try {
       const result = loginSchema.safeParse(req.body);
       if (!result.success) {
@@ -87,7 +94,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/auth/logout", (req: any, res) => {
+  app.post("/api/auth/logout", (req: Request, res) => {
     req.session.destroy((err: any) => {
       if (err) {
         return res.status(500).json({ message: "Could not log out" });
@@ -96,7 +103,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     });
   });
 
-  app.get("/api/auth/me", async (req: any, res) => {
+  app.get("/api/auth/me", async (req: Request, res) => {
     try {
       if (!req.session.userId) {
         return res.status(401).json({ message: "Not authenticated" });

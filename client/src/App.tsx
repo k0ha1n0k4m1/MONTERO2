@@ -9,6 +9,9 @@ import Orders from "@/pages/orders";
 import Wishlist from "@/pages/wishlist";
 import Profile from "@/pages/profile";
 import Support from "@/pages/support";
+import Contact from "@/pages/contact";
+import SizeGuide from "@/pages/size-guide";
+import Returns from "@/pages/returns";
 
 function Router() {
   return (
@@ -19,6 +22,9 @@ function Router() {
       <Route path="/wishlist" component={Wishlist} />
       <Route path="/profile" component={Profile} />
       <Route path="/support" component={Support} />
+      <Route path="/contact" component={Contact} />
+      <Route path="/size-guide" component={SizeGuide} />
+      <Route path="/returns" component={Returns} />
       <Route component={NotFound} />
     </Switch>
   );

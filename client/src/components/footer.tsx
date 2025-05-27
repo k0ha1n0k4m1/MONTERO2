@@ -3,9 +3,9 @@ import { Instagram, Twitter, Facebook } from "lucide-react"
 
 const footerLinks = {
   shop: [
-    { name: 'All Products', href: '/?category=all' },
-    { name: 'New Arrivals', href: '/?category=all' },
-    { name: 'Sale', href: '/?category=all' },
+    { name: 'All Products', href: '/' },
+    { name: 'New Arrivals', href: '/category/new-arrivals' },
+    { name: 'Sale', href: '/category/sale' },
   ],
   support: [
     { name: 'Contact Us', href: '/contact' },
@@ -59,13 +59,31 @@ export default function Footer() {
           <div>
             <h5 className="text-sm font-light text-foreground mb-4 tracking-wide">Connect</h5>
             <div className="flex space-x-4">
-              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors duration-300">
+              <a 
+                href="https://instagram.com/montero_fashion" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors duration-300"
+                aria-label="Следите за нами в Instagram"
+              >
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors duration-300">
+              <a 
+                href="https://twitter.com/montero_fashion" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors duration-300"
+                aria-label="Следите за нами в Twitter"
+              >
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors duration-300">
+              <a 
+                href="https://facebook.com/montero.fashion" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors duration-300"
+                aria-label="Следите за нами в Facebook"
+              >
                 <Facebook className="h-5 w-5" />
               </a>
             </div>

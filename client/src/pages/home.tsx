@@ -3,6 +3,7 @@ import HeroSection from "@/components/hero-section"
 import ProductGrid from "@/components/product-grid"
 import Newsletter from "@/components/newsletter"
 import Footer from "@/components/footer"
+import CartSidebar from "@/components/cart-sidebar"
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
         <Newsletter />
       </main>
       <Footer />
+      <CartSidebar />
     </div>
   )
 }

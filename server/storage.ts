@@ -1,4 +1,7 @@
-import { products, cartItems, type Product, type InsertProduct, type CartItem, type InsertCartItem, users, type User, type InsertUser } from "@shared/schema";
+import { products, cartItems, users, type Product, type InsertProduct, type CartItem, type InsertCartItem, type User, type InsertUser, type LoginData, type RegisterData } from "@shared/schema";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
+import bcrypt from "bcryptjs";
 
 export interface IStorage {
   // Products
@@ -17,8 +20,10 @@ export interface IStorage {
   
   // Users
   getUser(id: number): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
+  getUserByEmail(email: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
+  loginUser(loginData: LoginData): Promise<User | null>;
+  registerUser(registerData: RegisterData): Promise<User>;
 }
 
 export class MemStorage implements IStorage {
@@ -160,7 +165,12 @@ export class MemStorage implements IStorage {
 
   async createProduct(insertProduct: InsertProduct): Promise<Product> {
     const id = this.currentProductId++;
-    const product: Product = { ...insertProduct, id };
+    const product: Product = { 
+      ...insertProduct, 
+      id,
+      description: insertProduct.description ?? null,
+      featured: insertProduct.featured ?? null
+    };
     this.products.set(id, product);
     return product;
   }
@@ -217,18 +227,284 @@ export class MemStorage implements IStorage {
     return this.users.get(id);
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
+  async getUserByEmail(email: string): Promise<User | undefined> {
     return Array.from(this.users.values()).find(
-      (user) => user.username === username,
+      (user) => user.email === email,
     );
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
     const id = this.currentUserId++;
-    const user: User = { ...insertUser, id };
+    const user: User = { 
+      ...insertUser, 
+      id,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
     this.users.set(id, user);
+    return user;
+  }
+
+  async loginUser(loginData: LoginData): Promise<User | null> {
+    const user = await this.getUserByEmail(loginData.email);
+    if (!user) return null;
+    
+    const isPasswordValid = await bcrypt.compare(loginData.password, user.password);
+    if (!isPasswordValid) return null;
+    
+    return user;
+  }
+
+  async registerUser(registerData: RegisterData): Promise<User> {
+    // Check if user already exists
+    const existingUser = await this.getUserByEmail(registerData.email);
+    if (existingUser) {
+      throw new Error("User with this email already exists");
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(registerData.password, 10);
+    
+    // Create user
+    const { confirmPassword, ...userData } = registerData;
+    const userToCreate: InsertUser = {
+      ...userData,
+      password: hashedPassword,
+    };
+    
+    return this.createUser(userToCreate);
+  }
+}
+
+export class DatabaseStorage implements IStorage {
+  // Products
+  async getProducts(): Promise<Product[]> {
+    return db.select().from(products);
+  }
+
+  async getProductsByCategory(category: string): Promise<Product[]> {
+    if (category === "all") {
+      return this.getProducts();
+    }
+    return db.select().from(products).where(eq(products.category, category));
+  }
+
+  async getProduct(id: number): Promise<Product | undefined> {
+    const [product] = await db.select().from(products).where(eq(products.id, id));
+    return product;
+  }
+
+  async createProduct(insertProduct: InsertProduct): Promise<Product> {
+    const [product] = await db
+      .insert(products)
+      .values(insertProduct)
+      .returning();
+    return product;
+  }
+
+  async getFeaturedProducts(): Promise<Product[]> {
+    return db.select().from(products).where(eq(products.featured, 1));
+  }
+
+  // Cart
+  async getCartItems(): Promise<CartItem[]> {
+    return db.select().from(cartItems);
+  }
+
+  async addToCart(insertCartItem: InsertCartItem): Promise<CartItem> {
+    // Check if item already exists in cart
+    const existingItems = await db
+      .select()
+      .from(cartItems)
+      .where(eq(cartItems.productId, insertCartItem.productId));
+    
+    if (existingItems.length > 0) {
+      // Update quantity
+      const [updatedItem] = await db
+        .update(cartItems)
+        .set({ quantity: existingItems[0].quantity + (insertCartItem.quantity || 1) })
+        .where(eq(cartItems.id, existingItems[0].id))
+        .returning();
+      return updatedItem;
+    } else {
+      // Add new item
+      const [cartItem] = await db
+        .insert(cartItems)
+        .values({ ...insertCartItem, quantity: insertCartItem.quantity || 1 })
+        .returning();
+      return cartItem;
+    }
+  }
+
+  async removeFromCart(id: number): Promise<void> {
+    await db.delete(cartItems).where(eq(cartItems.id, id));
+  }
+
+  async updateCartItem(id: number, quantity: number): Promise<CartItem | undefined> {
+    const [item] = await db
+      .update(cartItems)
+      .set({ quantity })
+      .where(eq(cartItems.id, id))
+      .returning();
+    return item;
+  }
+
+  async clearCart(): Promise<void> {
+    await db.delete(cartItems);
+  }
+
+  // Users
+  async getUser(id: number): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user;
+  }
+
+  async getUserByEmail(email: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.email, email));
+    return user;
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    const hashedPassword = await bcrypt.hash(insertUser.password, 10);
+    const [user] = await db
+      .insert(users)
+      .values({
+        ...insertUser,
+        password: hashedPassword,
+      })
+      .returning();
+    return user;
+  }
+
+  async loginUser(loginData: LoginData): Promise<User | null> {
+    const user = await this.getUserByEmail(loginData.email);
+    if (!user) {
+      return null;
+    }
+
+    const isPasswordValid = await bcrypt.compare(loginData.password, user.password);
+    if (!isPasswordValid) {
+      return null;
+    }
+
     return user;
   }
 }
 
-export const storage = new MemStorage();
+// Initialize products in database
+async function initializeDatabase() {
+  try {
+    // Check if products already exist
+    const existingProducts = await db.select().from(products);
+    if (existingProducts.length > 0) {
+      return; // Products already initialized
+    }
+
+    const initialProducts: InsertProduct[] = [
+      {
+        name: "Oversized Essential Tee",
+        description: "Premium cotton oversized t-shirt with clean lines",
+        price: 28000,
+        category: "top",
+        imageUrl: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800",
+        featured: 1
+      },
+      {
+        name: "Classic Button Down",
+        description: "Minimalist cotton button-down shirt",
+        price: 45000,
+        category: "top",
+        imageUrl: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800",
+        featured: 1
+      },
+      {
+        name: "Wide Leg Trousers",
+        description: "Relaxed fit wide-leg trousers in premium fabric",
+        price: 52000,
+        category: "bottom",
+        imageUrl: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800",
+        featured: 1
+      },
+      {
+        name: "Cashmere Pullover",
+        description: "Luxurious cashmere knit pullover",
+        price: 89000,
+        category: "top",
+        imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800",
+        featured: 1
+      },
+      {
+        name: "Minimal Wool Coat",
+        description: "Premium wool blend coat with clean lines",
+        price: 165000,
+        category: "outerwear",
+        imageUrl: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=750",
+        featured: 1
+      },
+      {
+        name: "Essential Midi Dress",
+        description: "Effortless elegance in sustainable fabric",
+        price: 78000,
+        category: "top",
+        imageUrl: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=750",
+        featured: 1
+      },
+      {
+        name: "Leather Sneakers",
+        description: "Handcrafted premium leather sneakers",
+        price: 125000,
+        category: "accessories",
+        imageUrl: "https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=750",
+        featured: 1
+      },
+      {
+        name: "Minimal White Hoodie",
+        description: "Clean oversized hoodie in premium cotton",
+        price: 68000,
+        category: "top",
+        imageUrl: "https://images.unsplash.com/photo-1556821840-3a9c6dcb0041?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800"
+      },
+      {
+        name: "Straight Leg Jeans",
+        description: "Classic straight-leg denim in premium wash",
+        price: 95000,
+        category: "bottom",
+        imageUrl: "https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800"
+      },
+      {
+        name: "Minimalist Belt",
+        description: "Italian leather belt with brushed metal buckle",
+        price: 45000,
+        category: "accessories",
+        imageUrl: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800"
+      },
+      {
+        name: "Lightweight Scarf",
+        description: "Soft merino wool scarf in neutral tones",
+        price: 55000,
+        category: "accessories",
+        imageUrl: "https://images.unsplash.com/photo-1601924994987-69e26d50dc26?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800"
+      },
+      {
+        name: "Structured Blazer",
+        description: "Tailored blazer with modern silhouette",
+        price: 145000,
+        category: "outerwear",
+        imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800"
+      }
+    ];
+
+    for (const product of initialProducts) {
+      await db.insert(products).values(product);
+    }
+    
+    console.log("Database initialized with products");
+  } catch (error) {
+    console.error("Error initializing database:", error);
+  }
+}
+
+export const storage = new DatabaseStorage();
+
+// Initialize database on startup
+initializeDatabase();

@@ -119,27 +119,73 @@ export default function Header() {
                 <div className="py-6">
                   <h3 className="text-xl font-light text-foreground mb-6">Account</h3>
                   <div className="space-y-4">
-                    <Button variant="outline" className="w-full justify-start font-light">
-                      Sign In
-                    </Button>
-                    <Button variant="outline" className="w-full justify-start font-light">
-                      Create Account
-                    </Button>
-                    <hr className="border-border" />
-                    <div className="space-y-3">
-                      <Button variant="ghost" className="w-full justify-start text-muted-foreground font-light">
-                        Order History
-                      </Button>
-                      <Button variant="ghost" className="w-full justify-start text-muted-foreground font-light">
-                        Wishlist
-                      </Button>
-                      <Button variant="ghost" className="w-full justify-start text-muted-foreground font-light">
-                        Account Settings
-                      </Button>
-                      <Button variant="ghost" className="w-full justify-start text-muted-foreground font-light">
-                        Help & Support
-                      </Button>
-                    </div>
+                    {isAuthenticated ? (
+                      <>
+                        <div className="text-sm text-muted-foreground mb-4">
+                          Добро пожаловать, {user?.firstName || user?.email}!
+                        </div>
+                        <hr className="border-border" />
+                        <div className="space-y-3">
+                          <Button variant="ghost" className="w-full justify-start text-muted-foreground font-light">
+                            История заказов
+                          </Button>
+                          <Button variant="ghost" className="w-full justify-start text-muted-foreground font-light">
+                            Избранное
+                          </Button>
+                          <Button variant="ghost" className="w-full justify-start text-muted-foreground font-light">
+                            Настройки аккаунта
+                          </Button>
+                          <Button variant="ghost" className="w-full justify-start text-muted-foreground font-light">
+                            Помощь и поддержка
+                          </Button>
+                          <hr className="border-border" />
+                          <Button 
+                            variant="ghost" 
+                            className="w-full justify-start text-red-600 font-light hover:text-red-700"
+                            onClick={handleLogout}
+                            disabled={isLogoutPending}
+                          >
+                            <LogOut className="h-4 w-4 mr-2" />
+                            {isLogoutPending ? "Выход..." : "Выйти"}
+                          </Button>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <Button 
+                          variant="outline" 
+                          className="w-full justify-start font-light"
+                          onClick={() => {
+                            setAuthModalOpen(true)
+                            setUserMenuOpen(false)
+                          }}
+                        >
+                          Войти
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          className="w-full justify-start font-light"
+                          onClick={() => {
+                            setAuthModalOpen(true)
+                            setUserMenuOpen(false)
+                          }}
+                        >
+                          Создать аккаунт
+                        </Button>
+                        <hr className="border-border" />
+                        <div className="space-y-3">
+                          <Button variant="ghost" className="w-full justify-start text-muted-foreground font-light">
+                            История заказов
+                          </Button>
+                          <Button variant="ghost" className="w-full justify-start text-muted-foreground font-light">
+                            Избранное
+                          </Button>
+                          <Button variant="ghost" className="w-full justify-start text-muted-foreground font-light">
+                            Помощь и поддержка
+                          </Button>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               </SheetContent>
@@ -196,6 +242,12 @@ export default function Header() {
           </div>
         </div>
       </div>
+
+      {/* Auth Modal */}
+      <AuthModal 
+        isOpen={authModalOpen} 
+        onClose={() => setAuthModalOpen(false)} 
+      />
     </header>
   )
 }

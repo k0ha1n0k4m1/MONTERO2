@@ -11,13 +11,19 @@ export function useAuth() {
 
   const loginMutation = useMutation({
     mutationFn: async (data: LoginData) => {
-      const response = await apiRequest("/api/auth/login", {
+      const response = await fetch("/api/auth/login", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",
         },
       });
+      
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || "Login failed");
+      }
+      
       return response.json();
     },
     onSuccess: () => {
@@ -27,13 +33,19 @@ export function useAuth() {
 
   const registerMutation = useMutation({
     mutationFn: async (data: RegisterData) => {
-      const response = await apiRequest("/api/auth/register", {
+      const response = await fetch("/api/auth/register", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",
         },
       });
+      
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || "Registration failed");
+      }
+      
       return response.json();
     },
     onSuccess: () => {
@@ -43,9 +55,15 @@ export function useAuth() {
 
   const logoutMutation = useMutation({
     mutationFn: async () => {
-      const response = await apiRequest("/api/auth/logout", {
+      const response = await fetch("/api/auth/logout", {
         method: "POST",
       });
+      
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || "Logout failed");
+      }
+      
       return response.json();
     },
     onSuccess: () => {

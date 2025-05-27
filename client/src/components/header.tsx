@@ -52,22 +52,15 @@ export default function Header() {
   }
 
   return (
-    <header className="border-b border-border bg-background/95 backdrop-blur-sm fixed w-full top-0 z-50">
+    <header className="border-b border-border bg-white/95 backdrop-blur-sm fixed w-full top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/">
-              <div className="flex items-center space-x-3">
-                <img 
-                  src="/attached_assets/sign.jpg" 
-                  alt="MONTERO Logo" 
-                  className="w-8 h-8 rounded-full shadow-lg"
-                />
-                <h1 className="text-2xl font-light tracking-wider text-foreground hover:text-accent transition-colors duration-300">
-                  MONTERO
-                </h1>
-              </div>
+              <h1 className="text-2xl font-light tracking-wider text-foreground hover:text-muted-foreground transition-colors duration-300">
+                MONTERO
+              </h1>
             </Link>
           </div>
           

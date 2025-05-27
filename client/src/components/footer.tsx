@@ -16,20 +16,13 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="bg-muted border-t border-border py-16">
+    <footer className="bg-muted py-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div>
-            <div className="flex items-center space-x-3 mb-6">
-              <img 
-                src="/attached_assets/sign.jpg" 
-                alt="MONTERO Logo" 
-                className="w-6 h-6 rounded-full shadow-lg"
-              />
-              <h4 className="text-2xl font-light text-foreground">MONTERO</h4>
-            </div>
+            <h4 className="text-2xl font-light text-foreground mb-6">MONTERO</h4>
             <p className="text-muted-foreground font-light text-sm leading-relaxed">
-              Premium streetwear for the modern individual. Bold designs with attitude.
+              Ultra-minimalist fashion for the modern individual.
             </p>
           </div>
           

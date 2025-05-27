@@ -10,7 +10,7 @@ export default function ProductGrid() {
   const category = new URLSearchParams(location.split('?')[1] || '').get('category') || 'all'
   
   const { data: products, isLoading, error } = useQuery<Product[]>({
-    queryKey: ['/api/products', { category }],
+    queryKey: ['/api/products', category],
     queryFn: async () => {
       const res = await fetch(`/api/products?category=${category}`, {
         credentials: 'include'

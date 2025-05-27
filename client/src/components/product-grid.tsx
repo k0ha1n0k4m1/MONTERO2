@@ -9,14 +9,19 @@ export default function ProductGrid() {
   const [location] = useLocation()
   const category = new URLSearchParams(location.split('?')[1] || '').get('category') || 'all'
   
+  console.log('ProductGrid render - location:', location, 'category:', category)
+  
   const { data: products, isLoading, error } = useQuery<Product[]>({
     queryKey: ['/api/products', category],
     queryFn: async () => {
+      console.log('Fetching products for category:', category)
       const res = await fetch(`/api/products?category=${category}`, {
         credentials: 'include'
       })
       if (!res.ok) throw new Error('Failed to fetch products')
-      return res.json()
+      const data = await res.json()
+      console.log('Products received:', data.length, 'items for category:', category)
+      return data
     }
   })
 

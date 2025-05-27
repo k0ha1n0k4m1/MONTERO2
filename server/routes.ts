@@ -39,9 +39,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Auth routes
   app.post("/api/auth/register", async (req: Request, res) => {
+    console.log("Register endpoint hit with body:", req.body);
     try {
       const result = registerSchema.safeParse(req.body);
       if (!result.success) {
+        console.log("Validation failed:", result.error.errors);
         return res.status(400).json({ message: "Validation error", errors: result.error.errors });
       }
 
@@ -64,7 +66,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { password: _, ...userWithoutPassword } = user;
       req.session.userId = user.id;
       
-      res.json({ user: userWithoutPassword });
+      console.log("Sending successful response:", { user: userWithoutPassword });
+      return res.json({ user: userWithoutPassword });
     } catch (error) {
       console.error("Registration error:", error);
       res.status(500).json({ message: "Internal server error" });

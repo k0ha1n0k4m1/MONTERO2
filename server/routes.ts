@@ -1,4 +1,5 @@
 import type { Express, Request } from "express";
+import express from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertCartItemSchema, loginSchema, registerSchema } from "@shared/schema";
@@ -36,6 +37,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
     next();
   };
+
+  // Test endpoint
+  app.get("/api/test", (req, res) => {
+    res.json({ message: "API is working!" });
+  });
 
   // Auth routes
   app.post("/api/auth/register", async (req: Request, res) => {

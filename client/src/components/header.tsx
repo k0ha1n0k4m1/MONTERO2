@@ -1,11 +1,14 @@
 import { useState } from "react"
 import { Link, useLocation } from "wouter"
-import { Search, User, ShoppingBag, Menu, X } from "lucide-react"
+import { Search, User, ShoppingBag, Menu, X, LogOut } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Input } from "@/components/ui/input"
 import { useCart } from "@/hooks/use-cart"
+import { useAuth } from "@/hooks/useAuth"
 import { cn } from "@/lib/utils"
+import AuthModal from "./auth-modal"
+import { useToast } from "@/hooks/use-toast"
 
 const navigation = [
   { name: 'all', href: '/' },
@@ -18,15 +21,35 @@ const navigation = [
 export default function Header() {
   const [location] = useLocation()
   const { getTotalItems, toggleCart } = useCart()
+  const { user, isAuthenticated, logout, isLogoutPending } = useAuth()
+  const { toast } = useToast()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [userMenuOpen, setUserMenuOpen] = useState(false)
+  const [authModalOpen, setAuthModalOpen] = useState(false)
   
   // Extract category from URL path
   const currentCategory = location.startsWith('/category/') 
     ? location.split('/category/')[1] 
     : 'all'
   const totalItems = getTotalItems()
+
+  const handleLogout = async () => {
+    try {
+      await logout()
+      setUserMenuOpen(false)
+      toast({
+        title: "До свидания!",
+        description: "Вы успешно вышли из системы",
+      })
+    } catch (error) {
+      toast({
+        title: "Ошибка",
+        description: "Не удалось выйти из системы",
+        variant: "destructive",
+      })
+    }
+  }
 
   return (
     <header className="border-b border-border bg-white/95 backdrop-blur-sm fixed w-full top-0 z-50">

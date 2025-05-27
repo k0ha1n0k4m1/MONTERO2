@@ -58,9 +58,11 @@ export default function Header() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/">
-              <h1 className="text-2xl font-light tracking-wider text-foreground hover:text-muted-foreground transition-colors duration-300">
-                MONTERO
-              </h1>
+              <img 
+                src="/attached_assets/sign.jpg" 
+                alt="MONTERO" 
+                className="h-10 w-auto"
+              />
             </Link>
           </div>
           

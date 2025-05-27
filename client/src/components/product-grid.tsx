@@ -7,7 +7,10 @@ import type { Product } from "@shared/schema"
 
 export default function ProductGrid() {
   const [location] = useLocation()
-  const category = new URLSearchParams(location.split('?')[1] || '').get('category') || 'all'
+  // Extract category from URL path
+  const category = location.startsWith('/category/') 
+    ? location.split('/category/')[1] 
+    : 'all'
   
   console.log('ProductGrid render - location:', location, 'category:', category)
   

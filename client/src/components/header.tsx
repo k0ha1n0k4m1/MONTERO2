@@ -7,11 +7,11 @@ import { useCart } from "@/hooks/use-cart"
 import { cn } from "@/lib/utils"
 
 const navigation = [
-  { name: 'all', href: '/?category=all' },
-  { name: 'outerwear', href: '/?category=outerwear' },
-  { name: 'top', href: '/?category=top' },
-  { name: 'bottom', href: '/?category=bottom' },
-  { name: 'accessories', href: '/?category=accessories' },
+  { name: 'all', href: '/' },
+  { name: 'outerwear', href: '/category/outerwear' },
+  { name: 'top', href: '/category/top' },
+  { name: 'bottom', href: '/category/bottom' },
+  { name: 'accessories', href: '/category/accessories' },
 ]
 
 export default function Header() {
@@ -19,7 +19,10 @@ export default function Header() {
   const { getTotalItems, toggleCart } = useCart()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   
-  const currentCategory = new URLSearchParams(location.split('?')[1] || '').get('category') || 'all'
+  // Extract category from URL path
+  const currentCategory = location.startsWith('/category/') 
+    ? location.split('/category/')[1] 
+    : 'all'
   const totalItems = getTotalItems()
 
   return (

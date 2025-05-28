@@ -12,6 +12,7 @@ import Support from "@/pages/support";
 import Contact from "@/pages/contact";
 import SizeGuide from "@/pages/size-guide";
 import Returns from "@/pages/returns";
+import Checkout from "@/pages/checkout";
 
 function Router() {
   return (

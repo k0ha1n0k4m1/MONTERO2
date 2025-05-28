@@ -271,6 +271,92 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Orders routes
+  app.post("/api/checkout", requireAuth, async (req: Request, res) => {
+    try {
+      const userId = req.session.userId!;
+      const { customerEmail, customerName, shippingAddress, items } = req.body;
+
+      if (!items || items.length === 0) {
+        return res.status(400).json({ message: "No items in order" });
+      }
+
+      // Проверяем все товары и вычисляем общую стоимость
+      let totalAmount = 0;
+      const orderItems = [];
+
+      for (const item of items) {
+        const product = await storage.getProduct(item.productId);
+        if (!product) {
+          return res.status(400).json({ message: `Product ${item.productId} not found` });
+        }
+
+        const itemTotal = product.price * item.quantity;
+        totalAmount += itemTotal;
+
+        orderItems.push({
+          productId: item.productId,
+          quantity: item.quantity,
+          price: product.price.toString()
+        });
+      }
+
+      // Создаем заказ
+      const order = await storage.createOrder({
+        userId,
+        status: "confirmed",
+        totalAmount: totalAmount.toString(),
+        customerEmail,
+        customerName,
+        shippingAddress
+      }, orderItems);
+
+      // Очищаем корзину после оформления заказа
+      await storage.clearCart();
+
+      res.json({ 
+        message: "Order created successfully", 
+        order: {
+          id: order.id,
+          status: order.status,
+          totalAmount: order.totalAmount,
+          createdAt: order.createdAt
+        }
+      });
+    } catch (error) {
+      console.error("Checkout error:", error);
+      res.status(500).json({ message: "Failed to create order" });
+    }
+  });
+
+  // Получить заказы пользователя
+  app.get("/api/orders", requireAuth, async (req: Request, res) => {
+    try {
+      const userId = req.session.userId!;
+      const orders = await storage.getUserOrders(userId);
+      res.json(orders);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch orders" });
+    }
+  });
+
+  // Получить детали заказа
+  app.get("/api/orders/:id", requireAuth, async (req: Request, res) => {
+    try {
+      const orderId = parseInt(req.params.id);
+      const order = await storage.getOrder(orderId);
+      
+      if (!order) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+
+      const items = await storage.getOrderItems(orderId);
+      res.json({ ...order, items });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch order" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

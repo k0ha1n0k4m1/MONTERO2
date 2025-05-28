@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { useCart } from "@/hooks/use-cart"
 import { formatPrice } from "@/lib/utils"
+import { useLocation } from "wouter"
 import { useQuery } from "@tanstack/react-query"
 import type { Product } from "@shared/schema"
 
@@ -17,6 +18,7 @@ export default function CartSidebar() {
     clearCart, 
     getTotalPrice 
   } = useCart()
+  const [, setLocation] = useLocation()
 
   // Fetch product details for cart items
   const { data: products } = useQuery<Product[]>({
@@ -140,6 +142,10 @@ export default function CartSidebar() {
                 <Button 
                   className="w-full bg-foreground text-background hover:bg-muted-foreground font-light"
                   size="lg"
+                  onClick={() => {
+                    setOpen(false);
+                    setLocation("/checkout");
+                  }}
                 >
                   Checkout
                 </Button>

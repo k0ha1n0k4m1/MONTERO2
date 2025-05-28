@@ -309,7 +309,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
         customerEmail,
         customerName,
         shippingAddress
-      }, orderItems);
+      }, orderItems.map(item => ({
+        ...item,
+        orderId: 0 // будет заменен в createOrder
+      })));
 
       // Очищаем корзину после оформления заказа
       await storage.clearCart();

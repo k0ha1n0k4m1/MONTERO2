@@ -200,13 +200,13 @@ export class MemStorage implements IStorage {
     
     if (existingItem) {
       // Update quantity
-      existingItem.quantity += insertCartItem.quantity;
+      existingItem.quantity += insertCartItem.quantity || 1;
       this.cartItems.set(existingItem.id, existingItem);
       return existingItem;
     } else {
       // Add new item
       const id = this.currentCartId++;
-      const cartItem: CartItem = { ...insertCartItem, id };
+      const cartItem: CartItem = { ...insertCartItem, id, quantity: insertCartItem.quantity || 1 };
       this.cartItems.set(id, cartItem);
       return cartItem;
     }
@@ -245,6 +245,8 @@ export class MemStorage implements IStorage {
     const user: User = { 
       ...insertUser, 
       id,
+      firstName: insertUser.firstName || null,
+      lastName: insertUser.lastName || null,
       createdAt: new Date(),
       updatedAt: new Date()
     };
@@ -280,6 +282,27 @@ export class MemStorage implements IStorage {
     };
     
     return this.createUser(userToCreate);
+  }
+
+  // Orders (заглушки для совместимости)
+  async createOrder(order: InsertOrder, items: InsertOrderItem[]): Promise<Order> {
+    throw new Error("Orders not implemented in MemStorage");
+  }
+
+  async getUserOrders(userId: number): Promise<Order[]> {
+    throw new Error("Orders not implemented in MemStorage");
+  }
+
+  async getOrder(id: number): Promise<Order | undefined> {
+    throw new Error("Orders not implemented in MemStorage");
+  }
+
+  async getOrderItems(orderId: number): Promise<OrderItem[]> {
+    throw new Error("Orders not implemented in MemStorage");
+  }
+
+  async updateOrderStatus(id: number, status: string): Promise<Order | undefined> {
+    throw new Error("Orders not implemented in MemStorage");
   }
 }
 

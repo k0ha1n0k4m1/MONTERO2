@@ -39,10 +39,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }),
     cookie: {
       secure: false,
-      httpOnly: false, // Allow client-side access for debugging
+      httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000, // 24 hours
-      sameSite: 'lax',
-      domain: undefined // Allow all domains in development
+      sameSite: 'lax'
     }
   }));
 
@@ -82,11 +81,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
         lastName: lastName || "Name"
       });
 
-      // Login user immediately
+      // Login user immediately and force session save
       req.session.userId = user.id;
       
-      console.log("✅ User registered and logged in:", email);
-      res.json({ user: { id: user.id, email: user.email, firstName: user.firstName, lastName: user.lastName } });
+      req.session.save((err) => {
+        if (err) {
+          console.error("Session save error:", err);
+          return res.status(500).json({ message: "Session error" });
+        }
+        
+        console.log("✅ User registered and logged in:", email, "ID:", req.sessionID);
+        res.json({ user: { id: user.id, email: user.email, firstName: user.firstName, lastName: user.lastName } });
+      });
       
     } catch (error) {
       console.error("Registration error:", error);
@@ -108,11 +114,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(401).json({ message: "Invalid credentials" });
       }
 
-      // Login user
+      // Login user and force session save
       req.session.userId = user.id;
       
-      console.log("✅ User logged in:", email);
-      res.json({ user: { id: user.id, email: user.email, firstName: user.firstName, lastName: user.lastName } });
+      req.session.save((err) => {
+        if (err) {
+          console.error("Session save error:", err);
+          return res.status(500).json({ message: "Session error" });
+        }
+        
+        console.log("✅ User logged in with session:", email, "ID:", req.sessionID);
+        res.json({ user: { id: user.id, email: user.email, firstName: user.firstName, lastName: user.lastName } });
+      });
       
     } catch (error) {
       console.error("Login error:", error);

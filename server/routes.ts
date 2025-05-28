@@ -75,8 +75,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { password: _, ...userWithoutPassword } = user;
       req.session.userId = user.id;
       
-      console.log("Sending successful response:", { user: userWithoutPassword });
-      return res.json({ user: userWithoutPassword });
+      // Force session save
+      req.session.save((err) => {
+        if (err) {
+          console.error("Session save error:", err);
+        }
+        console.log("Registration - Session saved, userId:", req.session.userId);
+        console.log("Registration - Session ID:", req.sessionID);
+        return res.json({ user: userWithoutPassword });
+      });
     } catch (error) {
       console.error("Registration error:", error);
       res.status(500).json({ message: "Internal server error" });
@@ -99,10 +106,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { password: _, ...userWithoutPassword } = user;
       req.session.userId = user.id;
       
-      console.log("Login successful, session userId set to:", req.session.userId);
-      console.log("Session ID:", req.sessionID);
-      
-      res.json({ user: userWithoutPassword });
+      // Force session save
+      req.session.save((err) => {
+        if (err) {
+          console.error("Session save error:", err);
+        }
+        console.log("Login successful, session userId set to:", req.session.userId);
+        console.log("Login - Session ID:", req.sessionID);
+        res.json({ user: userWithoutPassword });
+      });
     } catch (error) {
       console.error("Login error:", error);
       res.status(500).json({ message: "Internal server error" });

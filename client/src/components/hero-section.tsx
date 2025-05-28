@@ -10,7 +10,7 @@ export default function HeroSection() {
 
   return (
     <section className="pt-16 bg-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-32">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-16">
         <div className="text-center fade-in">
           <h2 className="text-5xl lg:text-7xl font-light tracking-wider text-foreground mb-8">
             MONTERO

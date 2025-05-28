@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -79,9 +79,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           <DialogTitle className="text-center text-2xl font-light">
             {isLogin ? "Вход" : "Регистрация"}
           </DialogTitle>
-          <p id="auth-description" className="text-center text-sm text-muted-foreground">
+          <DialogDescription className="text-center text-sm text-muted-foreground">
             {isLogin ? "Войдите в свой аккаунт" : "Создайте новый аккаунт в MONTERO"}
-          </p>
+          </DialogDescription>
         </DialogHeader>
 
         {isLogin ? (

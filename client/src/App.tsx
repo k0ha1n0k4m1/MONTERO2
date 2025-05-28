@@ -26,6 +26,7 @@ function Router() {
       <Route path="/contact" component={Contact} />
       <Route path="/size-guide" component={SizeGuide} />
       <Route path="/returns" component={Returns} />
+      <Route path="/checkout" component={Checkout} />
       <Route component={NotFound} />
     </Switch>
   );

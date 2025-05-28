@@ -59,68 +59,64 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json({ message: "API is working!" });
   });
 
-  // Auth routes
+  // Simple Auth routes
   app.post("/api/auth/register", async (req: Request, res) => {
-    console.log("Register endpoint hit with body:", req.body);
     try {
-      const result = registerSchema.safeParse(req.body);
-      if (!result.success) {
-        console.log("Validation failed:", result.error.errors);
-        return res.status(400).json({ message: "Validation error", errors: result.error.errors });
+      const { email, password, firstName, lastName } = req.body;
+      
+      if (!email || !password) {
+        return res.status(400).json({ message: "Email and password required" });
       }
 
-      const user = await storage.registerUser(result.data);
+      // Check if user exists
+      const existingUser = await storage.getUserByEmail(email);
+      if (existingUser) {
+        return res.status(400).json({ message: "User already exists" });
+      }
 
-      // Remove password from response
-      const { password: _, ...userWithoutPassword } = user;
+      // Create user
+      const user = await storage.createUser({
+        email,
+        password,
+        firstName: firstName || "User",
+        lastName: lastName || "Name"
+      });
+
+      // Login user immediately
       req.session.userId = user.id;
       
-      // Force session save
-      req.session.save((err) => {
-        if (err) {
-          console.error("Session save error:", err);
-        }
-        console.log("Registration - Session saved, userId:", req.session.userId);
-        console.log("Registration - Session ID:", req.sessionID);
-        return res.json({ user: userWithoutPassword });
-      });
+      console.log("✅ User registered and logged in:", email);
+      res.json({ user: { id: user.id, email: user.email, firstName: user.firstName, lastName: user.lastName } });
+      
     } catch (error) {
       console.error("Registration error:", error);
-      res.status(500).json({ message: "Internal server error" });
+      res.status(500).json({ message: "Registration failed" });
     }
   });
 
   app.post("/api/auth/login", async (req: Request, res) => {
     try {
-      console.log("Login endpoint hit with body:", req.body);
-      
       const { email, password } = req.body;
       
       if (!email || !password) {
-        console.log("Missing email or password");
-        return res.status(400).json({ message: "Email and password are required" });
+        return res.status(400).json({ message: "Email and password required" });
       }
 
-      // Simple login without complex validation first
       const user = await storage.loginUser({ email, password });
       
       if (!user) {
-        console.log("Login failed - invalid credentials");
         return res.status(401).json({ message: "Invalid credentials" });
       }
 
-      // Set session
+      // Login user
       req.session.userId = user.id;
       
-      // Remove password from response
-      const { password: _, ...userWithoutPassword } = user;
-      
-      console.log("Login successful for user:", user.email);
-      res.json({ user: userWithoutPassword });
+      console.log("✅ User logged in:", email);
+      res.json({ user: { id: user.id, email: user.email, firstName: user.firstName, lastName: user.lastName } });
       
     } catch (error) {
       console.error("Login error:", error);
-      res.status(500).json({ message: "Internal server error" });
+      res.status(500).json({ message: "Login failed" });
     }
   });
 

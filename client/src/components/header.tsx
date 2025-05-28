@@ -16,6 +16,7 @@ const navigation = [
   { name: 'outerwear', href: '/category/outerwear' },
   { name: 'top', href: '/category/top' },
   { name: 'bottom', href: '/category/bottom' },
+  { name: 'best', href: '/category/best' },
   { name: 'accessories', href: '/category/accessories' },
 ]
 

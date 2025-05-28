@@ -92,4 +92,32 @@
       transform: translateY(0); 
     }
   }
+
+  .montero-title {
+    font-family: 'serif';
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.15em;
+    position: relative;
+    font-weight: 900;
+    color: #1a1a1a;
+    transform: perspective(500px) rotateX(15deg);
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3));
+  }
+
+  .montero-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+    pointer-events: none;
+    animation: shine 3s ease-in-out infinite;
+  }
+
+  @keyframes shine {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
 }

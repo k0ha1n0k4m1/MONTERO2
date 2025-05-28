@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useAuth } from "@/hooks/useAuth";
+import { useSimpleAuth } from "@/hooks/useSimpleAuth";
 import { loginSchema, registerSchema, type LoginData, type RegisterData } from "@shared/schema";
 import { useToast } from "@/hooks/use-toast";
 
@@ -16,7 +16,7 @@ interface AuthModalProps {
 
 export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [isLogin, setIsLogin] = useState(true);
-  const { login, register, isLoginPending, isRegisterPending } = useAuth();
+  const { login, register, isLoading } = useSimpleAuth();
   const { toast } = useToast();
 
   const loginForm = useForm<LoginData>({
@@ -115,9 +115,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             <Button 
               type="submit" 
               className="w-full bg-black text-white hover:bg-gray-800"
-              disabled={isLoginPending}
+              disabled={isLoading}
             >
-              {isLoginPending ? "Вход..." : "Войти"}
+              {isLoading ? "Вход..." : "Войти"}
             </Button>
 
             <div className="text-center">

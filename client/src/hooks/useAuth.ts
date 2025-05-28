@@ -17,6 +17,7 @@ export function useAuth() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
       });
       
       if (!response.ok) {
@@ -39,6 +40,7 @@ export function useAuth() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
       });
       
       const responseText = await response.text();
@@ -84,9 +86,9 @@ export function useAuth() {
   });
 
   return {
-    user: user?.user || user,
+    user: user ? (user as any).user || user : null,
     isLoading,
-    isAuthenticated: !!(user?.user || user),
+    isAuthenticated: !!user && !!(user as any).user,
     login: loginMutation.mutateAsync,
     register: registerMutation.mutateAsync,
     logout: logoutMutation.mutateAsync,

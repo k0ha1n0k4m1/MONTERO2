@@ -15,9 +15,6 @@ export default function HeroSection() {
           <h2 className="text-5xl lg:text-7xl font-light tracking-wider text-foreground mb-8">
             MONTERO
           </h2>
-          <p className="text-lg lg:text-xl font-light text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Ultra-minimalist fashion for the modern individual. Discover our curated collection of premium essentials.
-          </p>
           <div className="mt-12">
             <Button 
               onClick={scrollToProducts}

@@ -14,6 +14,20 @@ declare module 'express-session' {
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Enable CORS with credentials
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Origin', req.headers.origin);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+    
+    if (req.method === 'OPTIONS') {
+      res.sendStatus(200);
+    } else {
+      next();
+    }
+  });
+
   // Setup sessions
   const MemoryStoreSession = MemoryStore(session);
   app.use(session({
@@ -83,6 +97,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { password: _, ...userWithoutPassword } = user;
       req.session.userId = user.id;
       
+      console.log("Login successful, session userId set to:", req.session.userId);
+      console.log("Session ID:", req.sessionID);
+      
       res.json({ user: userWithoutPassword });
     } catch (error) {
       console.error("Login error:", error);
@@ -101,6 +118,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get("/api/auth/me", async (req: Request, res) => {
     try {
+      console.log("Auth check - Session ID:", req.sessionID);
+      console.log("Auth check - Session userId:", req.session.userId);
+      
       if (!req.session.userId) {
         return res.status(401).json({ message: "Not authenticated" });
       }

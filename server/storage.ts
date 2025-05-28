@@ -365,24 +365,28 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const hashedPassword = await bcrypt.hash(insertUser.password, 10);
     const [user] = await db
       .insert(users)
-      .values({
-        ...insertUser,
-        password: hashedPassword,
-      })
+      .values(insertUser)
       .returning();
     return user;
   }
 
   async loginUser(loginData: LoginData): Promise<User | null> {
+    console.log("Login attempt for email:", loginData.email);
     const user = await this.getUserByEmail(loginData.email);
     if (!user) {
+      console.log("User not found for email:", loginData.email);
       return null;
     }
 
+    console.log("User found, checking password...");
+    console.log("Provided password:", loginData.password);
+    console.log("Stored hash:", user.password);
+    
     const isPasswordValid = await bcrypt.compare(loginData.password, user.password);
+    console.log("Password valid:", isPasswordValid);
+    
     if (!isPasswordValid) {
       return null;
     }

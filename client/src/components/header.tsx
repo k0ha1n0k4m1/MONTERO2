@@ -63,7 +63,11 @@ export default function Header() {
               <img 
                 src={logoImage} 
                 alt="MONTERO" 
-                className="h-10 w-auto bg-transparent mix-blend-multiply"
+                className="h-10 w-auto"
+                style={{
+                  filter: 'invert(1) brightness(2)',
+                  backgroundColor: 'transparent'
+                }}
               />
             </Link>
           </div>

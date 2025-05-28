@@ -9,6 +9,7 @@ import { useAuth } from "@/hooks/useAuth"
 import { cn } from "@/lib/utils"
 import AuthModal from "./auth-modal"
 import { useToast } from "@/hooks/use-toast"
+import logoImage from "@assets/sign.jpg"
 
 const navigation = [
   { name: 'all', href: '/' },
@@ -59,7 +60,7 @@ export default function Header() {
           <div className="flex-shrink-0">
             <Link href="/">
               <img 
-                src="/attached_assets/sign.jpg" 
+                src={logoImage} 
                 alt="MONTERO" 
                 className="h-10 w-auto"
               />

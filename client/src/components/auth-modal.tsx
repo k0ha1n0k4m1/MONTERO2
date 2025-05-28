@@ -74,12 +74,12 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px]" aria-describedby="auth-description">
         <DialogHeader>
           <DialogTitle className="text-center text-2xl font-light">
             {isLogin ? "Вход" : "Регистрация"}
           </DialogTitle>
-          <p className="text-center text-sm text-muted-foreground">
+          <p id="auth-description" className="text-center text-sm text-muted-foreground">
             {isLogin ? "Войдите в свой аккаунт" : "Создайте новый аккаунт в MONTERO"}
           </p>
         </DialogHeader>

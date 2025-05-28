@@ -5,16 +5,30 @@ export function useSimpleAuth() {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Проверяем есть ли сохраненный пользователь
+  // Проверяем сессию на сервере при загрузке
   useEffect(() => {
-    const savedUser = localStorage.getItem('montero_user');
-    if (savedUser) {
+    const checkSession = async () => {
       try {
-        setUser(JSON.parse(savedUser));
+        const response = await fetch("/api/auth/me", {
+          credentials: "include",
+        });
+        
+        if (response.ok) {
+          const userData = await response.json();
+          setUser(userData);
+          localStorage.setItem('montero_user', JSON.stringify(userData));
+        } else {
+          // Если сессия недействительна, очищаем localStorage
+          localStorage.removeItem('montero_user');
+          setUser(null);
+        }
       } catch (e) {
         localStorage.removeItem('montero_user');
+        setUser(null);
       }
-    }
+    };
+    
+    checkSession();
   }, []);
 
   const login = async (data: LoginData) => {

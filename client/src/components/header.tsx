@@ -60,20 +60,10 @@ export default function Header() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/">
-              <div 
-                className="h-10 w-10 relative"
-                style={{
-                  maskImage: `url(${logoImage})`,
-                  WebkitMaskImage: `url(${logoImage})`,
-                  maskSize: 'contain',
-                  WebkitMaskSize: 'contain',
-                  maskRepeat: 'no-repeat',
-                  WebkitMaskRepeat: 'no-repeat',
-                  maskPosition: 'center',
-                  WebkitMaskPosition: 'center',
-                  backgroundColor: '#333333'
-                }}
-                aria-label="MONTERO"
+              <img 
+                src={logoImage} 
+                alt="MONTERO" 
+                className="h-10 w-auto"
               />
             </Link>
           </div>

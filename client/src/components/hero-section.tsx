@@ -15,7 +15,7 @@ export default function HeroSection() {
           <h2 className="text-5xl lg:text-7xl font-light tracking-wider text-foreground mb-8">
             MONTERO
           </h2>
-          <div className="mt-12">
+          <div className="mt-12 flex justify-start ml-8">
             <Button 
               onClick={scrollToProducts}
               className="bg-foreground text-background px-8 py-3 text-sm font-light tracking-wide hover:bg-muted-foreground transition-colors duration-300"

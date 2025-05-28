@@ -13,6 +13,8 @@ import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { formatPrice } from "@/lib/utils";
 import { useLocation } from "wouter";
+import { useQuery } from "@tanstack/react-query";
+import type { Product } from "@shared/schema";
 
 const checkoutSchema = z.object({
   customerName: z.string().min(2, "Имя должно содержать минимум 2 символа"),
@@ -28,6 +30,30 @@ export default function Checkout() {
   const { user, isAuthenticated } = useSimpleAuth();
   const { toast } = useToast();
   const [, setLocation] = useLocation();
+
+  // Fetch product details for cart items
+  const { data: products } = useQuery<Product[]>({
+    queryKey: ['/api/products'],
+    queryFn: async () => {
+      const res = await fetch('/api/products')
+      if (!res.ok) throw new Error('Failed to fetch products')
+      return res.json()
+    }
+  })
+
+  // Merge cart items with product data
+  const cartItemsWithProducts = items.map(item => {
+    const product = products?.find(p => p.id === item.productId)
+    return {
+      ...item,
+      product
+    }
+  }).filter(item => item.product) // Only show items where we found the product
+
+  // Calculate total with actual product prices
+  const totalPrice = cartItemsWithProducts.reduce((sum, item) => 
+    sum + (item.product?.price || 0) * item.quantity, 0
+  );
 
   const form = useForm<CheckoutData>({
     resolver: zodResolver(checkoutSchema),
@@ -60,7 +86,7 @@ export default function Checkout() {
     );
   }
 
-  if (items.length === 0) {
+  if (cartItemsWithProducts.length === 0) {
     return (
       <div className="min-h-screen pt-20 bg-background">
         <div className="max-w-2xl mx-auto px-6 py-12">
@@ -85,7 +111,7 @@ export default function Checkout() {
   const onSubmit = async (data: CheckoutData) => {
     setIsLoading(true);
     try {
-      const orderItems = items.map(item => ({
+      const orderItems = cartItemsWithProducts.map(item => ({
         productId: item.productId,
         quantity: item.quantity,
       }));
@@ -190,7 +216,7 @@ export default function Checkout() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {items.map((item) => (
+                {cartItemsWithProducts.map((item) => (
                   <div key={item.id} className="border-b border-border pb-3">
                     <div className="flex justify-between items-start mb-2">
                       <div className="flex-1">
@@ -208,8 +234,8 @@ export default function Checkout() {
                 
                 <div className="space-y-2 pt-4">
                   <div className="flex justify-between text-sm">
-                    <span>Подытог ({items.reduce((sum, item) => sum + item.quantity, 0)} товаров):</span>
-                    <span>{formatPrice(getTotalPrice())}</span>
+                    <span>Подытог ({cartItemsWithProducts.reduce((sum, item) => sum + item.quantity, 0)} товаров):</span>
+                    <span>{formatPrice(totalPrice)}</span>
                   </div>
                   
                   <div className="flex justify-between text-sm">
@@ -226,7 +252,7 @@ export default function Checkout() {
                   
                   <div className="flex justify-between items-center text-lg font-medium">
                     <span>Итого к оплате:</span>
-                    <span className="text-xl">{formatPrice(getTotalPrice())}</span>
+                    <span className="text-xl">{formatPrice(totalPrice)}</span>
                   </div>
                 </div>
                 

@@ -1,4 +1,4 @@
-import { products, cartItems, users, type Product, type InsertProduct, type CartItem, type InsertCartItem, type User, type InsertUser, type LoginData, type RegisterData } from "@shared/schema";
+import { products, cartItems, users, orders, orderItems, type Product, type InsertProduct, type CartItem, type InsertCartItem, type User, type InsertUser, type Order, type InsertOrder, type OrderItem, type InsertOrderItem, type LoginData, type RegisterData } from "@shared/schema";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
 import bcrypt from "bcryptjs";
@@ -24,6 +24,13 @@ export interface IStorage {
   createUser(user: InsertUser): Promise<User>;
   loginUser(loginData: LoginData): Promise<User | null>;
   registerUser(registerData: RegisterData): Promise<User>;
+
+  // Orders
+  createOrder(order: InsertOrder, items: InsertOrderItem[]): Promise<Order>;
+  getUserOrders(userId: number): Promise<Order[]>;
+  getOrder(id: number): Promise<Order | undefined>;
+  getOrderItems(orderId: number): Promise<OrderItem[]>;
+  updateOrderStatus(id: number, status: string): Promise<Order | undefined>;
 }
 
 export class MemStorage implements IStorage {
@@ -399,6 +406,59 @@ export class DatabaseStorage implements IStorage {
 
     const { confirmPassword, ...userData } = registerData;
     return this.createUser(userData);
+  }
+
+  // Orders methods
+  async createOrder(order: InsertOrder, items: InsertOrderItem[]): Promise<Order> {
+    const [newOrder] = await db
+      .insert(orders)
+      .values(order)
+      .returning();
+
+    // Add order items
+    if (items.length > 0) {
+      const orderItemsWithOrderId = items.map(item => ({
+        ...item,
+        orderId: newOrder.id
+      }));
+      
+      await db
+        .insert(orderItems)
+        .values(orderItemsWithOrderId);
+    }
+
+    return newOrder;
+  }
+
+  async getUserOrders(userId: number): Promise<Order[]> {
+    return await db
+      .select()
+      .from(orders)
+      .where(eq(orders.userId, userId));
+  }
+
+  async getOrder(id: number): Promise<Order | undefined> {
+    const [order] = await db
+      .select()
+      .from(orders)
+      .where(eq(orders.id, id));
+    return order;
+  }
+
+  async getOrderItems(orderId: number): Promise<OrderItem[]> {
+    return await db
+      .select()
+      .from(orderItems)
+      .where(eq(orderItems.orderId, orderId));
+  }
+
+  async updateOrderStatus(id: number, status: string): Promise<Order | undefined> {
+    const [updatedOrder] = await db
+      .update(orders)
+      .set({ status, updatedAt: new Date() })
+      .where(eq(orders.id, id))
+      .returning();
+    return updatedOrder;
   }
 }
 

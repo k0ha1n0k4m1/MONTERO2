@@ -191,29 +191,50 @@ export default function Checkout() {
             <CardContent>
               <div className="space-y-4">
                 {items.map((item) => (
-                  <div key={item.id} className="flex justify-between items-center">
-                    <div>
-                      <p className="font-medium">{item.product?.name}</p>
-                      <p className="text-sm text-muted-foreground">
-                        Количество: {item.quantity}
+                  <div key={item.id} className="border-b border-border pb-3">
+                    <div className="flex justify-between items-start mb-2">
+                      <div className="flex-1">
+                        <p className="font-medium">{item.product?.name}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {formatPrice(item.product?.price || 0)} × {item.quantity}
+                        </p>
+                      </div>
+                      <p className="font-medium">
+                        {formatPrice((item.product?.price || 0) * item.quantity)}
                       </p>
                     </div>
-                    <p className="font-medium">
-                      {formatPrice((item.product?.price || 0) * item.quantity)}
-                    </p>
                   </div>
                 ))}
                 
-                <hr className="border-border" />
-                
-                <div className="flex justify-between items-center text-lg font-medium">
-                  <span>Итого:</span>
-                  <span>{formatPrice(getTotalPrice())}</span>
+                <div className="space-y-2 pt-4">
+                  <div className="flex justify-between text-sm">
+                    <span>Подытог ({items.reduce((sum, item) => sum + item.quantity, 0)} товаров):</span>
+                    <span>{formatPrice(getTotalPrice())}</span>
+                  </div>
+                  
+                  <div className="flex justify-between text-sm">
+                    <span>Доставка:</span>
+                    <span className="text-green-600">Бесплатно</span>
+                  </div>
+                  
+                  <div className="flex justify-between text-sm">
+                    <span>НДС:</span>
+                    <span>Включен в цену</span>
+                  </div>
+                  
+                  <hr className="border-border" />
+                  
+                  <div className="flex justify-between items-center text-lg font-medium">
+                    <span>Итого к оплате:</span>
+                    <span className="text-xl">{formatPrice(getTotalPrice())}</span>
+                  </div>
                 </div>
                 
-                <p className="text-sm text-muted-foreground">
-                  Доставка будет рассчитана после оформления заказа
-                </p>
+                <div className="bg-muted/50 p-3 rounded-lg text-sm text-muted-foreground">
+                  <p>✓ Бесплатная доставка при заказе от 5000 ₽</p>
+                  <p>✓ Возможность возврата в течение 30 дней</p>
+                  <p>✓ Гарантия качества товара</p>
+                </div>
               </div>
             </CardContent>
           </Card>

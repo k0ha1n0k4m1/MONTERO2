@@ -132,11 +132,25 @@ export default function CartSidebar() {
               </div>
 
               <div className="border-t border-border pt-6 space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-lg font-light text-foreground">Total</span>
-                  <span className="text-lg font-light text-foreground">
-                    {formatPrice(totalPrice)}
-                  </span>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm text-muted-foreground">
+                    <span>Товаров ({cartItemsWithProducts.reduce((sum, item) => sum + item.quantity, 0)}):</span>
+                    <span>{formatPrice(totalPrice)}</span>
+                  </div>
+                  
+                  <div className="flex justify-between text-sm text-muted-foreground">
+                    <span>Доставка:</span>
+                    <span className="text-green-600">Бесплатно</span>
+                  </div>
+                  
+                  <hr className="border-border" />
+                  
+                  <div className="flex justify-between items-center">
+                    <span className="text-lg font-light text-foreground">Итого:</span>
+                    <span className="text-lg font-light text-foreground">
+                      {formatPrice(totalPrice)}
+                    </span>
+                  </div>
                 </div>
                 
                 <Button 

@@ -28,20 +28,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Setup sessions
+  // Setup sessions with proper cookie settings
   const MemoryStoreSession = MemoryStore(session);
   app.use(session({
-    secret: process.env.SESSION_SECRET || 'your-secret-key',
+    name: 'montero.sid',
+    secret: process.env.SESSION_SECRET || 'montero-secret-key-2024',
     resave: false,
     saveUninitialized: false,
+    rolling: true,
     store: new MemoryStoreSession({
-      checkPeriod: 86400000 // prune expired entries every 24h
+      checkPeriod: 86400000
     }),
     cookie: {
       secure: false,
       httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000, // 24 hours
-      sameSite: 'lax'
+      maxAge: 24 * 60 * 60 * 1000,
+      sameSite: 'lax',
+      path: '/'
     }
   }));
 

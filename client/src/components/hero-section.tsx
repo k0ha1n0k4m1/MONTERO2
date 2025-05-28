@@ -12,6 +12,13 @@ export default function HeroSection() {
     <section className="pt-16 bg-background">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-16">
         <div className="text-center fade-in">
+          <div className="mb-6">
+            <Button 
+              className="bg-transparent border border-foreground text-foreground px-6 py-2 text-xs font-light tracking-wider hover:bg-foreground hover:text-background transition-colors duration-300"
+            >
+              BEST
+            </Button>
+          </div>
           <h2 className="text-5xl lg:text-7xl font-light tracking-wider text-foreground mb-8">
             MONTERO
           </h2>

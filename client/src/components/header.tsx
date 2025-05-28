@@ -9,7 +9,7 @@ import { useAuth } from "@/hooks/useAuth"
 import { cn } from "@/lib/utils"
 import AuthModal from "./auth-modal"
 import { useToast } from "@/hooks/use-toast"
-import logoImage from "@assets/IMAGE 2025-05-28 19:58:46.jpg"
+import logoImage from "@assets/LOGO_no_bg.png"
 
 const navigation = [
   { name: 'all', href: '/' },

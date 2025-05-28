@@ -389,6 +389,26 @@ export class DatabaseStorage implements IStorage {
 
     return user;
   }
+
+  async registerUser(registerData: RegisterData): Promise<User> {
+    // Check if user already exists
+    const existingUser = await this.getUserByEmail(registerData.email);
+    if (existingUser) {
+      throw new Error("User with this email already exists");
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(registerData.password, 10);
+    
+    // Create user
+    const { confirmPassword, ...userData } = registerData;
+    const userToCreate: InsertUser = {
+      ...userData,
+      password: hashedPassword,
+    };
+    
+    return this.createUser(userToCreate);
+  }
 }
 
 // Initialize products in database

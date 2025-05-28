@@ -53,20 +53,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Validation error", errors: result.error.errors });
       }
 
-      const { email, password, firstName, lastName } = result.data;
-      
-      // Check if user already exists
-      const existingUser = await storage.getUserByEmail(email);
-      if (existingUser) {
-        return res.status(400).json({ message: "User already exists" });
-      }
-
-      const user = await storage.createUser({
-        email,
-        password,
-        firstName,
-        lastName
-      });
+      const user = await storage.registerUser(result.data);
 
       // Remove password from response
       const { password: _, ...userWithoutPassword } = user;

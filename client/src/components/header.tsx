@@ -56,14 +56,14 @@ export default function Header() {
   return (
     <header className="border-b border-border bg-background/95 backdrop-blur-sm fixed w-full top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/">
               <img 
                 src={logoImage} 
                 alt="MONTERO" 
-                className="h-10 w-auto"
+                className="h-16 w-auto"
               />
             </Link>
           </div>

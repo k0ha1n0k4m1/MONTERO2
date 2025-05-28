@@ -200,9 +200,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             <Button 
               type="submit" 
               className="w-full bg-black text-white hover:bg-gray-800"
-              disabled={isRegisterPending}
+              disabled={isLoading}
             >
-              {isRegisterPending ? "Регистрация..." : "Зарегистрироваться"}
+              {isLoading ? "Регистрация..." : "Зарегистрироваться"}
             </Button>
 
             <div className="text-center">

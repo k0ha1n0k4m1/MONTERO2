@@ -365,75 +365,40 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    // Hash password before storing
-    const hashedPassword = await bcrypt.hash(insertUser.password, 10);
-    
     const [user] = await db
       .insert(users)
-      .values({
-        ...insertUser,
-        password: hashedPassword,
-      })
+      .values(insertUser)
       .returning();
     return user;
   }
 
   async loginUser(loginData: LoginData): Promise<User | null> {
-    try {
-      console.log("=== LOGIN ATTEMPT ===");
-      console.log("Email:", loginData.email);
-      console.log("Password provided:", loginData.password);
-      
-      const user = await this.getUserByEmail(loginData.email);
-      if (!user) {
-        console.log("❌ User not found");
-        return null;
-      }
-      
-      console.log("✅ User found in database");
-      console.log("Stored password hash:", user.password);
-      
-      // Compare provided password with stored hash
-      const isPasswordValid = await bcrypt.compare(loginData.password, user.password);
-      console.log("Password comparison result:", isPasswordValid);
-      
-      if (!isPasswordValid) {
-        console.log("❌ Password invalid");
-        return null;
-      }
-
-      console.log("✅ Login successful");
-      return user;
-    } catch (error) {
-      console.error("Login error:", error);
+    console.log("Login attempt for:", loginData.email);
+    
+    const user = await this.getUserByEmail(loginData.email);
+    if (!user) {
+      console.log("User not found");
       return null;
     }
+    
+    // Simple password comparison for now
+    if (user.password === loginData.password) {
+      console.log("Login successful");
+      return user;
+    }
+    
+    console.log("Password mismatch");
+    return null;
   }
 
   async registerUser(registerData: RegisterData): Promise<User> {
-    try {
-      console.log("=== REGISTRATION ATTEMPT ===");
-      console.log("Email:", registerData.email);
-      
-      // Check if user already exists
-      const existingUser = await this.getUserByEmail(registerData.email);
-      if (existingUser) {
-        console.log("❌ User already exists");
-        throw new Error("User with this email already exists");
-      }
-
-      console.log("✅ Email available");
-      
-      // Create user (password will be hashed in createUser)
-      const { confirmPassword, ...userData } = registerData;
-      const user = await this.createUser(userData);
-      
-      console.log("✅ User created successfully");
-      return user;
-    } catch (error) {
-      console.error("Registration error:", error);
-      throw error;
+    const existingUser = await this.getUserByEmail(registerData.email);
+    if (existingUser) {
+      throw new Error("User with this email already exists");
     }
+
+    const { confirmPassword, ...userData } = registerData;
+    return this.createUser(userData);
   }
 }
 

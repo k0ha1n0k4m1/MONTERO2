@@ -17,9 +17,9 @@ import { useQuery } from "@tanstack/react-query";
 import type { Product } from "@shared/schema";
 
 const checkoutSchema = z.object({
-  customerName: z.string().min(2, "Имя должно содержать минимум 2 символа"),
-  customerEmail: z.string().email("Введите корректный email"),
-  shippingAddress: z.string().min(10, "Адрес должен содержать минимум 10 символов"),
+  customerName: z.string().min(2, "이름은 최소 2글자 이상 입력해주세요"),
+  customerEmail: z.string().email("올바른 이메일을 입력해주세요"),
+  shippingAddress: z.string().min(10, "주소는 최소 10글자 이상 입력해주세요"),
 });
 
 type CheckoutData = z.infer<typeof checkoutSchema>;
@@ -71,13 +71,13 @@ export default function Checkout() {
           <Card>
             <CardContent className="pt-6">
               <p className="text-center text-muted-foreground">
-                Войдите в систему для оформления заказа
+                주문하려면 로그인해주세요
               </p>
               <Button 
                 onClick={() => setLocation("/")}
                 className="w-full mt-4"
               >
-                Вернуться на главную
+                홈으로 돌아가기
               </Button>
             </CardContent>
           </Card>
@@ -93,13 +93,13 @@ export default function Checkout() {
           <Card>
             <CardContent className="pt-6">
               <p className="text-center text-muted-foreground">
-                Ваша корзина пуста
+                장바구니가 비어있습니다
               </p>
               <Button 
                 onClick={() => setLocation("/")}
                 className="w-full mt-4"
               >
-                Перейти к покупкам
+                쇼핑하러 가기
               </Button>
             </CardContent>
           </Card>
@@ -144,22 +144,22 @@ export default function Checkout() {
   return (
     <div className="min-h-screen pt-20 bg-background">
       <div className="max-w-4xl mx-auto px-6 py-12">
-        <h1 className="text-3xl font-light mb-8">Оформление заказа</h1>
+        <h1 className="text-3xl font-light mb-8">주문하기</h1>
         
         <div className="grid md:grid-cols-2 gap-8">
           {/* Форма заказа */}
           <Card>
             <CardHeader>
-              <CardTitle className="font-light">Информация о доставке</CardTitle>
+              <CardTitle className="font-light">배송 정보</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 <div>
-                  <Label htmlFor="customerName">Полное имя</Label>
+                  <Label htmlFor="customerName">성명</Label>
                   <Input
                     id="customerName"
                     {...form.register("customerName")}
-                    placeholder="Введите ваше имя"
+                    placeholder="이름을 입력해주세요"
                   />
                   {form.formState.errors.customerName && (
                     <p className="text-sm text-red-500 mt-1">
@@ -169,12 +169,12 @@ export default function Checkout() {
                 </div>
 
                 <div>
-                  <Label htmlFor="customerEmail">Email</Label>
+                  <Label htmlFor="customerEmail">이메일</Label>
                   <Input
                     id="customerEmail"
                     type="email"
                     {...form.register("customerEmail")}
-                    placeholder="ваш@email.com"
+                    placeholder="example@email.com"
                   />
                   {form.formState.errors.customerEmail && (
                     <p className="text-sm text-red-500 mt-1">
@@ -184,11 +184,11 @@ export default function Checkout() {
                 </div>
 
                 <div>
-                  <Label htmlFor="shippingAddress">Адрес доставки</Label>
+                  <Label htmlFor="shippingAddress">배송 주소</Label>
                   <Textarea
                     id="shippingAddress"
                     {...form.register("shippingAddress")}
-                    placeholder="Город, улица, дом, квартира"
+                    placeholder="도시, 구/군, 상세주소 (예: 서울시 강남구 테헤란로 123번길 45, 101호)"
                     rows={3}
                   />
                   {form.formState.errors.shippingAddress && (
@@ -203,7 +203,7 @@ export default function Checkout() {
                   className="w-full"
                   disabled={isLoading}
                 >
-                  {isLoading ? "Оформление..." : "Подтвердить заказ"}
+                  {isLoading ? "주문 처리 중..." : "주문 확정"}
                 </Button>
               </form>
             </CardContent>
@@ -212,7 +212,7 @@ export default function Checkout() {
           {/* Сумма заказа */}
           <Card>
             <CardHeader>
-              <CardTitle className="font-light">Ваш заказ</CardTitle>
+              <CardTitle className="font-light">주문 내역</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -234,32 +234,32 @@ export default function Checkout() {
                 
                 <div className="space-y-2 pt-4">
                   <div className="flex justify-between text-sm">
-                    <span>Подытог ({cartItemsWithProducts.reduce((sum, item) => sum + item.quantity, 0)} товаров):</span>
+                    <span>소계 ({cartItemsWithProducts.reduce((sum, item) => sum + item.quantity, 0)}개 상품):</span>
                     <span>{formatPrice(totalPrice)}</span>
                   </div>
                   
                   <div className="flex justify-between text-sm">
-                    <span>Доставка:</span>
-                    <span className="text-green-600">Бесплатно</span>
+                    <span>배송비:</span>
+                    <span className="text-green-600">무료</span>
                   </div>
                   
                   <div className="flex justify-between text-sm">
-                    <span>НДС:</span>
-                    <span>Включен в цену</span>
+                    <span>부가세:</span>
+                    <span>포함</span>
                   </div>
                   
                   <hr className="border-border" />
                   
                   <div className="flex justify-between items-center text-lg font-medium">
-                    <span>Итого к оплате:</span>
+                    <span>총 결제금액:</span>
                     <span className="text-xl">{formatPrice(totalPrice)}</span>
                   </div>
                 </div>
                 
                 <div className="bg-muted/50 p-3 rounded-lg text-sm text-muted-foreground">
-                  <p>✓ Бесплатная доставка при заказе от 5000 ₽</p>
-                  <p>✓ Возможность возврата в течение 30 дней</p>
-                  <p>✓ Гарантия качества товара</p>
+                  <p>✓ 50,000원 이상 주문 시 무료배송</p>
+                  <p>✓ 30일 이내 교환/반품 가능</p>
+                  <p>✓ 품질보증</p>
                 </div>
               </div>
             </CardContent>

@@ -4,8 +4,8 @@ import { Instagram, Twitter, Facebook } from "lucide-react"
 const footerLinks = {
   shop: [
     { name: 'All Products', href: '/' },
-    { name: 'New Arrivals', href: '/category/new-arrivals' },
-    { name: 'Sale', href: '/category/sale' },
+    { name: 'New Arrivals', href: '/' },
+    { name: 'Sale', href: '/' },
   ],
   support: [
     { name: 'Contact Us', href: '/contact' },
@@ -15,6 +15,23 @@ const footerLinks = {
 }
 
 export default function Footer() {
+  const scrollToProducts = () => {
+    const productsSection = document.getElementById('products')
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      // Если секция не найдена, перейти на главную страницу
+      window.location.href = '/'
+    }
+  }
+
+  const handleShopClick = (e: React.MouseEvent, linkName: string) => {
+    e.preventDefault()
+    if (linkName === 'All Products' || linkName === 'New Arrivals' || linkName === 'Sale') {
+      scrollToProducts()
+    }
+  }
+
   return (
     <footer className="py-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -32,11 +49,12 @@ export default function Footer() {
               <ul className="space-y-3">
                 {footerLinks.shop.map((link) => (
                   <li key={link.name}>
-                    <Link href={link.href}>
-                      <span className="text-white/80 hover:text-white transition-colors duration-300 text-sm font-light cursor-pointer">
-                        {link.name}
-                      </span>
-                    </Link>
+                    <span 
+                      onClick={(e) => handleShopClick(e, link.name)}
+                      className="text-white/80 hover:text-white transition-colors duration-300 text-sm font-light cursor-pointer"
+                    >
+                      {link.name}
+                    </span>
                   </li>
                 ))}
               </ul>

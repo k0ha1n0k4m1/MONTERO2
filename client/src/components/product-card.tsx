@@ -35,8 +35,7 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
       <div 
         className={`${featured ? 'p-8' : 'p-6'}`}
         style={{ 
-          backgroundColor: 'rgba(255, 255, 255, 0.1)',
-          backdropFilter: 'blur(1px)'
+          backgroundColor: 'rgba(255, 255, 255, 0.05)'
         }}
       >
         <h4 className={`${featured ? 'text-lg' : 'text-sm'} font-light text-white mb-2`}>

@@ -22,9 +22,7 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
     <Card 
       className={`group hover-lift rounded-lg overflow-hidden border-0 shadow-none`}
       style={{ 
-        backgroundImage: 'url(/texture-bg.jpg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
+        backgroundColor: 'transparent'
       }}
     >
       <div className={`${featured ? 'aspect-[4/5]' : 'aspect-square'} overflow-hidden`}>
@@ -37,9 +35,8 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
       <div 
         className={`${featured ? 'p-8' : 'p-6'}`}
         style={{ 
-          backgroundImage: 'url(/texture-bg.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
+          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+          backdropFilter: 'blur(1px)'
         }}
       >
         <h4 className={`${featured ? 'text-lg' : 'text-sm'} font-light text-white mb-2`}>

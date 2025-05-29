@@ -45,7 +45,7 @@ export default function CartSidebar() {
 
   return (
     <Sheet open={isOpen} onOpenChange={setOpen}>
-      <SheetContent className="w-full sm:max-w-lg bg-white">
+      <SheetContent className="w-full sm:max-w-lg bg-black/5 backdrop-blur-md">
         <SheetHeader className="border-b border-border pb-6">
           <SheetTitle className="text-xl font-light text-foreground">
             Shopping Cart ({items.length})

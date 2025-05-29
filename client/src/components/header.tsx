@@ -97,7 +97,7 @@ export default function Header() {
                   <Search className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="top" className="h-auto bg-white">
+              <SheetContent side="top" className="h-auto bg-black/5 backdrop-blur-md">
                 <div className="max-w-2xl mx-auto py-8">
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -120,20 +120,20 @@ export default function Header() {
                   <User className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-full sm:max-w-md bg-black/90 backdrop-blur-md">
+              <SheetContent side="right" className="w-full sm:max-w-md bg-white">
                 <div className="py-6">
-                  <h3 className="text-xl font-light text-white mb-6">Account</h3>
+                  <h3 className="text-xl font-light text-foreground mb-6">Account</h3>
                   <div className="space-y-4">
                     {isAuthenticated ? (
                       <>
-                        <div className="text-sm text-white/80 mb-4">
+                        <div className="text-sm text-muted-foreground mb-4">
                           Добро пожаловать, {user?.firstName || user?.email}!
                         </div>
                         <hr className="border-border" />
                         <div className="space-y-3">
                           <Button 
                             variant="ghost" 
-                            className="w-full justify-start text-white/80 font-light hover:text-white hover:bg-white/10"
+                            className="w-full justify-start text-muted-foreground font-light"
                             asChild
                           >
                             <Link href="/orders" onClick={() => setUserMenuOpen(false)}>
@@ -142,7 +142,7 @@ export default function Header() {
                           </Button>
                           <Button 
                             variant="ghost" 
-                            className="w-full justify-start text-white/80 font-light hover:text-white hover:bg-white/10"
+                            className="w-full justify-start text-muted-foreground font-light"
                             asChild
                           >
                             <Link href="/wishlist" onClick={() => setUserMenuOpen(false)}>
@@ -151,7 +151,7 @@ export default function Header() {
                           </Button>
                           <Button 
                             variant="ghost" 
-                            className="w-full justify-start text-white/80 font-light hover:text-white hover:bg-white/10"
+                            className="w-full justify-start text-muted-foreground font-light"
                             asChild
                           >
                             <Link href="/profile" onClick={() => setUserMenuOpen(false)}>
@@ -160,7 +160,7 @@ export default function Header() {
                           </Button>
                           <Button 
                             variant="ghost" 
-                            className="w-full justify-start text-white/80 font-light hover:text-white hover:bg-white/10"
+                            className="w-full justify-start text-muted-foreground font-light"
                             asChild
                           >
                             <Link href="/support" onClick={() => setUserMenuOpen(false)}>
@@ -241,7 +241,7 @@ export default function Header() {
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-full bg-white">
+              <SheetContent side="right" className="w-full bg-black/5 backdrop-blur-md">
                 <div className="flex flex-col h-full">
                   <div className="flex items-center justify-between p-6 border-b border-border">
                     <h2 className="text-xl font-light">MONTERO</h2>

@@ -109,8 +109,8 @@ export default function Footer() {
             </div>
           </div>
         
-          <div className="border-t border-white/20 pt-8">
-            <p className="text-white/80 text-sm font-light text-center">
+          <div className="border-t border-black/20 pt-8">
+            <p className="text-black/80 text-sm font-light text-center">
               © 2024 MONTERO. All rights reserved.
             </p>
           </div>

@@ -9,7 +9,7 @@ import { useAuth } from "@/hooks/useAuth"
 import { cn } from "@/lib/utils"
 import AuthModal from "./auth-modal"
 import { useToast } from "@/hooks/use-toast"
-import logoImage from "@assets/LOGO_no_bg.png"
+import logoImage from "@assets/logo2.png"
 import MonteroLogo from "./montero-logo"
 
 const navigation = [

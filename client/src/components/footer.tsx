@@ -38,20 +38,20 @@ export default function Footer() {
         <div className="bg-transparent rounded-lg p-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div>
-              <h4 className="text-2xl font-light text-white mb-6">MONTERO</h4>
-              <p className="text-white/80 font-light text-sm leading-relaxed">
+              <h4 className="text-2xl font-light text-black mb-6">MONTERO</h4>
+              <p className="text-black/80 font-light text-sm leading-relaxed">
                 Ultra-minimalist fashion for the modern individual.
               </p>
             </div>
             
             <div>
-              <h5 className="text-sm font-light text-white mb-4 tracking-wide">Shop</h5>
+              <h5 className="text-sm font-light text-black mb-4 tracking-wide">Shop</h5>
               <ul className="space-y-3">
                 {footerLinks.shop.map((link) => (
                   <li key={link.name}>
                     <span 
                       onClick={(e) => handleShopClick(e, link.name)}
-                      className="text-white/80 hover:text-white transition-colors duration-300 text-sm font-light cursor-pointer"
+                      className="text-black/80 hover:text-black transition-colors duration-300 text-sm font-light cursor-pointer"
                     >
                       {link.name}
                     </span>
@@ -61,12 +61,12 @@ export default function Footer() {
             </div>
             
             <div>
-              <h5 className="text-sm font-light text-white mb-4 tracking-wide">Support</h5>
+              <h5 className="text-sm font-light text-black mb-4 tracking-wide">Support</h5>
               <ul className="space-y-3">
                 {footerLinks.support.map((link) => (
                   <li key={link.name}>
                     <Link href={link.href}>
-                      <span className="text-white/80 hover:text-white transition-colors duration-300 text-sm font-light cursor-pointer">
+                      <span className="text-black/80 hover:text-black transition-colors duration-300 text-sm font-light cursor-pointer">
                         {link.name}
                       </span>
                     </Link>
@@ -76,13 +76,13 @@ export default function Footer() {
             </div>
             
             <div>
-              <h5 className="text-sm font-light text-white mb-4 tracking-wide">Connect</h5>
+              <h5 className="text-sm font-light text-black mb-4 tracking-wide">Connect</h5>
               <div className="flex space-x-4">
                 <a 
                   href="https://instagram.com/montero_fashion" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-white/80 hover:text-white transition-colors duration-300"
+                  className="text-black/80 hover:text-black transition-colors duration-300"
                   aria-label="Следите за нами в Instagram"
                 >
                   <Instagram className="h-5 w-5" />
@@ -91,7 +91,7 @@ export default function Footer() {
                   href="https://twitter.com/montero_fashion" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-white/80 hover:text-white transition-colors duration-300"
+                  className="text-black/80 hover:text-black transition-colors duration-300"
                   aria-label="Следите за нами в Twitter"
                 >
                   <Twitter className="h-5 w-5" />
@@ -100,7 +100,7 @@ export default function Footer() {
                   href="https://facebook.com/montero.fashion" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-white/80 hover:text-white transition-colors duration-300"
+                  className="text-black/80 hover:text-black transition-colors duration-300"
                   aria-label="Следите за нами в Facebook"
                 >
                   <Facebook className="h-5 w-5" />

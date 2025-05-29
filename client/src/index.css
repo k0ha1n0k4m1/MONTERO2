@@ -56,7 +56,7 @@
   body {
     @apply text-foreground font-light;
     font-family: 'Inter', sans-serif;
-    background-image: url('/src/assets/IMAGE 2025-05-29 18:52:36.jpg');
+    background-image: url('@assets/IMAGE 2025-05-29 18:52:36.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

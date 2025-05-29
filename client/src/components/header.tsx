@@ -120,20 +120,20 @@ export default function Header() {
                   <User className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-full sm:max-w-md bg-white">
+              <SheetContent side="right" className="w-full sm:max-w-md bg-black/90 backdrop-blur-md">
                 <div className="py-6">
-                  <h3 className="text-xl font-light text-foreground mb-6">Account</h3>
+                  <h3 className="text-xl font-light text-white mb-6">Account</h3>
                   <div className="space-y-4">
                     {isAuthenticated ? (
                       <>
-                        <div className="text-sm text-muted-foreground mb-4">
+                        <div className="text-sm text-white/80 mb-4">
                           Добро пожаловать, {user?.firstName || user?.email}!
                         </div>
                         <hr className="border-border" />
                         <div className="space-y-3">
                           <Button 
                             variant="ghost" 
-                            className="w-full justify-start text-muted-foreground font-light"
+                            className="w-full justify-start text-white/80 font-light hover:text-white hover:bg-white/10"
                             asChild
                           >
                             <Link href="/orders" onClick={() => setUserMenuOpen(false)}>
@@ -142,7 +142,7 @@ export default function Header() {
                           </Button>
                           <Button 
                             variant="ghost" 
-                            className="w-full justify-start text-muted-foreground font-light"
+                            className="w-full justify-start text-white/80 font-light hover:text-white hover:bg-white/10"
                             asChild
                           >
                             <Link href="/wishlist" onClick={() => setUserMenuOpen(false)}>
@@ -151,7 +151,7 @@ export default function Header() {
                           </Button>
                           <Button 
                             variant="ghost" 
-                            className="w-full justify-start text-muted-foreground font-light"
+                            className="w-full justify-start text-white/80 font-light hover:text-white hover:bg-white/10"
                             asChild
                           >
                             <Link href="/profile" onClick={() => setUserMenuOpen(false)}>
@@ -160,7 +160,7 @@ export default function Header() {
                           </Button>
                           <Button 
                             variant="ghost" 
-                            className="w-full justify-start text-muted-foreground font-light"
+                            className="w-full justify-start text-white/80 font-light hover:text-white hover:bg-white/10"
                             asChild
                           >
                             <Link href="/support" onClick={() => setUserMenuOpen(false)}>

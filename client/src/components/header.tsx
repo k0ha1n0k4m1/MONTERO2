@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils"
 import AuthModal from "./auth-modal"
 import { useToast } from "@/hooks/use-toast"
 import logoImage from "@assets/LOGO_no_bg.png"
+import MonteroLogo from "./montero-logo"
 
 const navigation = [
   { name: 'all', href: '/' },
@@ -60,11 +61,7 @@ export default function Header() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/">
-              <img 
-                src={logoImage} 
-                alt="MONTERO" 
-                className="h-16 w-auto"
-              />
+              <MonteroLogo width={64} height={64} className="hover:scale-105 transition-transform duration-300" />
             </Link>
           </div>
           

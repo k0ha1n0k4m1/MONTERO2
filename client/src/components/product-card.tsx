@@ -19,7 +19,7 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
   }
 
   return (
-    <Card className={`group hover-lift bg-gray-100 rounded-lg overflow-hidden border-0 shadow-none ${featured ? 'bg-gray-200' : ''}`}>
+    <Card className={`group hover-lift !bg-gray-100 rounded-lg overflow-hidden border-0 shadow-none ${featured ? '!bg-gray-200' : ''}`}>
       <div className={`${featured ? 'aspect-[4/5]' : 'aspect-square'} overflow-hidden`}>
         <img 
           src={product.imageUrl} 

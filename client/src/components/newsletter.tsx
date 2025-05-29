@@ -29,9 +29,9 @@ export default function Newsletter() {
   return (
     <section className="py-20">
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
-        <div className="bg-white/85 backdrop-blur-sm rounded-lg p-12 shadow-lg text-center">
-          <h3 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6">Stay Updated</h3>
-          <p className="text-gray-600 font-light mb-8 max-w-2xl mx-auto">
+        <div className="bg-transparent rounded-lg p-12 text-center">
+          <h3 className="text-3xl lg:text-4xl font-light text-white mb-6">Stay Updated</h3>
+          <p className="text-white/80 font-light mb-8 max-w-2xl mx-auto">
             Be the first to know about new arrivals and exclusive collections
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">

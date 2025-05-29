@@ -3,10 +3,12 @@ import { useLocation } from "wouter"
 import ProductCard from "./product-card"
 import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
+import { useLanguage } from "@/hooks/useLanguage"
 import type { Product } from "@shared/schema"
 
 export default function ProductGrid() {
   const [location] = useLocation()
+  const { t } = useLanguage()
   // Extract category from URL path
   const category = location.startsWith('/category/') 
     ? location.split('/category/')[1] 
@@ -50,10 +52,10 @@ export default function ProductGrid() {
           <div className="bg-black/20 backdrop-blur-md rounded-2xl p-8 lg:p-12 shadow-lg">
             <div className="text-center mb-16">
               <h3 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-                {category === 'all' ? 'New Arrivals' : `${category.charAt(0).toUpperCase() + category.slice(1)} Collection`}
+                {category === 'all' ? t('newArrivals') : `${t(category)} Collection`}
               </h3>
               <p className="text-white/80 font-medium text-lg">
-                {category === 'all' ? 'Fresh pieces for the season' : `Discover our ${category} essentials`}
+                {category === 'all' ? t('freshPieces') : `Discover our ${t(category)} essentials`}
               </p>
             </div>
         
@@ -84,8 +86,8 @@ export default function ProductGrid() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="bg-black/20 backdrop-blur-md rounded-2xl p-8 lg:p-12 shadow-lg">
               <div className="text-center mb-16">
-                <h3 className="text-4xl lg:text-5xl font-bold text-white mb-6">Featured Selection</h3>
-                <p className="text-white/80 font-medium text-lg">Carefully curated essentials</p>
+                <h3 className="text-4xl lg:text-5xl font-bold text-white mb-6">{t('featuredSelection')}</h3>
+                <p className="text-white/80 font-medium text-lg">{t('handpicked')}</p>
               </div>
               
               {featuredLoading ? (

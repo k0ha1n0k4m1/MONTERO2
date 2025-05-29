@@ -46,6 +46,10 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         description: "Вы успешно вошли в систему",
       });
       onClose();
+      // Принудительно обновляем страницу для синхронизации состояния
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
     } catch (error: any) {
       toast({
         title: "Ошибка входа",

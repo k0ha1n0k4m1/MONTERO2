@@ -35,7 +35,7 @@ export default function Footer() {
   return (
     <footer className="py-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="bg-transparent rounded-lg p-12">
+        <div className="bg-white/95 backdrop-blur-sm rounded-lg p-12 shadow-lg">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div>
               <h4 className="text-2xl font-light text-black mb-6">MONTERO</h4>

@@ -47,32 +47,34 @@ export default function ProductGrid() {
       {/* New Arrivals Section */}
       <section className="py-20" id="products">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h3 className="text-3xl lg:text-4xl font-light text-white mb-4">
-              {category === 'all' ? 'New Arrivals' : `${category.charAt(0).toUpperCase() + category.slice(1)} Collection`}
-            </h3>
-            <p className="text-white/80 font-light">
-              {category === 'all' ? 'Fresh pieces for the season' : `Discover our ${category} essentials`}
-            </p>
-          </div>
+          <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 lg:p-12 shadow-lg">
+            <div className="text-center mb-16">
+              <h3 className="text-4xl lg:text-5xl font-bold text-black mb-6">
+                {category === 'all' ? 'New Arrivals' : `${category.charAt(0).toUpperCase() + category.slice(1)} Collection`}
+              </h3>
+              <p className="text-black/80 font-medium text-lg">
+                {category === 'all' ? 'Fresh pieces for the season' : `Discover our ${category} essentials`}
+              </p>
+            </div>
         
-          {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="space-y-4">
-                  <Skeleton className="aspect-square w-full" />
-                  <Skeleton className="h-4 w-3/4" />
-                  <Skeleton className="h-4 w-1/2" />
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 slide-up">
-              {(category === 'all' ? featuredProducts?.slice(0, 4) : products)?.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-          )}
+            {isLoading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <div key={i} className="space-y-4">
+                    <Skeleton className="aspect-square w-full" />
+                    <Skeleton className="h-4 w-3/4" />
+                    <Skeleton className="h-4 w-1/2" />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 slide-up">
+                {(category === 'all' ? featuredProducts?.slice(0, 4) : products)?.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
@@ -80,29 +82,31 @@ export default function ProductGrid() {
       {category === 'all' && (
         <section className="py-20">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h3 className="text-3xl lg:text-4xl font-light text-white mb-4">Featured Selection</h3>
-              <p className="text-white/80 font-light">Carefully curated essentials</p>
+            <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 lg:p-12 shadow-lg">
+              <div className="text-center mb-16">
+                <h3 className="text-4xl lg:text-5xl font-bold text-black mb-6">Featured Selection</h3>
+                <p className="text-black/80 font-medium text-lg">Carefully curated essentials</p>
+              </div>
+              
+              {featuredLoading ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {Array.from({ length: 3 }).map((_, i) => (
+                    <div key={i} className="space-y-4">
+                      <Skeleton className="aspect-[4/5] w-full" />
+                      <Skeleton className="h-6 w-3/4" />
+                      <Skeleton className="h-4 w-full" />
+                      <Skeleton className="h-4 w-1/2" />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {featuredProducts?.slice(4, 7).map((product) => (
+                    <ProductCard key={product.id} product={product} featured />
+                  ))}
+                </div>
+              )}
             </div>
-            
-            {featuredLoading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {Array.from({ length: 3 }).map((_, i) => (
-                  <div key={i} className="space-y-4">
-                    <Skeleton className="aspect-[4/5] w-full" />
-                    <Skeleton className="h-6 w-3/4" />
-                    <Skeleton className="h-4 w-full" />
-                    <Skeleton className="h-4 w-1/2" />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {featuredProducts?.slice(4, 7).map((product) => (
-                  <ProductCard key={product.id} product={product} featured />
-                ))}
-              </div>
-            )}
           </div>
         </section>
       )}

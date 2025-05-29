@@ -65,6 +65,7 @@
   body {
     @apply text-foreground font-light;
     font-family: 'Inter', sans-serif;
+    font-size: 16px;
     background-image: url('/new-bg.jpg');
     background-size: cover;
     background-position: center;

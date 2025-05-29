@@ -9,16 +9,16 @@ export default function HeroSection() {
   }
 
   return (
-    <section className="pt-16">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-16">
-        <div className="text-center fade-in">
+    <section className="pt-16 min-h-[80vh] flex items-center">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-16 w-full">
+        <div className="text-center fade-in bg-white/10 backdrop-blur-md rounded-2xl p-8 lg:p-12 shadow-2xl">
           <h2 className="text-6xl md:text-7xl lg:text-9xl font-bold tracking-wider mb-8 montero-title">
             (MonTero)
           </h2>
           <div className="mt-8">
             <Button 
               onClick={scrollToProducts}
-              className="bg-white/90 backdrop-blur-sm text-gray-900 px-8 py-3 text-sm font-light tracking-wide hover:bg-white transition-colors duration-300 shadow-lg"
+              className="bg-black text-white px-10 py-4 text-base font-medium tracking-wide hover:bg-gray-800 transition-colors duration-300 shadow-lg rounded-lg"
             >
               EXPLORE COLLECTION
             </Button>

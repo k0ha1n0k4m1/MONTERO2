@@ -55,7 +55,7 @@ export default function Header() {
   }
 
   return (
-    <header className="border-b border-border bg-white/90 backdrop-blur-sm fixed w-full top-0 z-50 shadow-sm">
+    <header className="bg-transparent fixed w-full top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -74,10 +74,10 @@ export default function Header() {
             {navigation.map((item) => (
               <Link key={item.name} href={item.href}>
                 <div className={cn(
-                  "text-sm font-light transition-colors duration-300 relative group cursor-pointer",
+                  "text-base font-bold transition-colors duration-300 relative group cursor-pointer text-black",
                   currentCategory === item.name 
-                    ? "text-foreground" 
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-black" 
+                    : "text-black/80 hover:text-black"
                 )}>
                   {item.name}
                   <span className={cn(

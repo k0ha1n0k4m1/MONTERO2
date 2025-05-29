@@ -34,24 +34,31 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
       </div>
-      <div className={`${featured ? 'p-8' : 'p-6'}`}>
-        <h4 className={`${featured ? 'text-lg' : 'text-sm'} font-light text-foreground mb-2`}>
+      <div 
+        className={`${featured ? 'p-8' : 'p-6'}`}
+        style={{ 
+          backgroundImage: 'url(/attached_assets/IMG_1406.JPG)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      >
+        <h4 className={`${featured ? 'text-lg' : 'text-sm'} font-light text-white mb-2`}>
           {product.name}
         </h4>
         {featured && product.description && (
-          <p className="text-muted-foreground text-sm font-light mb-4">
+          <p className="text-white/80 text-sm font-light mb-4">
             {product.description}
           </p>
         )}
         <div className="flex items-center justify-between">
-          <p className={`text-foreground ${featured ? 'font-light' : 'text-sm font-light'}`}>
+          <p className={`text-white ${featured ? 'font-light' : 'text-sm font-light'}`}>
             {formatPrice(product.price)}
           </p>
           <Button
             onClick={handleAddToCart}
             variant="ghost"
             size="sm"
-            className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs font-light hover:bg-foreground hover:text-background"
+            className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs font-light hover:bg-white hover:text-black text-white"
           >
             ADD TO CART
           </Button>

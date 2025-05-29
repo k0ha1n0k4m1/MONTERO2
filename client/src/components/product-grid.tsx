@@ -45,40 +45,44 @@ export default function ProductGrid() {
   return (
     <div className="space-y-20">
       {/* New Arrivals Section */}
-      <section className="py-20 bg-muted" id="products">
+      <section className="py-20" id="products">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h3 className="text-3xl lg:text-4xl font-light text-foreground mb-4">
-              {category === 'all' ? 'New Arrivals' : `${category.charAt(0).toUpperCase() + category.slice(1)} Collection`}
-            </h3>
-            <p className="text-muted-foreground font-light">
-              {category === 'all' ? 'Fresh pieces for the season' : `Discover our ${category} essentials`}
-            </p>
-          </div>
+          <div className="bg-white/85 backdrop-blur-sm rounded-lg p-12 shadow-lg">
+            <div className="text-center mb-16">
+              <h3 className="text-3xl lg:text-4xl font-light text-foreground mb-4">
+                {category === 'all' ? 'New Arrivals' : `${category.charAt(0).toUpperCase() + category.slice(1)} Collection`}
+              </h3>
+              <p className="text-muted-foreground font-light">
+                {category === 'all' ? 'Fresh pieces for the season' : `Discover our ${category} essentials`}
+              </p>
+            </div>
           
-          {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="space-y-4">
-                  <Skeleton className="aspect-square w-full" />
-                  <Skeleton className="h-4 w-3/4" />
-                  <Skeleton className="h-4 w-1/2" />
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 slide-up">
-              {(category === 'all' ? featuredProducts?.slice(0, 4) : products)?.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-          )}
+            {isLoading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <div key={i} className="space-y-4">
+                    <Skeleton className="aspect-square w-full" />
+                    <Skeleton className="h-4 w-3/4" />
+                    <Skeleton className="h-4 w-1/2" />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 slide-up">
+                {(category === 'all' ? featuredProducts?.slice(0, 4) : products)?.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
       {/* Featured Collection - Only show on "all" page */}
       {category === 'all' && (
-        <section className="py-20 bg-white">
+        <section className="py-20">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="bg-white/85 backdrop-blur-sm rounded-lg p-12 shadow-lg">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-16">
               <h3 className="text-3xl lg:text-4xl font-light text-foreground mb-4">Featured Selection</h3>

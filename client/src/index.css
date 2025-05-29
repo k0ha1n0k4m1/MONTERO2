@@ -113,7 +113,10 @@
     letter-spacing: 0.15em;
     position: relative;
     font-weight: normal;
-    color: #1a1a1a;
+    background: linear-gradient(135deg, #f5f1ea 0%, #e8e0d0 50%, #d4c4a8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     transform: perspective(500px) rotateX(15deg);
     filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3));
   }

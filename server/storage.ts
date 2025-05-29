@@ -60,7 +60,7 @@ export class MemStorage implements IStorage {
         description: "Premium vintage-style racing t-shirt",
         price: 28000,
         category: "top",
-        imageUrl: "@assets/IMG_1417.PNG",
+        imageUrl: "/attached_assets/IMG_1417.PNG",
         featured: 1
       },
       {
@@ -68,7 +68,7 @@ export class MemStorage implements IStorage {
         description: "Oversized racing hoodie with vintage graphics",
         price: 45000,
         category: "top",
-        imageUrl: "@assets/IMG_1418.PNG",
+        imageUrl: "/attached_assets/IMG_1418.PNG",
         featured: 1
       },
       {
@@ -76,7 +76,7 @@ export class MemStorage implements IStorage {
         description: "Limited edition sport t-shirt",
         price: 52000,
         category: "top",
-        imageUrl: "@assets/IMG_1417.PNG",
+        imageUrl: "/attached_assets/IMG_1417.PNG",
         featured: 1
       },
       {
@@ -84,7 +84,7 @@ export class MemStorage implements IStorage {
         description: "Premium racing hoodie with graphic details",
         price: 89000,
         category: "top",
-        imageUrl: "@assets/IMG_1418.PNG",
+        imageUrl: "/attached_assets/IMG_1418.PNG",
         featured: 1
       },
       {
@@ -92,7 +92,7 @@ export class MemStorage implements IStorage {
         description: "Classic vintage racing design",
         price: 165000,
         category: "top",
-        imageUrl: "@assets/IMG_1417.PNG",
+        imageUrl: "/attached_assets/IMG_1417.PNG",
         featured: 1
       },
       {
@@ -100,7 +100,7 @@ export class MemStorage implements IStorage {
         description: "High-quality racing hoodie",
         price: 78000,
         category: "top",
-        imageUrl: "@assets/IMG_1418.PNG",
+        imageUrl: "/attached_assets/IMG_1418.PNG",
         featured: 1
       },
       {
@@ -108,7 +108,7 @@ export class MemStorage implements IStorage {
         description: "Exclusive RARE collection t-shirt",
         price: 125000,
         category: "top",
-        imageUrl: "@assets/IMG_1417.PNG",
+        imageUrl: "/attached_assets/IMG_1417.PNG",
         featured: 1
       },
       {
@@ -116,35 +116,35 @@ export class MemStorage implements IStorage {
         description: "Urban racing style hoodie",
         price: 68000,
         category: "top",
-        imageUrl: "@assets/IMG_1418.PNG"
+        imageUrl: "/attached_assets/IMG_1418.PNG"
       },
       {
         name: "Limited RARE Tee",
         description: "Limited edition RARE racing t-shirt",
         price: 95000,
         category: "top",
-        imageUrl: "@assets/IMG_1417.PNG"
+        imageUrl: "/attached_assets/IMG_1417.PNG"
       },
       {
         name: "Racing Team Hoodie",
         description: "Professional racing team hoodie",
         price: 45000,
         category: "top",
-        imageUrl: "@assets/IMG_1418.PNG"
+        imageUrl: "/attached_assets/IMG_1418.PNG"
       },
       {
         name: "Vintage RARE Tee",
         description: "Retro style RARE racing t-shirt",
         price: 55000,
         category: "top",
-        imageUrl: "@assets/IMG_1417.PNG"
+        imageUrl: "/attached_assets/IMG_1417.PNG"
       },
       {
         name: "Elite Racing Hoodie",
         description: "Elite level racing hoodie with premium details",
         price: 145000,
         category: "top",
-        imageUrl: "@assets/IMG_1418.PNG"
+        imageUrl: "/attached_assets/IMG_1418.PNG"
       }
     ];
 
@@ -500,7 +500,7 @@ async function initializeDatabase() {
         description: "Premium vintage-style racing t-shirt",
         price: 28000,
         category: "top",
-        imageUrl: "@assets/IMG_1417.PNG",
+        imageUrl: "/attached_assets/IMG_1417.PNG",
         featured: 1
       },
       {
@@ -508,7 +508,7 @@ async function initializeDatabase() {
         description: "Oversized racing hoodie with vintage graphics",
         price: 45000,
         category: "top",
-        imageUrl: "@assets/IMG_1418.PNG",
+        imageUrl: "/attached_assets/IMG_1418.PNG",
         featured: 1
       },
       {
@@ -516,7 +516,7 @@ async function initializeDatabase() {
         description: "Limited edition sport t-shirt",
         price: 52000,
         category: "top",
-        imageUrl: "@assets/IMG_1417.PNG",
+        imageUrl: "/attached_assets/IMG_1417.PNG",
         featured: 1
       },
       {
@@ -524,7 +524,7 @@ async function initializeDatabase() {
         description: "Premium racing hoodie with graphic details",
         price: 89000,
         category: "top",
-        imageUrl: "@assets/IMG_1418.PNG",
+        imageUrl: "/attached_assets/IMG_1418.PNG",
         featured: 1
       },
       {
@@ -532,7 +532,7 @@ async function initializeDatabase() {
         description: "Classic vintage racing design",
         price: 165000,
         category: "top",
-        imageUrl: "@assets/IMG_1417.PNG",
+        imageUrl: "/attached_assets/IMG_1417.PNG",
         featured: 1
       },
       {
@@ -540,7 +540,7 @@ async function initializeDatabase() {
         description: "High-quality racing hoodie",
         price: 78000,
         category: "top",
-        imageUrl: "@assets/IMG_1418.PNG",
+        imageUrl: "/attached_assets/IMG_1418.PNG",
         featured: 1
       },
       {
@@ -548,7 +548,7 @@ async function initializeDatabase() {
         description: "Exclusive RARE collection t-shirt",
         price: 125000,
         category: "top",
-        imageUrl: "@assets/IMG_1417.PNG",
+        imageUrl: "/attached_assets/IMG_1417.PNG",
         featured: 1
       },
       {
@@ -556,35 +556,35 @@ async function initializeDatabase() {
         description: "Urban racing style hoodie",
         price: 68000,
         category: "top",
-        imageUrl: "@assets/IMG_1418.PNG"
+        imageUrl: "/attached_assets/IMG_1418.PNG"
       },
       {
         name: "Limited RARE Tee",
         description: "Limited edition RARE racing t-shirt",
         price: 95000,
         category: "top",
-        imageUrl: "@assets/IMG_1417.PNG"
+        imageUrl: "/attached_assets/IMG_1417.PNG"
       },
       {
         name: "Racing Team Hoodie",
         description: "Professional racing team hoodie",
         price: 45000,
         category: "top",
-        imageUrl: "@assets/IMG_1418.PNG"
+        imageUrl: "/attached_assets/IMG_1418.PNG"
       },
       {
         name: "Vintage RARE Tee",
         description: "Retro style RARE racing t-shirt",
         price: 55000,
         category: "top",
-        imageUrl: "@assets/IMG_1417.PNG"
+        imageUrl: "/attached_assets/IMG_1417.PNG"
       },
       {
         name: "Elite Racing Hoodie",
         description: "Elite level racing hoodie with premium details",
         price: 145000,
         category: "top",
-        imageUrl: "@assets/IMG_1418.PNG"
+        imageUrl: "/attached_assets/IMG_1418.PNG"
       }
     ];
 

@@ -1,5 +1,6 @@
 import { Link } from "wouter"
 import { Instagram, Twitter, Facebook } from "lucide-react"
+import { useLanguage } from "@/hooks/useLanguage"
 
 const footerLinks = {
   shop: [
@@ -15,6 +16,7 @@ const footerLinks = {
 }
 
 export default function Footer() {
+  const { t } = useLanguage()
   const scrollToProducts = () => {
     const productsSection = document.getElementById('products')
     if (productsSection) {
@@ -40,7 +42,7 @@ export default function Footer() {
             <div>
               <h4 className="text-2xl font-light text-white mb-6">MONTERO</h4>
               <p className="text-white/80 font-light text-sm leading-relaxed">
-                Ultra-minimalist fashion for the modern individual.
+                {t('brandDescription')}
               </p>
             </div>
             

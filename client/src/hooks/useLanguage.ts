@@ -81,7 +81,11 @@ const translations = {
     language: '언어',
     korean: '한국어',
     english: 'English',
-    russian: 'Русский'
+    russian: 'Русский',
+    
+    // Newsletter
+    subscribing: '구독 중...',
+    subscribed: '구독해 주셔서 감사합니다!'
   },
   
   en: {
@@ -154,7 +158,11 @@ const translations = {
     language: 'Language',
     korean: '한국어',
     english: 'English',
-    russian: 'Русский'
+    russian: 'Русский',
+    
+    // Newsletter
+    subscribing: 'Subscribing...',
+    subscribed: 'Thank you for subscribing!'
   },
   
   ru: {
@@ -227,7 +235,11 @@ const translations = {
     language: 'Язык',
     korean: '한국어',
     english: 'English',
-    russian: 'Русский'
+    russian: 'Русский',
+    
+    // Newsletter
+    subscribing: 'Подписываемся...',
+    subscribed: 'Спасибо за подписку!'
   }
 }
 

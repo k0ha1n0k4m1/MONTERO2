@@ -2,11 +2,13 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useToast } from "@/hooks/use-toast"
+import { useLanguage } from "@/hooks/useLanguage"
 
 export default function Newsletter() {
   const [email, setEmail] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const { toast } = useToast()
+  const { t } = useLanguage()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -18,8 +20,8 @@ export default function Newsletter() {
     await new Promise(resolve => setTimeout(resolve, 1000))
     
     toast({
-      title: "Thank you for subscribing!",
-      description: "You'll be the first to know about new arrivals and exclusive collections.",
+      title: t('subscribed'),
+      description: t('stayUpdated'),
     })
     
     setEmail("")
@@ -30,14 +32,14 @@ export default function Newsletter() {
     <section className="py-20">
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
         <div className="bg-black/20 backdrop-blur-md rounded-2xl p-12 text-center shadow-lg">
-          <h3 className="text-4xl lg:text-5xl font-bold text-white mb-6">Stay Updated</h3>
+          <h3 className="text-4xl lg:text-5xl font-bold text-white mb-6">{t('newsletter')}</h3>
           <p className="text-white/80 font-medium text-lg mb-8 max-w-2xl mx-auto">
-            Be the first to know about new arrivals and exclusive collections
+            {t('stayUpdated')}
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <Input 
               type="email" 
-              placeholder="Enter your email"
+              placeholder={t('enterEmail')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="flex-1 bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:border-gray-500"
@@ -48,7 +50,7 @@ export default function Newsletter() {
               disabled={isLoading}
               className="bg-gray-900 text-white hover:bg-gray-700 font-light"
             >
-              {isLoading ? "Subscribing..." : "Subscribe"}
+              {isLoading ? t('subscribing') : t('subscribe')}
             </Button>
           </form>
         </div>

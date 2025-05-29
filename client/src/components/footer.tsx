@@ -82,7 +82,7 @@ export default function Footer() {
                   href="https://instagram.com/montero_fashion" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-black/80 hover:text-black transition-colors duration-300"
+                  className="text-white/80 hover:text-white transition-colors duration-300"
                   aria-label="Следите за нами в Instagram"
                 >
                   <Instagram className="h-5 w-5" />
@@ -91,7 +91,7 @@ export default function Footer() {
                   href="https://twitter.com/montero_fashion" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-black/80 hover:text-black transition-colors duration-300"
+                  className="text-white/80 hover:text-white transition-colors duration-300"
                   aria-label="Следите за нами в Twitter"
                 >
                   <Twitter className="h-5 w-5" />
@@ -100,7 +100,7 @@ export default function Footer() {
                   href="https://facebook.com/montero.fashion" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-black/80 hover:text-black transition-colors duration-300"
+                  className="text-white/80 hover:text-white transition-colors duration-300"
                   aria-label="Следите за нами в Facebook"
                 >
                   <Facebook className="h-5 w-5" />
@@ -109,8 +109,8 @@ export default function Footer() {
             </div>
           </div>
         
-          <div className="border-t border-black/20 pt-8">
-            <p className="text-black/80 text-sm font-light text-center">
+          <div className="border-t border-white/20 pt-8">
+            <p className="text-white/80 text-sm font-light text-center">
               © 2024 MONTERO. All rights reserved.
             </p>
           </div>

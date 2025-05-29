@@ -35,23 +35,23 @@ export default function Footer() {
   return (
     <footer className="py-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="bg-white/95 backdrop-blur-sm rounded-lg p-12 shadow-lg">
+        <div className="bg-black/20 backdrop-blur-md rounded-lg p-12 shadow-lg">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div>
-              <h4 className="text-2xl font-light text-black mb-6">MONTERO</h4>
-              <p className="text-black/80 font-light text-sm leading-relaxed">
+              <h4 className="text-2xl font-light text-white mb-6">MONTERO</h4>
+              <p className="text-white/80 font-light text-sm leading-relaxed">
                 Ultra-minimalist fashion for the modern individual.
               </p>
             </div>
             
             <div>
-              <h5 className="text-sm font-light text-black mb-4 tracking-wide">Shop</h5>
+              <h5 className="text-sm font-light text-white mb-4 tracking-wide">Shop</h5>
               <ul className="space-y-3">
                 {footerLinks.shop.map((link) => (
                   <li key={link.name}>
                     <span 
                       onClick={(e) => handleShopClick(e, link.name)}
-                      className="text-black/80 hover:text-black transition-colors duration-300 text-sm font-light cursor-pointer"
+                      className="text-white/80 hover:text-white transition-colors duration-300 text-sm font-light cursor-pointer"
                     >
                       {link.name}
                     </span>
@@ -61,12 +61,12 @@ export default function Footer() {
             </div>
             
             <div>
-              <h5 className="text-sm font-light text-black mb-4 tracking-wide">Support</h5>
+              <h5 className="text-sm font-light text-white mb-4 tracking-wide">Support</h5>
               <ul className="space-y-3">
                 {footerLinks.support.map((link) => (
                   <li key={link.name}>
                     <Link href={link.href}>
-                      <span className="text-black/80 hover:text-black transition-colors duration-300 text-sm font-light cursor-pointer">
+                      <span className="text-white/80 hover:text-white transition-colors duration-300 text-sm font-light cursor-pointer">
                         {link.name}
                       </span>
                     </Link>
@@ -76,7 +76,7 @@ export default function Footer() {
             </div>
             
             <div>
-              <h5 className="text-sm font-light text-black mb-4 tracking-wide">Connect</h5>
+              <h5 className="text-sm font-light text-white mb-4 tracking-wide">Connect</h5>
               <div className="flex space-x-4">
                 <a 
                   href="https://instagram.com/montero_fashion" 

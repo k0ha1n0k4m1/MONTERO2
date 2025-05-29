@@ -85,7 +85,14 @@ const translations = {
     
     // Newsletter
     subscribing: '구독 중...',
-    subscribed: '구독해 주셔서 감사합니다!'
+    subscribed: '구독해 주셔서 감사합니다!',
+    
+    // Footer
+    brandDescription: '현대인을 위한 울트라 미니멀리즘 패션',
+    allProducts: '모든 제품',
+    sale: '세일',
+    connect: '연결',
+    copyright: '© 2024 MONTERO. 모든 권리 보유.'
   },
   
   en: {
@@ -162,7 +169,14 @@ const translations = {
     
     // Newsletter
     subscribing: 'Subscribing...',
-    subscribed: 'Thank you for subscribing!'
+    subscribed: 'Thank you for subscribing!',
+    
+    // Footer
+    brandDescription: 'Ultra-minimalist fashion for the modern individual',
+    allProducts: 'All Products',
+    sale: 'Sale',
+    connect: 'Connect',
+    copyright: '© 2024 MONTERO. All rights reserved.'
   },
   
   ru: {
@@ -239,7 +253,14 @@ const translations = {
     
     // Newsletter
     subscribing: 'Подписываемся...',
-    subscribed: 'Спасибо за подписку!'
+    subscribed: 'Спасибо за подписку!',
+    
+    // Footer
+    brandDescription: 'Ультра-минималистичная мода для современного человека',
+    allProducts: 'Все товары',
+    sale: 'Распродажа',
+    connect: 'Связаться',
+    copyright: '© 2024 MONTERO. Все права защищены.'
   }
 }
 

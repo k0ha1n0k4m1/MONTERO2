@@ -47,38 +47,64 @@ export default function Footer() {
             </div>
             
             <div>
-              <h5 className="text-sm font-light text-white mb-4 tracking-wide">Shop</h5>
+              <h5 className="text-sm font-light text-white mb-4 tracking-wide">{t('shop')}</h5>
               <ul className="space-y-3">
-                {footerLinks.shop.map((link) => (
-                  <li key={link.name}>
-                    <span 
-                      onClick={(e) => handleShopClick(e, link.name)}
-                      className="text-white/80 hover:text-white transition-colors duration-300 text-sm font-light cursor-pointer"
-                    >
-                      {link.name}
+                <li>
+                  <span 
+                    onClick={(e) => handleShopClick(e, 'All Products')}
+                    className="text-white/80 hover:text-white transition-colors duration-300 text-sm font-light cursor-pointer"
+                  >
+                    {t('allProducts')}
+                  </span>
+                </li>
+                <li>
+                  <span 
+                    onClick={(e) => handleShopClick(e, 'New Arrivals')}
+                    className="text-white/80 hover:text-white transition-colors duration-300 text-sm font-light cursor-pointer"
+                  >
+                    {t('newArrivals')}
+                  </span>
+                </li>
+                <li>
+                  <span 
+                    onClick={(e) => handleShopClick(e, 'Sale')}
+                    className="text-white/80 hover:text-white transition-colors duration-300 text-sm font-light cursor-pointer"
+                  >
+                    {t('sale')}
+                  </span>
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h5 className="text-sm font-light text-white mb-4 tracking-wide">{t('support')}</h5>
+              <ul className="space-y-3">
+                <li>
+                  <Link href="/contact">
+                    <span className="text-white/80 hover:text-white transition-colors duration-300 text-sm font-light cursor-pointer">
+                      {t('contactUs')}
                     </span>
-                  </li>
-                ))}
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/size-guide">
+                    <span className="text-white/80 hover:text-white transition-colors duration-300 text-sm font-light cursor-pointer">
+                      {t('sizeGuide')}
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/returns">
+                    <span className="text-white/80 hover:text-white transition-colors duration-300 text-sm font-light cursor-pointer">
+                      {t('returns')}
+                    </span>
+                  </Link>
+                </li>
               </ul>
             </div>
             
             <div>
-              <h5 className="text-sm font-light text-white mb-4 tracking-wide">Support</h5>
-              <ul className="space-y-3">
-                {footerLinks.support.map((link) => (
-                  <li key={link.name}>
-                    <Link href={link.href}>
-                      <span className="text-white/80 hover:text-white transition-colors duration-300 text-sm font-light cursor-pointer">
-                        {link.name}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            <div>
-              <h5 className="text-sm font-light text-white mb-4 tracking-wide">Connect</h5>
+              <h5 className="text-sm font-light text-white mb-4 tracking-wide">{t('connect')}</h5>
               <div className="flex space-x-4">
                 <a 
                   href="https://instagram.com/montero_fashion" 
@@ -113,7 +139,7 @@ export default function Footer() {
         
           <div className="border-t border-white/20 pt-8">
             <p className="text-white/80 text-sm font-light text-center">
-              © 2024 MONTERO. All rights reserved.
+              {t('copyright')}
             </p>
           </div>
         </div>

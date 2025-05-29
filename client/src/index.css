@@ -54,13 +54,8 @@
   }
 
   body {
-    @apply text-foreground font-light;
+    @apply bg-background text-foreground font-light;
     font-family: 'Inter', sans-serif;
-    background-image: url('@assets/IMAGE 2025-05-29 18:52:36.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
   }
 }
 

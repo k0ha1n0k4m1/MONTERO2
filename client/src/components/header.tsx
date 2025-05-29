@@ -61,7 +61,11 @@ export default function Header() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/">
-              <MonteroLogo width={64} height={64} className="hover:scale-105 transition-transform duration-300" />
+              <img 
+                src={logoImage} 
+                alt="MONTERO" 
+                className="h-16 w-auto"
+              />
             </Link>
           </div>
           

@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button"
+import { useLanguage } from "@/hooks/useLanguage"
 
 export default function HeroSection() {
+  const { t } = useLanguage()
   const scrollToProducts = () => {
     const productsSection = document.getElementById('products')
     if (productsSection) {

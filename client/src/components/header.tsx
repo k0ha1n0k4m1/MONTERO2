@@ -6,8 +6,10 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Input } from "@/components/ui/input"
 import { useCart } from "@/hooks/use-cart"
 import { useAuth } from "@/hooks/useAuth"
+import { useLanguage } from "@/hooks/useLanguage"
 import { cn } from "@/lib/utils"
 import AuthModal from "./auth-modal"
+import LanguageSelector from "./language-selector"
 import { useToast } from "@/hooks/use-toast"
 import logoImage from "@assets/logo2.png"
 import MonteroLogo from "./montero-logo"
@@ -25,6 +27,7 @@ export default function Header() {
   const [location] = useLocation()
   const { getTotalItems, toggleCart } = useCart()
   const { user, isAuthenticated, logout, isLogoutPending } = useAuth()
+  const { t } = useLanguage()
   const { toast } = useToast()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
@@ -79,7 +82,7 @@ export default function Header() {
                     ? "text-black" 
                     : "text-black/80 hover:text-black"
                 )}>
-                  {item.name}
+                  {t(item.name)}
                   <span className={cn(
                     "absolute -bottom-1 left-0 h-px bg-foreground transition-all duration-300",
                     currentCategory === item.name ? "w-full" : "w-0 group-hover:w-full"
@@ -90,7 +93,9 @@ export default function Header() {
           </nav>
           
           {/* Actions */}
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-4">
+            <LanguageSelector />
+            
             <Sheet open={searchOpen} onOpenChange={setSearchOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
@@ -102,13 +107,13 @@ export default function Header() {
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input 
-                      placeholder="Search products..." 
+                      placeholder={t('search') + '...'} 
                       className="pl-10 h-12 text-lg border-border focus:border-foreground"
                       autoFocus
                     />
                   </div>
                   <p className="text-center text-muted-foreground mt-4 text-sm">
-                    Start typing to search our collection
+                    {t('search')}
                   </p>
                 </div>
               </SheetContent>
@@ -122,7 +127,7 @@ export default function Header() {
               </SheetTrigger>
               <SheetContent side="right" className="w-full sm:max-w-md bg-white">
                 <div className="py-6">
-                  <h3 className="text-xl font-light text-foreground mb-6">Account</h3>
+                  <h3 className="text-xl font-light text-foreground mb-6">{t('account')}</h3>
                   <div className="space-y-4">
                     {isAuthenticated ? (
                       <>

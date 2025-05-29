@@ -21,7 +21,11 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
   return (
     <Card 
       className={`group hover-lift rounded-lg overflow-hidden border-0 shadow-none`}
-      style={{ backgroundColor: featured ? '#9CA3AF' : '#D1D5DB' }}
+      style={{ 
+        backgroundImage: 'url(/attached_assets/IMG_1406.JPG)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}
     >
       <div className={`${featured ? 'aspect-[4/5]' : 'aspect-square'} overflow-hidden`}>
         <img 

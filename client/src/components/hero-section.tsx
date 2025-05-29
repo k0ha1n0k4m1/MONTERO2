@@ -12,7 +12,7 @@ export default function HeroSection() {
     <section className="pt-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-16">
         <div className="text-center fade-in">
-          <h2 className="text-5xl md:text-7xl lg:text-9xl font-bold tracking-wider mb-8 montero-title">
+          <h2 className="text-6xl md:text-7xl lg:text-9xl font-bold tracking-wider mb-8 montero-title">
             (MonTero)
           </h2>
           <div className="mt-8">

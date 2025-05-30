@@ -95,7 +95,10 @@ const translations = {
     contactUs: '문의하기',
     sizeGuide: '사이즈 가이드',
     returns: '반품/교환',
-    copyright: '© 2024 MONTERO. 모든 권리 보유.'
+    copyright: '© 2024 MONTERO. 모든 권리 보유.',
+    
+    // Collection text
+    collection: '컬렉션'
   },
   
   en: {
@@ -182,7 +185,10 @@ const translations = {
     contactUs: 'Contact Us',
     sizeGuide: 'Size Guide',
     returns: 'Returns',
-    copyright: '© 2024 MONTERO. All rights reserved.'
+    copyright: '© 2024 MONTERO. All rights reserved.',
+    
+    // Collection text
+    collection: 'Collection'
   },
   
   ru: {
@@ -269,7 +275,10 @@ const translations = {
     contactUs: 'Связаться с нами',
     sizeGuide: 'Размерная сетка',
     returns: 'Возврат товара',
-    copyright: '© 2024 MONTERO. Все права защищены.'
+    copyright: '© 2024 MONTERO. Все права защищены.',
+    
+    // Collection text
+    collection: 'Коллекция'
   }
 }
 

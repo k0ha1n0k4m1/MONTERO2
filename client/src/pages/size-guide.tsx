@@ -148,30 +148,27 @@ export default function SizeGuide() {
           <div className="mt-8">
             <Card>
               <CardHeader>
-                <CardTitle className="text-xl font-light">Рекомендации по посадке</CardTitle>
+                <CardTitle className="text-xl font-light">{t('fitRecommendations')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid gap-6 md:grid-cols-2">
                   <div>
-                    <h3 className="font-medium mb-2">Классическая посадка</h3>
+                    <h3 className="font-medium mb-2">{t('classicFit')}</h3>
                     <p className="text-gray-600 text-sm">
-                      Большинство наших изделий имеют классическую посадку. Если вы находитесь между размерами, 
-                      рекомендуем выбрать больший размер для более комфортной посадки.
+                      {t('classicFitDesc')}
                     </p>
                   </div>
                   <div>
-                    <h3 className="font-medium mb-2">Oversized модели</h3>
+                    <h3 className="font-medium mb-2">{t('oversizedModels')}</h3>
                     <p className="text-gray-600 text-sm">
-                      Для изделий с пометкой "Oversized" рекомендуем выбирать ваш обычный размер или 
-                      даже на размер меньше для достижения желаемого эффекта.
+                      {t('oversizedModelsDesc')}
                     </p>
                   </div>
                 </div>
                 
                 <div className="bg-gray-50 rounded-lg p-4 mt-6">
                   <p className="text-sm text-gray-700">
-                    <strong>Не можете определиться с размером?</strong> Свяжитесь с нашей службой поддержки, 
-                    и мы поможем вам выбрать идеальную посадку. Также у нас действует удобная политика обмена и возврата.
+                    <strong>{t('sizeHelp')}</strong> {t('sizeHelpDesc')}
                   </p>
                 </div>
               </CardContent>

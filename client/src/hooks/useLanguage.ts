@@ -160,6 +160,13 @@ const translations = {
     inseamLength: '안쪽 솔기 길이 (cm)',
     sleeveLength: '소매 길이 (cm)',
     itemLength: '제품 길이 (cm)',
+    fitRecommendations: '핏 추천',
+    classicFit: '클래식 핏',
+    classicFitDesc: '대부분의 제품은 클래식 핏입니다. 사이즈가 애매하다면 더 편안한 착용감을 위해 큰 사이즈를 선택하세요.',
+    oversizedModels: '오버사이즈 모델',
+    oversizedModelsDesc: '"Oversized" 표시가 있는 제품은 평소 사이즈나 한 사이즈 작게 선택하여 원하는 효과를 얻으세요.',
+    sizeHelp: '사이즈를 결정하기 어려우신가요?',
+    sizeHelpDesc: '고객지원팀에 문의하시면 완벽한 핏을 찾도록 도와드립니다. 또한 편리한 교환 및 반품 정책도 제공합니다.',
     
     // Returns page
     returnsTitle: '반품 및 교환',
@@ -179,7 +186,19 @@ const translations = {
     returnStep3: '발송',
     returnStep3Desc: '택배 서비스를 이용하거나 매장에 직접 가져오기',
     returnStep4: '환불 처리',
-    returnStep4Desc: '7-14 영업일 내 환불 처리'
+    returnStep4Desc: '7-14 영업일 내 환불 처리',
+    
+    // Returnable items
+    returnableItems: '반품 가능 제품',
+    nonReturnableItems: '반품 불가 제품',
+    clothingUndamaged: '손상되지 않은 의류',
+    itemsWithTags: '라벨이 있는 제품',
+    shoesInBox: '원래 포장의 신발',
+    accessoryItems: '액세서리',
+    underwear: '속옷',
+    swimwear: '수영복',
+    usedItems: '사용 흔적이 있는 제품',
+    itemsWithoutTags: '라벨이 없는 제품'
   },
   
   en: {
@@ -331,6 +350,13 @@ const translations = {
     inseamLength: 'Inseam Length (cm)',
     sleeveLength: 'Sleeve Length (cm)',
     itemLength: 'Item Length (cm)',
+    fitRecommendations: 'Fit Recommendations',
+    classicFit: 'Classic Fit',
+    classicFitDesc: 'Most of our items have a classic fit. If you are between sizes, we recommend choosing the larger size for a more comfortable fit.',
+    oversizedModels: 'Oversized Models',
+    oversizedModelsDesc: 'For items marked "Oversized", we recommend choosing your usual size or even one size smaller to achieve the desired effect.',
+    sizeHelp: 'Can\'t decide on size?',
+    sizeHelpDesc: 'Contact our support team and we will help you choose the perfect fit. We also have a convenient exchange and return policy.',
     
     // Returns page
     returnsTitle: 'Returns & Exchange',
@@ -350,7 +376,19 @@ const translations = {
     returnStep3: 'Shipping',
     returnStep3Desc: 'Send via courier service or bring to store',
     returnStep4: 'Refund',
-    returnStep4Desc: 'Receive refund within 7-14 business days'
+    returnStep4Desc: 'Receive refund within 7-14 business days',
+    
+    // Returnable items
+    returnableItems: 'Returnable Items',
+    nonReturnableItems: 'Non-Returnable Items',
+    clothingUndamaged: 'Undamaged clothing',
+    itemsWithTags: 'Items with tags',
+    shoesInBox: 'Shoes in original packaging',
+    accessoryItems: 'Accessories',
+    underwear: 'Underwear',
+    swimwear: 'Swimwear',
+    usedItems: 'Items with signs of use',
+    itemsWithoutTags: 'Items without tags'
   },
   
   ru: {
@@ -502,6 +540,13 @@ const translations = {
     inseamLength: 'Длина по внутр. шву (см)',
     sleeveLength: 'Длина рукава (см)',
     itemLength: 'Длина изделия (см)',
+    fitRecommendations: 'Рекомендации по посадке',
+    classicFit: 'Классическая посадка',
+    classicFitDesc: 'Большинство наших изделий имеют классическую посадку. Если вы находитесь между размерами, рекомендуем выбрать больший размер для более комфортной посадки.',
+    oversizedModels: 'Oversized модели',
+    oversizedModelsDesc: 'Для изделий с пометкой "Oversized" рекомендуем выбирать ваш обычный размер или даже на размер меньше для достижения желаемого эффекта.',
+    sizeHelp: 'Не можете определиться с размером?',
+    sizeHelpDesc: 'Свяжитесь с нашей службой поддержки, и мы поможем вам выбрать идеальную посадку. Также у нас действует удобная политика обмена и возврата.',
     
     // Returns page
     returnsTitle: 'Возврат и обмен',
@@ -521,7 +566,19 @@ const translations = {
     returnStep3: 'Отправка',
     returnStep3Desc: 'Отправьте товар курьерской службой или принесите в магазин',
     returnStep4: 'Возврат средств',
-    returnStep4Desc: 'Получите возврат средств в течение 7-14 рабочих дней'
+    returnStep4Desc: 'Получите возврат средств в течение 7-14 рабочих дней',
+    
+    // Returnable items
+    returnableItems: 'Возможен возврат',
+    nonReturnableItems: 'Возврат невозможен',
+    clothingUndamaged: 'Одежда без повреждений',
+    itemsWithTags: 'Товары с ярлыками',
+    shoesInBox: 'Обувь в оригинальной упаковке',
+    accessoryItems: 'Аксессуары',
+    underwear: 'Нижнее белье',
+    swimwear: 'Купальники',
+    usedItems: 'Товары со следами использования',
+    itemsWithoutTags: 'Товары без ярлыков'
   }
 }
 

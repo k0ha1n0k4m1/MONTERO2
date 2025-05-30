@@ -67,9 +67,9 @@ export default function Returns() {
             <Card className="text-center">
               <CardContent className="pt-6">
                 <Clock className="h-12 w-12 text-gray-600 mx-auto mb-4" />
-                <h3 className="font-medium mb-2">14 дней</h3>
+                <h3 className="font-medium mb-2">{t('thirtyDayGuarantee')}</h3>
                 <p className="text-gray-600 text-sm">
-                  На возврат и обмен товара с момента получения
+                  {t('thirtyDayGuaranteeDesc')}
                 </p>
               </CardContent>
             </Card>
@@ -77,9 +77,9 @@ export default function Returns() {
             <Card className="text-center">
               <CardContent className="pt-6">
                 <RefreshCw className="h-12 w-12 text-gray-600 mx-auto mb-4" />
-                <h3 className="font-medium mb-2">Бесплатный обмен</h3>
+                <h3 className="font-medium mb-2">{t('freeExchangeService')}</h3>
                 <p className="text-gray-600 text-sm">
-                  Обмен товара на другой размер или цвет
+                  {t('freeExchangeServiceDesc')}
                 </p>
               </CardContent>
             </Card>
@@ -87,9 +87,9 @@ export default function Returns() {
             <Card className="text-center">
               <CardContent className="pt-6">
                 <CheckCircle className="h-12 w-12 text-gray-600 mx-auto mb-4" />
-                <h3 className="font-medium mb-2">Полный возврат</h3>
+                <h3 className="font-medium mb-2">{t('fullRefundPolicy')}</h3>
                 <p className="text-gray-600 text-sm">
-                  100% возврат средств при соблюдении условий
+                  {t('fullRefundPolicyDesc')}
                 </p>
               </CardContent>
             </Card>
@@ -99,7 +99,7 @@ export default function Returns() {
           <div className="mb-12">
             <Card>
               <CardHeader>
-                <CardTitle className="text-2xl font-light">Процесс возврата</CardTitle>
+                <CardTitle className="text-2xl font-light">{t('returnProcessTitle')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -129,7 +129,7 @@ export default function Returns() {
           <div className="grid gap-8 lg:grid-cols-2 mb-12">
             <Card>
               <CardHeader>
-                <CardTitle className="text-xl font-light">Что можно вернуть</CardTitle>
+                <CardTitle className="text-xl font-light">{t('returnableItems')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
@@ -151,25 +151,25 @@ export default function Returns() {
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-xl font-light">Условия возврата</CardTitle>
+                <CardTitle className="text-xl font-light">{t('returnConditions')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <h3 className="font-medium mb-2">Товар должен быть:</h3>
+                  <h3 className="font-medium mb-2">{t('itemMustBe')}</h3>
                   <ul className="text-gray-600 text-sm space-y-1">
-                    <li>• В первоначальном состоянии</li>
-                    <li>• С прикрепленными ярлыками</li>
-                    <li>• В оригинальной упаковке</li>
-                    <li>• Без следов использования</li>
+                    <li>• {t('originalCondition')}</li>
+                    <li>• {t('withTags')}</li>
+                    <li>• {t('originalPackaging')}</li>
+                    <li>• {t('noSigns')}</li>
                   </ul>
                 </div>
 
                 <div>
-                  <h3 className="font-medium mb-2">Сроки возврата:</h3>
+                  <h3 className="font-medium mb-2">{t('returnTimelines')}</h3>
                   <ul className="text-gray-600 text-sm space-y-1">
-                    <li>• 14 дней с момента получения</li>
-                    <li>• Возврат средств: 7-14 рабочих дней</li>
-                    <li>• Обмен: 3-5 рабочих дней</li>
+                    <li>• {t('fourteenDays')}</li>
+                    <li>• {t('refundTime')}</li>
+                    <li>• {t('exchangeTime')}</li>
                   </ul>
                 </div>
               </CardContent>

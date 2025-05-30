@@ -207,7 +207,20 @@ const translations = {
     freeExchangeServiceDesc: '다른 사이즈나 색상으로 교환',
     fullRefundPolicy: '전액 환불',
     fullRefundPolicyDesc: '조건 충족 시 100% 환불',
-    returnProcessTitle: '반품 절차'
+    returnProcessTitle: '반품 절차',
+    
+    // Return conditions
+    whatCanReturn: '반품 가능 제품',
+    returnConditions: '반품 조건',
+    itemMustBe: '제품 조건:',
+    originalCondition: '원래 상태',
+    withTags: '라벨 부착',
+    originalPackaging: '원래 포장',
+    noSigns: '사용 흔적 없음',
+    returnTimelines: '반품 기간:',
+    fourteenDays: '수령 후 14일',
+    refundTime: '환불: 7-14 영업일',
+    exchangeTime: '교환: 3-5 영업일'
   },
   
   en: {
@@ -406,7 +419,20 @@ const translations = {
     freeExchangeServiceDesc: 'Exchange item for different size or color',
     fullRefundPolicy: 'Full Refund',
     fullRefundPolicyDesc: '100% refund when conditions are met',
-    returnProcessTitle: 'Return Process'
+    returnProcessTitle: 'Return Process',
+    
+    // Return conditions
+    whatCanReturn: 'What Can Be Returned',
+    returnConditions: 'Return Conditions',
+    itemMustBe: 'Item must be:',
+    originalCondition: 'In original condition',
+    withTags: 'With attached tags',
+    originalPackaging: 'In original packaging',
+    noSigns: 'No signs of use',
+    returnTimelines: 'Return timelines:',
+    fourteenDays: '14 days from receipt',
+    refundTime: 'Refund: 7-14 business days',
+    exchangeTime: 'Exchange: 3-5 business days'
   },
   
   ru: {
@@ -605,7 +631,20 @@ const translations = {
     freeExchangeServiceDesc: 'Обмен товара на другой размер или цвет',
     fullRefundPolicy: 'Полный возврат',
     fullRefundPolicyDesc: '100% возврат средств при соблюдении условий',
-    returnProcessTitle: 'Процесс возврата'
+    returnProcessTitle: 'Процесс возврата',
+    
+    // Return conditions
+    whatCanReturn: 'Что можно вернуть',
+    returnConditions: 'Условия возврата',
+    itemMustBe: 'Товар должен быть:',
+    originalCondition: 'В первоначальном состоянии',
+    withTags: 'С прикрепленными ярлыками',
+    originalPackaging: 'В оригинальной упаковке',
+    noSigns: 'Без следов использования',
+    returnTimelines: 'Сроки возврата:',
+    fourteenDays: '14 дней с момента получения',
+    refundTime: 'Возврат средств: 7-14 рабочих дней',
+    exchangeTime: 'Обмен: 3-5 рабочих дней'
   }
 }
 

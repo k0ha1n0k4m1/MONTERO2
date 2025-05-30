@@ -159,7 +159,27 @@ const translations = {
     hipCircumference: '엉덩이 둘레 (cm)',
     inseamLength: '안쪽 솔기 길이 (cm)',
     sleeveLength: '소매 길이 (cm)',
-    itemLength: '제품 길이 (cm)'
+    itemLength: '제품 길이 (cm)',
+    
+    // Returns page
+    returnsTitle: '반품 및 교환',
+    returnsSubtitle: '고객 만족을 위해 최선을 다하고 있습니다. 반품 및 교환 정책을 확인해보세요.',
+    returnsPolicy: '반품 정책',
+    returnDays: '14일',
+    returnDaysDesc: '수령 후 반품 또는 교환 가능 기간',
+    freeExchange: '무료 교환',
+    freeExchangeDesc: '다른 사이즈나 색상으로 교환',
+    fullRefund: '전액 환불',
+    fullRefundDesc: '조건 충족 시 100% 환불',
+    returnProcess: '반품 절차',
+    returnStep1: '신청 접수',
+    returnStep1Desc: '계정을 통해 반품 신청하거나 고객지원에 문의',
+    returnStep2: '상품 포장',
+    returnStep2Desc: '상품을 원래 포장과 라벨과 함께 포장',
+    returnStep3: '발송',
+    returnStep3Desc: '택배 서비스를 이용하거나 매장에 직접 가져오기',
+    returnStep4: '환불 처리',
+    returnStep4Desc: '7-14 영업일 내 환불 처리'
   },
   
   en: {
@@ -310,7 +330,27 @@ const translations = {
     hipCircumference: 'Hip Circumference (cm)',
     inseamLength: 'Inseam Length (cm)',
     sleeveLength: 'Sleeve Length (cm)',
-    itemLength: 'Item Length (cm)'
+    itemLength: 'Item Length (cm)',
+    
+    // Returns page
+    returnsTitle: 'Returns & Exchange',
+    returnsSubtitle: 'We strive to ensure complete satisfaction with your purchase. Learn about our return and exchange policy.',
+    returnsPolicy: 'Return Policy',
+    returnDays: '14 days',
+    returnDaysDesc: 'For returns or exchanges from the moment of receipt',
+    freeExchange: 'Free Exchange',
+    freeExchangeDesc: 'Exchange items for different size or color',
+    fullRefund: 'Full Refund',
+    fullRefundDesc: '100% money back when conditions are met',
+    returnProcess: 'Return Process',
+    returnStep1: 'Submit Request',
+    returnStep1Desc: 'Submit a return request through your account or contact support',
+    returnStep2: 'Package Item',
+    returnStep2Desc: 'Pack the item in original packaging with labels',
+    returnStep3: 'Shipping',
+    returnStep3Desc: 'Send via courier service or bring to store',
+    returnStep4: 'Refund',
+    returnStep4Desc: 'Receive refund within 7-14 business days'
   },
   
   ru: {
@@ -461,7 +501,27 @@ const translations = {
     hipCircumference: 'Обхват бедер (см)',
     inseamLength: 'Длина по внутр. шву (см)',
     sleeveLength: 'Длина рукава (см)',
-    itemLength: 'Длина изделия (см)'
+    itemLength: 'Длина изделия (см)',
+    
+    // Returns page
+    returnsTitle: 'Возврат и обмен',
+    returnsSubtitle: 'Мы стремимся обеспечить полное удовлетворение от покупки. Ознакомьтесь с нашей политикой возврата и обмена.',
+    returnsPolicy: 'Политика возврата',
+    returnDays: '14 дней',
+    returnDaysDesc: 'На возврат товара или обмен в течение момента получения',
+    freeExchange: 'Бесплатный обмен',
+    freeExchangeDesc: 'Обмен товара на другой размер или цвет',
+    fullRefund: 'Полный возврат',
+    fullRefundDesc: '100% возврат средств при соблюдении условий',
+    returnProcess: 'Процесс возврата',
+    returnStep1: 'Подача заявки',
+    returnStep1Desc: 'Подайте заявку на возврат через личный кабинет или свяжитесь с поддержкой',
+    returnStep2: 'Упаковка товара',
+    returnStep2Desc: 'Упакуйте товар в оригинальную упаковку с ярлыками',
+    returnStep3: 'Отправка',
+    returnStep3Desc: 'Отправьте товар курьерской службой или принесите в магазин',
+    returnStep4: 'Возврат средств',
+    returnStep4Desc: 'Получите возврат средств в течение 7-14 рабочих дней'
   }
 }
 

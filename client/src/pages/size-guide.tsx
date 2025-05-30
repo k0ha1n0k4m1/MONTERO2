@@ -54,42 +54,42 @@ export default function SizeGuide() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8 py-12">
           <div className="mb-12 text-center">
             <h1 className="text-4xl font-light text-gray-900 mb-4">
-              Таблица размеров
+              {t('sizeGuideTitle')}
             </h1>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Используйте наши подробные таблицы размеров, чтобы найти идеальную посадку для каждого изделия MONTERO.
+              {t('sizeGuideSubtitle')}
             </p>
           </div>
 
           <div className="mb-8">
             <Card>
               <CardHeader>
-                <CardTitle className="text-2xl font-light">Как правильно снять мерки</CardTitle>
+                <CardTitle className="text-2xl font-light">{t('howToMeasure')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid gap-6 md:grid-cols-2">
                   <div>
-                    <h3 className="font-medium mb-2">Обхват груди</h3>
+                    <h3 className="font-medium mb-2">{t('chestMeasurement')}</h3>
                     <p className="text-gray-600 text-sm">
-                      Измерьте обхват груди по самой выступающей части, держа сантиметровую ленту параллельно полу.
+                      {t('chestMeasurementDesc')}
                     </p>
                   </div>
                   <div>
-                    <h3 className="font-medium mb-2">Обхват талии</h3>
+                    <h3 className="font-medium mb-2">{t('waistMeasurement')}</h3>
                     <p className="text-gray-600 text-sm">
-                      Измерьте обхват в самой узкой части талии, обычно чуть выше пупка.
+                      {t('waistMeasurementDesc')}
                     </p>
                   </div>
                   <div>
-                    <h3 className="font-medium mb-2">Обхват бедер</h3>
+                    <h3 className="font-medium mb-2">{t('sleeveMeasurement')}</h3>
                     <p className="text-gray-600 text-sm">
-                      Измерьте обхват по самой широкой части бедер, примерно на 20 см ниже талии.
+                      {t('sleeveMeasurementDesc')}
                     </p>
                   </div>
                   <div>
-                    <h3 className="font-medium mb-2">Длина рукава</h3>
+                    <h3 className="font-medium mb-2">{t('hipMeasurement')}</h3>
                     <p className="text-gray-600 text-sm">
-                      Измерьте от плечевой точки до запястья при слегка согнутой руке.
+                      {t('hipMeasurementDesc')}
                     </p>
                   </div>
                 </div>
@@ -99,9 +99,9 @@ export default function SizeGuide() {
 
           <Tabs defaultValue="tops" className="w-full">
             <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="tops">Топы</TabsTrigger>
-              <TabsTrigger value="bottoms">Низ</TabsTrigger>
-              <TabsTrigger value="outerwear">Верхняя одежда</TabsTrigger>
+              <TabsTrigger value="tops">{t('top')}</TabsTrigger>
+              <TabsTrigger value="bottoms">{t('bottom')}</TabsTrigger>
+              <TabsTrigger value="outerwear">{t('outerwear')}</TabsTrigger>
             </TabsList>
 
             {Object.entries(sizeCharts).map(([key, chart]) => (

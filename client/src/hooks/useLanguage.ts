@@ -135,7 +135,31 @@ const translations = {
     businessHours: '운영시간',
     mondayToFriday: '월-금: 9:00 - 21:00',
     saturday: '토: 10:00 - 18:00',
-    sunday: '일: 12:00 - 17:00'
+    sunday: '일: 12:00 - 17:00',
+    
+    // Size Guide page
+    sizeGuideTitle: '사이즈 가이드',
+    sizeGuideSubtitle: '각 MONTERO 제품에 완벽한 핏을 찾기 위해 자세한 사이즈 차트를 활용하세요.',
+    howToMeasure: '올바른 측정 방법',
+    chestMeasurement: '가슴 둘레',
+    chestMeasurementDesc: '가슴의 가장 높은 부분에서 줄자를 수평으로 둘러 측정하세요.',
+    waistMeasurement: '허리 둘레',
+    waistMeasurementDesc: '허리의 가장 좁은 부분에서 측정하며, 보통 배꼽 위쪽입니다.',
+    hipMeasurement: '엉덩이 둘레',
+    hipMeasurementDesc: '엉덩이의 가장 넓은 부분에서 측정하며, 보통 대퇴골 위 20cm 아래입니다.',
+    sleeveMeasurement: '소매 길이',
+    sleeveMeasurementDesc: '어깨에서 손목까지 팔을 살짝 굽힌 상태로 측정하세요.',
+    topsAndOuterwear: '상의 및 아우터',
+    bottomsAndSkirts: '바지 및 스커트',
+    outerwearJackets: '아우터',
+    sizeColumn: '사이즈',
+    chestCircumference: '가슴 둘레 (cm)',
+    waistCircumference: '허리 둘레 (cm)',
+    lengthColumn: '길이 (cm)',
+    hipCircumference: '엉덩이 둘레 (cm)',
+    inseamLength: '안쪽 솔기 길이 (cm)',
+    sleeveLength: '소매 길이 (cm)',
+    itemLength: '제품 길이 (cm)'
   },
   
   en: {
@@ -262,7 +286,31 @@ const translations = {
     businessHours: 'Business Hours',
     mondayToFriday: 'Mon-Fri: 9:00 - 21:00',
     saturday: 'Sat: 10:00 - 18:00',
-    sunday: 'Sun: 12:00 - 17:00'
+    sunday: 'Sun: 12:00 - 17:00',
+    
+    // Size Guide page
+    sizeGuideTitle: 'Size Guide',
+    sizeGuideSubtitle: 'Use our detailed size charts to find the perfect fit for every MONTERO item.',
+    howToMeasure: 'How to Measure Correctly',
+    chestMeasurement: 'Chest Measurement',
+    chestMeasurementDesc: 'Measure around the fullest part of your chest, keeping the tape horizontal and parallel to the floor.',
+    waistMeasurement: 'Waist Measurement',
+    waistMeasurementDesc: 'Measure at the narrowest part of your waist, usually just above the navel.',
+    hipMeasurement: 'Hip Measurement',
+    hipMeasurementDesc: 'Measure at the fullest part of your hips, approximately 20 cm below the waist.',
+    sleeveMeasurement: 'Sleeve Length',
+    sleeveMeasurementDesc: 'Measure from shoulder point to wrist with arm slightly bent.',
+    topsAndOuterwear: 'Tops and Outerwear',
+    bottomsAndSkirts: 'Bottoms and Skirts',
+    outerwearJackets: 'Outerwear',
+    sizeColumn: 'Size',
+    chestCircumference: 'Chest Circumference (cm)',
+    waistCircumference: 'Waist Circumference (cm)',
+    lengthColumn: 'Length (cm)',
+    hipCircumference: 'Hip Circumference (cm)',
+    inseamLength: 'Inseam Length (cm)',
+    sleeveLength: 'Sleeve Length (cm)',
+    itemLength: 'Item Length (cm)'
   },
   
   ru: {
@@ -389,7 +437,31 @@ const translations = {
     businessHours: 'Часы работы',
     mondayToFriday: 'Пн-Пт: 9:00 - 21:00',
     saturday: 'Сб: 10:00 - 18:00',
-    sunday: 'Вс: 12:00 - 17:00'
+    sunday: 'Вс: 12:00 - 17:00',
+    
+    // Size Guide page
+    sizeGuideTitle: 'Таблица размеров',
+    sizeGuideSubtitle: 'Используйте наши подробные таблицы размеров, чтобы найти идеальную посадку для каждого изделия MONTERO.',
+    howToMeasure: 'Как правильно снять мерки',
+    chestMeasurement: 'Обхват груди',
+    chestMeasurementDesc: 'Измерьте обхват груди по самой выступающей части, держа сантиметровую ленту параллельно полу.',
+    waistMeasurement: 'Обхват талии',
+    waistMeasurementDesc: 'Измерьте в самой узкой части талии, обычно чуть выше пупка.',
+    hipMeasurement: 'Длина рукава',
+    hipMeasurementDesc: 'Измерьте от плечевой точки до запястья при слегка согнутой руке.',
+    sleeveMeasurement: 'Обхват бедер',
+    sleeveMeasurementDesc: 'Измерьте по самой широкой части бедер, примерно на 20 см ниже талии.',
+    topsAndOuterwear: 'Верхняя одежда и топы',
+    bottomsAndSkirts: 'Брюки и юбки',
+    outerwearJackets: 'Верхняя одежда',
+    sizeColumn: 'Размер',
+    chestCircumference: 'Обхват груди (см)',
+    waistCircumference: 'Обхват талии (см)',
+    lengthColumn: 'Длина (см)',
+    hipCircumference: 'Обхват бедер (см)',
+    inseamLength: 'Длина по внутр. шву (см)',
+    sleeveLength: 'Длина рукава (см)',
+    itemLength: 'Длина изделия (см)'
   }
 }
 

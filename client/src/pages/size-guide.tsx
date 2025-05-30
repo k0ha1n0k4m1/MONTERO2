@@ -3,47 +3,49 @@ import Footer from "@/components/footer";
 import CartSidebar from "@/components/cart-sidebar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
-const sizeCharts = {
-  tops: {
-    title: "Верхняя одежда и топы",
-    headers: ["Размер", "Обхват груди (см)", "Обхват талии (см)", "Длина (см)"],
-    data: [
-      ["XS", "80-84", "60-64", "60"],
-      ["S", "84-88", "64-68", "62"],
-      ["M", "88-92", "68-72", "64"],
-      ["L", "92-96", "72-76", "66"],
-      ["XL", "96-100", "76-80", "68"],
-      ["XXL", "100-104", "80-84", "70"],
-    ]
-  },
-  bottoms: {
-    title: "Брюки и юбки",
-    headers: ["Размер", "Обхват талии (см)", "Обхват бедер (см)", "Длина по внутр. шву (см)"],
-    data: [
-      ["XS", "60-64", "86-90", "75"],
-      ["S", "64-68", "90-94", "76"],
-      ["M", "68-72", "94-98", "77"],
-      ["L", "72-76", "98-102", "78"],
-      ["XL", "76-80", "102-106", "79"],
-      ["XXL", "80-84", "106-110", "80"],
-    ]
-  },
-  outerwear: {
-    title: "Верхняя одежда",
-    headers: ["Размер", "Обхват груди (см)", "Длина рукава (см)", "Длина изделия (см)"],
-    data: [
-      ["XS", "84-88", "58", "65"],
-      ["S", "88-92", "59", "67"],
-      ["M", "92-96", "60", "69"],
-      ["L", "96-100", "61", "71"],
-      ["XL", "100-104", "62", "73"],
-      ["XXL", "104-108", "63", "75"],
-    ]
-  }
-};
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function SizeGuide() {
+  const { t } = useLanguage();
+
+  const sizeCharts = {
+    tops: {
+      title: t('topsAndOuterwear'),
+      headers: [t('sizeColumn'), t('chestCircumference'), t('waistCircumference'), t('lengthColumn')],
+      data: [
+        ["XS", "80-84", "60-64", "60"],
+        ["S", "84-88", "64-68", "62"],
+        ["M", "88-92", "68-72", "64"],
+        ["L", "92-96", "72-76", "66"],
+        ["XL", "96-100", "76-80", "68"],
+        ["XXL", "100-104", "80-84", "70"],
+      ]
+    },
+    bottoms: {
+      title: t('bottomsAndSkirts'),
+      headers: [t('sizeColumn'), t('waistCircumference'), t('hipCircumference'), t('inseamLength')],
+      data: [
+        ["XS", "60-64", "86-90", "75"],
+        ["S", "64-68", "90-94", "76"],
+        ["M", "68-72", "94-98", "77"],
+        ["L", "72-76", "98-102", "78"],
+        ["XL", "76-80", "102-106", "79"],
+        ["XXL", "80-84", "106-110", "80"],
+      ]
+    },
+    outerwear: {
+      title: t('outerwearJackets'),
+      headers: [t('sizeColumn'), t('chestCircumference'), t('sleeveLength'), t('itemLength')],
+      data: [
+        ["XS", "84-88", "58", "65"],
+        ["S", "88-92", "59", "67"],
+        ["M", "92-96", "60", "69"],
+        ["L", "96-100", "61", "71"],
+        ["XL", "100-104", "62", "73"],
+        ["XXL", "104-108", "63", "75"],
+      ]
+    }
+  };
   return (
     <div className="min-h-screen bg-white">
       <Header />

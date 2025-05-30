@@ -72,7 +72,7 @@ export default function Contact() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-2xl font-light">
-                  Отправить сообщение
+                  {t('sendMessage')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -81,7 +81,7 @@ export default function Contact() {
                   className="space-y-4"
                 >
                   <div className="space-y-2">
-                    <Label htmlFor="name">Имя</Label>
+                    <Label htmlFor="name">{t('name')}</Label>
                     <Input id="name" {...form.register("name")} />
                     {form.formState.errors.name && (
                       <p className="text-sm text-red-500">
@@ -91,7 +91,7 @@ export default function Contact() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
+                    <Label htmlFor="email">{t('email')}</Label>
                     <Input
                       id="email"
                       type="email"
@@ -105,7 +105,7 @@ export default function Contact() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="subject">Тема</Label>
+                    <Label htmlFor="subject">{t('subject')}</Label>
                     <Input id="subject" {...form.register("subject")} />
                     {form.formState.errors.subject && (
                       <p className="text-sm text-red-500">
@@ -115,7 +115,7 @@ export default function Contact() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message">Сообщение</Label>
+                    <Label htmlFor="message">{t('message')}</Label>
                     <Textarea
                       id="message"
                       rows={5}
@@ -133,7 +133,7 @@ export default function Contact() {
                     className="w-full bg-black text-white hover:bg-gray-800"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? "Отправка..." : "Отправить сообщение"}
+                    {isSubmitting ? t('sendingMessage') : t('sendMessageBtn')}
                   </Button>
                 </form>
               </CardContent>
@@ -144,14 +144,14 @@ export default function Contact() {
               <Card>
                 <CardHeader>
                   <CardTitle className="text-2xl font-light">
-                    Контактная информация
+                    {t('contactInfo')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="flex items-start gap-4">
                     <Mail className="h-6 w-6 text-gray-600 mt-1" />
                     <div>
-                      <h3 className="font-medium">Email</h3>
+                      <h3 className="font-medium">{t('email')}</h3>
                       <p className="text-gray-600">Montero.team.kr@gmail.com</p>
                     </div>
                   </div>
@@ -159,7 +159,7 @@ export default function Contact() {
                   <div className="flex items-start gap-4">
                     <Phone className="h-6 w-6 text-gray-600 mt-1" />
                     <div>
-                      <h3 className="font-medium">Телефон</h3>
+                      <h3 className="font-medium">{t('phone')}</h3>
                       <p className="text-gray-600">+7 (495) 123-45-67</p>
                       <p className="text-gray-600">+7 (800) 555-67-89</p>
                     </div>
@@ -168,7 +168,7 @@ export default function Contact() {
                   <div className="flex items-start gap-4">
                     <MapPin className="h-6 w-6 text-gray-600 mt-1" />
                     <div>
-                      <h3 className="font-medium">Адрес</h3>
+                      <h3 className="font-medium">{t('address')}</h3>
                       <p className="text-gray-600">
                         г. Москва, ул. Тверская, д. 15, стр. 1<br />
                         Метро: Тверская, Пушкинская
@@ -179,13 +179,13 @@ export default function Contact() {
                   <div className="flex items-start gap-4">
                     <Clock className="h-6 w-6 text-gray-600 mt-1" />
                     <div>
-                      <h3 className="font-medium">Часы работы</h3>
+                      <h3 className="font-medium">{t('businessHours')}</h3>
                       <p className="text-gray-600">
-                        Пн-Пт: 9:00 - 21:00
+                        {t('mondayToFriday')}
                         <br />
-                        Сб: 10:00 - 18:00
+                        {t('saturday')}
                         <br />
-                        Вс: 12:00 - 17:00
+                        {t('sunday')}
                       </p>
                     </div>
                   </div>

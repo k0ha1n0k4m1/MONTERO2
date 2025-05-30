@@ -112,7 +112,30 @@ const translations = {
     addedToCartDesc: '이 장바구니에 추가되었습니다',
     freeShipping: '무료 배송',
     returns30Days: '30일 반품 가능',
-    authenticity: '정품 보장'
+    authenticity: '정품 보장',
+    
+    // Contact page
+    contactTitle: '문의하기',
+    contactSubtitle: '궁금한 점이 있으신가요? 편리한 방법으로 연락주세요.',
+    sendMessage: '메시지 보내기',
+    contactInfo: '연락처 정보',
+    name: '이름',
+    nameRequired: '이름을 입력해주세요',
+    emailInvalid: '올바른 이메일을 입력해주세요',
+    subject: '제목',
+    subjectRequired: '제목을 입력해주세요',
+    message: '메시지',
+    messageMinLength: '메시지는 최소 10자 이상 입력해주세요',
+    sendingMessage: '메시지 전송 중...',
+    sendMessageBtn: '메시지 보내기',
+    messageSent: '메시지가 전송되었습니다!',
+    messageSentDesc: '곧 연락드리겠습니다',
+    phone: '전화',
+    address: '주소',
+    businessHours: '운영시간',
+    mondayToFriday: '월-금: 9:00 - 21:00',
+    saturday: '토: 10:00 - 18:00',
+    sunday: '일: 12:00 - 17:00'
   },
   
   en: {
@@ -216,7 +239,30 @@ const translations = {
     addedToCartDesc: 'has been added to your cart',
     freeShipping: 'Free shipping',
     returns30Days: '30-day returns',
-    authenticity: 'Authenticity guaranteed'
+    authenticity: 'Authenticity guaranteed',
+    
+    // Contact page
+    contactTitle: 'Contact Us',
+    contactSubtitle: 'Have a question? We\'d love to help. Contact us in any convenient way.',
+    sendMessage: 'Send Message',
+    contactInfo: 'Contact Information',
+    name: 'Name',
+    nameRequired: 'Name is required',
+    emailInvalid: 'Invalid email address',
+    subject: 'Subject',
+    subjectRequired: 'Subject is required',
+    message: 'Message',
+    messageMinLength: 'Message must be at least 10 characters long',
+    sendingMessage: 'Sending message...',
+    sendMessageBtn: 'Send Message',
+    messageSent: 'Message sent!',
+    messageSentDesc: 'We will contact you soon',
+    phone: 'Phone',
+    address: 'Address',
+    businessHours: 'Business Hours',
+    mondayToFriday: 'Mon-Fri: 9:00 - 21:00',
+    saturday: 'Sat: 10:00 - 18:00',
+    sunday: 'Sun: 12:00 - 17:00'
   },
   
   ru: {
@@ -320,7 +366,30 @@ const translations = {
     addedToCartDesc: 'добавлен в вашу корзину',
     freeShipping: 'Бесплатная доставка',
     returns30Days: 'Возврат в течение 30 дней',
-    authenticity: 'Гарантия подлинности'
+    authenticity: 'Гарантия подлинности',
+    
+    // Contact page
+    contactTitle: 'Связаться с нами',
+    contactSubtitle: 'У вас есть вопросы? Мы будем рады помочь. Свяжитесь с нами любым удобным способом.',
+    sendMessage: 'Отправить сообщение',
+    contactInfo: 'Контактная информация',
+    name: 'Имя',
+    nameRequired: 'Имя обязательно',
+    emailInvalid: 'Некорректный email',
+    subject: 'Тема',
+    subjectRequired: 'Тема обязательна',
+    message: 'Сообщение',
+    messageMinLength: 'Сообщение должно содержать минимум 10 символов',
+    sendingMessage: 'Отправка сообщения...',
+    sendMessageBtn: 'Отправить сообщение',
+    messageSent: 'Сообщение отправлено!',
+    messageSentDesc: 'Мы свяжемся с вами в ближайшее время',
+    phone: 'Телефон',
+    address: 'Адрес',
+    businessHours: 'Часы работы',
+    mondayToFriday: 'Пн-Пт: 9:00 - 21:00',
+    saturday: 'Сб: 10:00 - 18:00',
+    sunday: 'Вс: 12:00 - 17:00'
   }
 }
 

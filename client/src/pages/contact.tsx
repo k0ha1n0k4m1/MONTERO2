@@ -12,19 +12,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
-
-const contactSchema = z.object({
-  name: z.string().min(1, "Имя обязательно"),
-  email: z.string().email("Некорректный email"),
-  subject: z.string().min(1, "Тема обязательна"),
-  message: z.string().min(10, "Сообщение должно содержать минимум 10 символов"),
-});
-
-type ContactData = z.infer<typeof contactSchema>;
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { t } = useLanguage();
+
+  const contactSchema = z.object({
+    name: z.string().min(1, t('nameRequired')),
+    email: z.string().email(t('emailInvalid')),
+    subject: z.string().min(1, t('subjectRequired')),
+    message: z.string().min(10, t('messageMinLength')),
+  });
+
+  type ContactData = z.infer<typeof contactSchema>;
 
   const form = useForm<ContactData>({
     resolver: zodResolver(contactSchema),
@@ -42,8 +44,8 @@ export default function Contact() {
     // Симуляция отправки сообщения
     setTimeout(() => {
       toast({
-        title: "Сообщение отправлено!",
-        description: "Мы свяжемся с вами в ближайшее время",
+        title: t('messageSent'),
+        description: t('messageSentDesc'),
       });
       form.reset();
       setIsSubmitting(false);
@@ -58,11 +60,10 @@ export default function Contact() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8 py-12">
           <div className="mb-12 text-center">
             <h1 className="text-4xl font-light text-gray-900 mb-4">
-              Свяжитесь с нами
+              {t('contactTitle')}
             </h1>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              У вас есть вопросы? Мы будем рады помочь. Свяжитесь с нами любым
-              удобным способом.
+              {t('contactSubtitle')}
             </p>
           </div>
 

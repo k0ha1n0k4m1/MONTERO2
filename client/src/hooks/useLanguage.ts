@@ -92,6 +92,9 @@ const translations = {
     allProducts: '모든 제품',
     sale: '세일',
     connect: '연결',
+    contactUs: '문의하기',
+    sizeGuide: '사이즈 가이드',
+    returns: '반품/교환',
     copyright: '© 2024 MONTERO. 모든 권리 보유.'
   },
   
@@ -176,6 +179,9 @@ const translations = {
     allProducts: 'All Products',
     sale: 'Sale',
     connect: 'Connect',
+    contactUs: 'Contact Us',
+    sizeGuide: 'Size Guide',
+    returns: 'Returns',
     copyright: '© 2024 MONTERO. All rights reserved.'
   },
   
@@ -260,6 +266,9 @@ const translations = {
     allProducts: 'Все товары',
     sale: 'Распродажа',
     connect: 'Связаться',
+    contactUs: 'Связаться с нами',
+    sizeGuide: 'Размерная сетка',
+    returns: 'Возврат товара',
     copyright: '© 2024 MONTERO. Все права защищены.'
   }
 }

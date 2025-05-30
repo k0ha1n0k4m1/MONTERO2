@@ -198,7 +198,16 @@ const translations = {
     underwear: '속옷',
     swimwear: '수영복',
     usedItems: '사용 흔적이 있는 제품',
-    itemsWithoutTags: '라벨이 없는 제품'
+    itemsWithoutTags: '라벨이 없는 제품',
+    
+    // Return guarantees
+    thirtyDayGuarantee: '30일 보장',
+    thirtyDayGuaranteeDesc: '30일 내 반품 또는 교환',
+    freeExchangeService: '무료 교환',
+    freeExchangeServiceDesc: '다른 사이즈나 색상으로 교환',
+    fullRefundPolicy: '전액 환불',
+    fullRefundPolicyDesc: '조건 충족 시 100% 환불',
+    returnProcessTitle: '반품 절차'
   },
   
   en: {
@@ -388,7 +397,16 @@ const translations = {
     underwear: 'Underwear',
     swimwear: 'Swimwear',
     usedItems: 'Items with signs of use',
-    itemsWithoutTags: 'Items without tags'
+    itemsWithoutTags: 'Items without tags',
+    
+    // Return guarantees
+    thirtyDayGuarantee: '30-Day Guarantee',
+    thirtyDayGuaranteeDesc: 'Return or exchange within 30 days',
+    freeExchangeService: 'Free Exchange',
+    freeExchangeServiceDesc: 'Exchange item for different size or color',
+    fullRefundPolicy: 'Full Refund',
+    fullRefundPolicyDesc: '100% refund when conditions are met',
+    returnProcessTitle: 'Return Process'
   },
   
   ru: {
@@ -578,7 +596,16 @@ const translations = {
     underwear: 'Нижнее белье',
     swimwear: 'Купальники',
     usedItems: 'Товары со следами использования',
-    itemsWithoutTags: 'Товары без ярлыков'
+    itemsWithoutTags: 'Товары без ярлыков',
+    
+    // Return guarantees
+    thirtyDayGuarantee: '30-дневная гарантия',
+    thirtyDayGuaranteeDesc: 'Возврат или обмен в течение 30 дней',
+    freeExchangeService: 'Бесплатный обмен',
+    freeExchangeServiceDesc: 'Обмен товара на другой размер или цвет',
+    fullRefundPolicy: 'Полный возврат',
+    fullRefundPolicyDesc: '100% возврат средств при соблюдении условий',
+    returnProcessTitle: 'Процесс возврата'
   }
 }
 

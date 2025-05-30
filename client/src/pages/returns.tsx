@@ -5,46 +5,48 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { CheckCircle, XCircle, Clock, Package, RefreshCw } from "lucide-react";
-
-const returnSteps = [
-  {
-    step: 1,
-    title: "Подача заявки",
-    description: "Подайте заявку на возврат через личный кабинет или свяжитесь с поддержкой",
-    icon: Package,
-  },
-  {
-    step: 2,
-    title: "Упаковка товара",
-    description: "Упакуйте товар в оригинальную упаковку с ярлыками",
-    icon: Package,
-  },
-  {
-    step: 3,
-    title: "Отправка",
-    description: "Отправьте товар курьерской службой или принесите в магазин",
-    icon: RefreshCw,
-  },
-  {
-    step: 4,
-    title: "Возврат средств",
-    description: "Получите возврат средств в течение 7-14 рабочих дней",
-    icon: CheckCircle,
-  },
-];
-
-const returnableItems = [
-  { item: "Одежда без повреждений", allowed: true },
-  { item: "Товары с ярлыками", allowed: true },
-  { item: "Обувь в оригинальной упаковке", allowed: true },
-  { item: "Аксессуары", allowed: true },
-  { item: "Нижнее белье", allowed: false },
-  { item: "Купальники", allowed: false },
-  { item: "Товары со следами использования", allowed: false },
-  { item: "Товары без ярлыков", allowed: false },
-];
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function Returns() {
+  const { t } = useLanguage();
+
+  const returnSteps = [
+    {
+      step: 1,
+      title: t('returnStep1'),
+      description: t('returnStep1Desc'),
+      icon: Package,
+    },
+    {
+      step: 2,
+      title: t('returnStep2'),
+      description: t('returnStep2Desc'),
+      icon: Package,
+    },
+    {
+      step: 3,
+      title: t('returnStep3'),
+      description: t('returnStep3Desc'),
+      icon: RefreshCw,
+    },
+    {
+      step: 4,
+      title: t('returnStep4'),
+      description: t('returnStep4Desc'),
+      icon: CheckCircle,
+    },
+  ];
+
+  const returnableItems = [
+    { item: t('clothingUndamaged'), allowed: true },
+    { item: t('itemsWithTags'), allowed: true },
+    { item: t('shoesInBox'), allowed: true },
+    { item: t('accessoryItems'), allowed: true },
+    { item: t('underwear'), allowed: false },
+    { item: t('swimwear'), allowed: false },
+    { item: t('usedItems'), allowed: false },
+    { item: t('itemsWithoutTags'), allowed: false },
+  ];
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -53,10 +55,10 @@ export default function Returns() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8 py-12">
           <div className="mb-12 text-center">
             <h1 className="text-4xl font-light text-gray-900 mb-4">
-              Возврат и обмен
+              {t('returnsTitle')}
             </h1>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Мы стремимся обеспечить полное удовлетворение от покупки. Ознакомьтесь с нашей политикой возврата и обмена.
+              {t('returnsSubtitle')}
             </p>
           </div>
 

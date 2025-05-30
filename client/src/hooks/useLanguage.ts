@@ -220,7 +220,20 @@ const translations = {
     returnTimelines: '반품 기간:',
     fourteenDays: '수령 후 14일',
     refundTime: '환불: 7-14 영업일',
-    exchangeTime: '교환: 3-5 영업일'
+    exchangeTime: '교환: 3-5 영업일',
+    
+    // FAQ section
+    faqTitle: '자주 묻는 질문',
+    canReturnWithoutPackaging: '포장 없이 반품할 수 있나요?',
+    canReturnWithoutPackagingAnswer: '네, 하지만 제품이 라벨이 부착된 완벽한 상태여야 합니다. 최종 구매 결정까지 포장을 보관하시길 권합니다.',
+    howMuchRefund: '반품 비용은 얼마인가요?',
+    howMuchRefundAnswer: '제품 불량이나 주문 오류가 아닌 경우 반품 배송비는 고객 부담입니다. 10만원 이상 주문 시 사이즈 교환은 무료입니다.',
+    howToGetRefund: '환불은 어떻게 받나요?',
+    howToGetRefundAnswer: '환불은 원래 결제 방법과 동일한 방식으로 처리됩니다. 은행카드의 경우 환불 기간은 7-14 영업일입니다.',
+    needReturnHelp: '반품 도움이 필요하신가요?',
+    needReturnHelpAnswer: '저희 고객지원팀이 반품 처리를 도와드리거나 궁금한 점에 답변해드립니다.',
+    contactSupport: '고객지원 연락',
+    myOrders: '내 주문'
   },
   
   en: {
@@ -432,7 +445,20 @@ const translations = {
     returnTimelines: 'Return timelines:',
     fourteenDays: '14 days from receipt',
     refundTime: 'Refund: 7-14 business days',
-    exchangeTime: 'Exchange: 3-5 business days'
+    exchangeTime: 'Exchange: 3-5 business days',
+    
+    // FAQ section
+    faqTitle: 'Frequently Asked Questions',
+    canReturnWithoutPackaging: 'Can I return an item without packaging?',
+    canReturnWithoutPackagingAnswer: 'Yes, but the item must be in perfect condition with attached tags. We recommend keeping the packaging until you make a final decision about the purchase.',
+    howMuchRefund: 'How much does a return cost?',
+    howMuchRefundAnswer: 'Return shipping is at the customer\'s expense, except in cases of defects or order errors. Size exchanges are free for orders over $100.',
+    howToGetRefund: 'How do I get my refund?',
+    howToGetRefundAnswer: 'Refunds are processed using the same payment method used for the original purchase. For bank cards, the refund period is 7-14 business days.',
+    needReturnHelp: 'Need help with returns?',
+    needReturnHelpAnswer: 'Our support team is ready to help you process your return or answer any questions.',
+    contactSupport: 'Contact Support',
+    myOrders: 'My Orders'
   },
   
   ru: {
@@ -644,7 +670,20 @@ const translations = {
     returnTimelines: 'Сроки возврата:',
     fourteenDays: '14 дней с момента получения',
     refundTime: 'Возврат средств: 7-14 рабочих дней',
-    exchangeTime: 'Обмен: 3-5 рабочих дней'
+    exchangeTime: 'Обмен: 3-5 рабочих дней',
+    
+    // FAQ section
+    faqTitle: 'Часто задаваемые вопросы',
+    canReturnWithoutPackaging: 'Можно ли вернуть товар без упаковки?',
+    canReturnWithoutPackagingAnswer: 'Да, но товар должен быть в идеальном состоянии с прикрепленными ярлыками. Мы рекомендуем сохранять упаковку до принятия окончательного решения о покупке.',
+    howMuchRefund: 'Сколько стоит возврат?',
+    howMuchRefundAnswer: 'Возврат товара осуществляется за счет покупателя, кроме случаев брака или ошибки в заказе. Обмен на другой размер - бесплатно при заказе от 3000₽.',
+    howToGetRefund: 'Как получить возврат средств?',
+    howToGetRefundAnswer: 'Средства возвращаются тем же способом, которым была произведена оплата. Для банковских карт срок возврата составляет 7-14 рабочих дней.',
+    needReturnHelp: 'Нужна помощь с возвратом?',
+    needReturnHelpAnswer: 'Наша служба поддержки готова помочь вам с оформлением возврата или ответить на любые вопросы.',
+    contactSupport: 'Связаться с поддержкой',
+    myOrders: 'Мои заказы'
   }
 }
 

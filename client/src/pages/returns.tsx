@@ -179,30 +179,27 @@ export default function Returns() {
           {/* FAQ */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="text-xl font-light">Часто задаваемые вопросы</CardTitle>
+              <CardTitle className="text-xl font-light">{t('faqTitle')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div>
-                <h3 className="font-medium mb-2">Можно ли вернуть товар без упаковки?</h3>
+                <h3 className="font-medium mb-2">{t('canReturnWithoutPackaging')}</h3>
                 <p className="text-gray-600 text-sm">
-                  Да, но товар должен быть в идеальном состоянии с прикрепленными ярлыками. 
-                  Мы рекомендуем сохранять упаковку до принятия окончательного решения о покупке.
+                  {t('canReturnWithoutPackagingAnswer')}
                 </p>
               </div>
 
               <div>
-                <h3 className="font-medium mb-2">Сколько стоит возврат?</h3>
+                <h3 className="font-medium mb-2">{t('howMuchRefund')}</h3>
                 <p className="text-gray-600 text-sm">
-                  Возврат товара осуществляется за счет покупателя, кроме случаев брака или ошибки в заказе. 
-                  Обмен на другой размер - бесплатно при заказе от 3000₽.
+                  {t('howMuchRefundAnswer')}
                 </p>
               </div>
 
               <div>
-                <h3 className="font-medium mb-2">Как получить возврат средств?</h3>
+                <h3 className="font-medium mb-2">{t('howToGetRefund')}</h3>
                 <p className="text-gray-600 text-sm">
-                  Средства возвращаются тем же способом, которым была произведена оплата. 
-                  Для банковских карт срок возврата составляет 7-14 рабочих дней.
+                  {t('howToGetRefundAnswer')}
                 </p>
               </div>
             </CardContent>
@@ -211,16 +208,16 @@ export default function Returns() {
           {/* Call to Action */}
           <div className="text-center">
             <div className="bg-gray-50 rounded-lg p-8">
-              <h2 className="text-xl font-light mb-4">Нужна помощь с возвратом?</h2>
+              <h2 className="text-xl font-light mb-4">{t('needReturnHelp')}</h2>
               <p className="text-gray-600 mb-6">
-                Наша служба поддержки готова помочь вам с оформлением возврата или ответить на любые вопросы.
+                {t('needReturnHelpAnswer')}
               </p>
               <div className="flex gap-4 justify-center">
                 <Button asChild className="bg-black text-white hover:bg-gray-800">
-                  <Link href="/contact">Связаться с поддержкой</Link>
+                  <Link href="/contact">{t('contactSupport')}</Link>
                 </Button>
                 <Button variant="outline" asChild>
-                  <Link href="/orders">Мои заказы</Link>
+                  <Link href="/orders">{t('myOrders')}</Link>
                 </Button>
               </div>
             </div>

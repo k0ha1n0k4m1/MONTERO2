@@ -40,23 +40,23 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
             backgroundColor: 'transparent'
           }}
         >
-          <h4 className={`${featured ? 'text-lg' : 'text-sm'} font-light text-white mb-2`}>
+          <h4 className={`${featured ? 'text-lg' : 'text-sm'} font-light text-black mb-2`}>
             {product.name}
           </h4>
           {featured && product.description && (
-            <p className="text-white/80 text-sm font-light mb-4">
+            <p className="text-black/80 text-sm font-light mb-4">
               {product.description}
             </p>
           )}
           <div className="flex items-center justify-between">
-            <p className={`text-white ${featured ? 'font-light' : 'text-sm font-light'}`}>
+            <p className={`text-black ${featured ? 'font-light' : 'text-sm font-light'}`}>
               {formatPrice(product.price)}
             </p>
             <Button
               onClick={handleAddToCart}
               variant="ghost"
               size="sm"
-              className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs font-light hover:bg-white hover:text-black text-white border border-white"
+              className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs font-light hover:bg-black hover:text-white text-black"
             >
               ADD TO CART
             </Button>

@@ -77,10 +77,10 @@ export default function Header() {
             {navigation.map((item) => (
               <Link key={item.name} href={item.href}>
                 <div className={cn(
-                  "text-base font-bold transition-colors duration-300 relative group cursor-pointer",
+                  "text-base font-bold transition-colors duration-300 relative group cursor-pointer text-black",
                   currentCategory === item.name 
-                    ? "text-foreground" 
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-black" 
+                    : "text-black/80 hover:text-black"
                 )}>
                   {t(item.name)}
                   <span className={cn(
@@ -242,7 +242,7 @@ export default function Header() {
             {/* Mobile menu button */}
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden text-muted-foreground hover:text-foreground">
+                <Button variant="ghost" size="icon" className="md:hidden">
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>

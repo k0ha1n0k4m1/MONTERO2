@@ -107,7 +107,7 @@ export default function Footer() {
               <h5 className="text-sm font-light text-white mb-4 tracking-wide">{t('connect')}</h5>
               <div className="flex space-x-4">
                 <a 
-                  href="https://instagram.com/montero_fashion" 
+                  href="https://www.instagram.com/montero.co.kr" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-white/80 hover:text-white transition-colors duration-300"

@@ -14,6 +14,7 @@ import type { Product } from "@shared/schema"
 export default function Product() {
   const { id } = useParams()
   const [quantity, setQuantity] = useState(1)
+  const [selectedSize, setSelectedSize] = useState('M')
   const { addItem } = useCart()
   const { toast } = useToast()
   const { t } = useLanguage()
@@ -27,7 +28,7 @@ export default function Product() {
       addItem(product.id, quantity)
       toast({
         title: t('addedToCart'),
-        description: `${product.name} ${t('addedToCartDesc')}`,
+        description: `${product.name} (${selectedSize}) ${t('addedToCartDesc')}`,
       })
     }
   }
@@ -126,15 +127,20 @@ export default function Product() {
                 </p>
               </div>
 
-              {/* Size Selection - можем добавить позже */}
+              {/* Size Selection */}
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('size')}</h3>
                 <div className="grid grid-cols-5 gap-2">
                   {['XS', 'S', 'M', 'L', 'XL'].map((size) => (
                     <Button
                       key={size}
-                      variant="outline"
-                      className="h-12"
+                      variant={selectedSize === size ? "default" : "outline"}
+                      className={`h-12 transition-all duration-200 ${
+                        selectedSize === size 
+                          ? "bg-gray-900 text-white hover:bg-gray-700" 
+                          : "hover:bg-gray-100"
+                      }`}
+                      onClick={() => setSelectedSize(size)}
                     >
                       {size}
                     </Button>

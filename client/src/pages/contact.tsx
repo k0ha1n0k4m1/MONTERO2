@@ -38,7 +38,7 @@ export default function Contact() {
 
   const handleSubmit = async (data: ContactData) => {
     setIsSubmitting(true);
-    
+
     // Симуляция отправки сообщения
     setTimeout(() => {
       toast({
@@ -61,7 +61,8 @@ export default function Contact() {
               Свяжитесь с нами
             </h1>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              У вас есть вопросы? Мы будем рады помочь. Свяжитесь с нами любым удобным способом.
+              У вас есть вопросы? Мы будем рады помочь. Свяжитесь с нами любым
+              удобным способом.
             </p>
           </div>
 
@@ -74,13 +75,13 @@ export default function Contact() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
+                <form
+                  onSubmit={form.handleSubmit(handleSubmit)}
+                  className="space-y-4"
+                >
                   <div className="space-y-2">
                     <Label htmlFor="name">Имя</Label>
-                    <Input
-                      id="name"
-                      {...form.register("name")}
-                    />
+                    <Input id="name" {...form.register("name")} />
                     {form.formState.errors.name && (
                       <p className="text-sm text-red-500">
                         {form.formState.errors.name.message}
@@ -104,10 +105,7 @@ export default function Contact() {
 
                   <div className="space-y-2">
                     <Label htmlFor="subject">Тема</Label>
-                    <Input
-                      id="subject"
-                      {...form.register("subject")}
-                    />
+                    <Input id="subject" {...form.register("subject")} />
                     {form.formState.errors.subject && (
                       <p className="text-sm text-red-500">
                         {form.formState.errors.subject.message}
@@ -129,8 +127,8 @@ export default function Contact() {
                     )}
                   </div>
 
-                  <Button 
-                    type="submit" 
+                  <Button
+                    type="submit"
                     className="w-full bg-black text-white hover:bg-gray-800"
                     disabled={isSubmitting}
                   >
@@ -153,8 +151,7 @@ export default function Contact() {
                     <Mail className="h-6 w-6 text-gray-600 mt-1" />
                     <div>
                       <h3 className="font-medium">Email</h3>
-                      <p className="text-gray-600">support@montero.com</p>
-                      <p className="text-gray-600">info@montero.com</p>
+                      <p className="text-gray-600">Montero.team.kr@gmail.com</p>
                     </div>
                   </div>
 
@@ -183,8 +180,10 @@ export default function Contact() {
                     <div>
                       <h3 className="font-medium">Часы работы</h3>
                       <p className="text-gray-600">
-                        Пн-Пт: 9:00 - 21:00<br />
-                        Сб: 10:00 - 18:00<br />
+                        Пн-Пт: 9:00 - 21:00
+                        <br />
+                        Сб: 10:00 - 18:00
+                        <br />
                         Вс: 12:00 - 17:00
                       </p>
                     </div>

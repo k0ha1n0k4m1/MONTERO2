@@ -98,7 +98,20 @@ const translations = {
     copyright: '© 2024 MONTERO. 모든 권리 보유.',
     
     // Collection text
-    collection: '컬렉션'
+    collection: '컬렉션',
+    
+    // Product page
+    backToProducts: '제품으로 돌아가기',
+    productNotFound: '제품을 찾을 수 없습니다',
+    productNotFoundDesc: '요청하신 제품을 찾을 수 없습니다.',
+    description: '설명',
+    size: '사이즈',
+    quantity: '수량',
+    addedToCart: '장바구니에 추가됨',
+    addedToCartDesc: '이 장바구니에 추가되었습니다',
+    freeShipping: '무료 배송',
+    returns30Days: '30일 반품 가능',
+    authenticity: '정품 보장'
   },
   
   en: {
@@ -188,7 +201,20 @@ const translations = {
     copyright: '© 2024 MONTERO. All rights reserved.',
     
     // Collection text
-    collection: 'Collection'
+    collection: 'Collection',
+    
+    // Product page
+    backToProducts: 'Back to Products',
+    productNotFound: 'Product Not Found',
+    productNotFoundDesc: 'The product you are looking for could not be found.',
+    description: 'Description',
+    size: 'Size',
+    quantity: 'Quantity',
+    addedToCart: 'Added to Cart',
+    addedToCartDesc: 'has been added to your cart',
+    freeShipping: 'Free shipping',
+    returns30Days: '30-day returns',
+    authenticity: 'Authenticity guaranteed'
   },
   
   ru: {
@@ -278,7 +304,20 @@ const translations = {
     copyright: '© 2024 MONTERO. Все права защищены.',
     
     // Collection text
-    collection: 'Коллекция'
+    collection: 'Коллекция',
+    
+    // Product page
+    backToProducts: 'Вернуться к товарам',
+    productNotFound: 'Товар не найден',
+    productNotFoundDesc: 'Запрашиваемый товар не найден.',
+    description: 'Описание',
+    size: 'Размер',
+    quantity: 'Количество',
+    addedToCart: 'Добавлено в корзину',
+    addedToCartDesc: 'добавлен в вашу корзину',
+    freeShipping: 'Бесплатная доставка',
+    returns30Days: 'Возврат в течение 30 дней',
+    authenticity: 'Гарантия подлинности'
   }
 }
 

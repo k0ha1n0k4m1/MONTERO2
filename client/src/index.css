@@ -67,7 +67,7 @@
     font-family: 'Inter', sans-serif;
     font-size: 16px;
     background-image: 
-      linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
+      linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
       url('@assets/IMG_2734_resized_1920x1080.jpg');
     background-size: cover;
     background-position: center;

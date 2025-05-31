@@ -77,10 +77,10 @@ export default function Header() {
             {navigation.map((item) => (
               <Link key={item.name} href={item.href}>
                 <div className={cn(
-                  "text-base font-bold transition-colors duration-300 relative group cursor-pointer text-black",
+                  "text-base font-bold transition-colors duration-300 relative group cursor-pointer text-white",
                   currentCategory === item.name 
-                    ? "text-black" 
-                    : "text-black/80 hover:text-black"
+                    ? "text-white" 
+                    : "text-white/80 hover:text-white"
                 )}>
                   {t(item.name)}
                   <span className={cn(
@@ -98,7 +98,7 @@ export default function Header() {
             
             <Sheet open={searchOpen} onOpenChange={setSearchOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
+                <Button variant="ghost" size="icon" className="text-white hover:text-white/80">
                   <Search className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
@@ -121,7 +121,7 @@ export default function Header() {
             
             <Sheet open={userMenuOpen} onOpenChange={setUserMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
+                <Button variant="ghost" size="icon" className="text-white hover:text-white/80">
                   <User className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
@@ -228,7 +228,7 @@ export default function Header() {
             <Button 
               variant="ghost" 
               size="icon" 
-              className="text-muted-foreground hover:text-foreground relative"
+              className="text-white hover:text-white/80 relative"
               onClick={toggleCart}
             >
               <ShoppingBag className="h-5 w-5" />
@@ -242,7 +242,7 @@ export default function Header() {
             {/* Mobile menu button */}
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden">
+                <Button variant="ghost" size="icon" className="md:hidden text-white hover:text-white/80">
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>

@@ -25,7 +25,7 @@ export default function LanguageSelector() {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
+        <Button variant="ghost" size="icon" className="text-white hover:text-white/80">
           <Globe className="h-5 w-5" />
         </Button>
       </SheetTrigger>

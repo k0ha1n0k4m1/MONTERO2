@@ -49,7 +49,7 @@ export default function ProductGrid() {
       {/* New Arrivals Section */}
       <section className="py-20" id="products">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="bg-black/20 backdrop-blur-md rounded-2xl p-8 lg:p-12 shadow-lg">
+          <div className="bg-black/20 backdrop-blur rounded-2xl p-8 lg:p-12 shadow-lg">
             <div className="text-center mb-16">
               <h3 className="text-4xl lg:text-5xl font-bold text-white mb-6">
                 {category === 'all' ? t('newArrivals') : `${t(category)} ${t('collection')}`}
@@ -84,7 +84,7 @@ export default function ProductGrid() {
       {category === 'all' && (
         <section className="py-20">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="bg-black/20 backdrop-blur-md rounded-2xl p-8 lg:p-12 shadow-lg">
+            <div className="bg-black/20 backdrop-blur rounded-2xl p-8 lg:p-12 shadow-lg">
               <div className="text-center mb-16">
                 <h3 className="text-4xl lg:text-5xl font-bold text-white mb-6">{t('featuredSelection')}</h3>
                 <p className="text-white/80 font-medium text-lg">{t('handpicked')}</p>

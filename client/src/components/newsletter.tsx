@@ -31,7 +31,7 @@ export default function Newsletter() {
   return (
     <section className="py-20">
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
-        <div className="bg-black/20 backdrop-blur-md rounded-2xl p-12 text-center shadow-lg">
+        <div className="bg-black/20 backdrop-blur rounded-2xl p-12 text-center shadow-lg">
           <h3 className="text-4xl lg:text-5xl font-bold text-white mb-6">{t('newsletter')}</h3>
           <p className="text-white/80 font-medium text-lg mb-8 max-w-2xl mx-auto">
             {t('stayUpdated')}

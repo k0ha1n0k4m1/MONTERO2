@@ -28,6 +28,26 @@ export default function Header() {
   const { getTotalItems, toggleCart } = useCart()
   const { user, isAuthenticated, logout, isLogoutPending } = useAuth()
   const { t } = useLanguage()
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+  }
+
+  const handleNavClick = (e: React.MouseEvent, item: any) => {
+    e.preventDefault()
+    if (item.name === 'all') {
+      scrollToSection('products')
+    } else {
+      // Для категорий сначала перейти на страницу, затем прокрутить
+      window.location.href = item.href
+    }
+  }
   const { toast } = useToast()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
@@ -75,7 +95,7 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-12">
             {navigation.map((item) => (
-              <Link key={item.name} href={item.href}>
+              <div key={item.name} onClick={(e) => handleNavClick(e, item)}>
                 <div className={cn(
                   "text-base font-bold transition-colors duration-300 relative group cursor-pointer text-white",
                   currentCategory === item.name 
@@ -88,7 +108,7 @@ export default function Header() {
                     currentCategory === item.name ? "w-full" : "w-0 group-hover:w-full"
                   )} />
                 </div>
-              </Link>
+              </div>
             ))}
           </nav>
           
@@ -255,17 +275,18 @@ export default function Header() {
                     <ul className="space-y-6">
                       {navigation.map((item) => (
                         <li key={item.name}>
-                          <Link href={item.href}>
-                            <div 
-                              className={cn(
-                                "text-lg font-light transition-colors duration-300 cursor-pointer",
-                                currentCategory === item.name ? "text-foreground" : "text-muted-foreground"
-                              )}
-                              onClick={() => setMobileMenuOpen(false)}
-                            >
-                              {item.name}
-                            </div>
-                          </Link>
+                          <div 
+                            className={cn(
+                              "text-lg font-light transition-colors duration-300 cursor-pointer",
+                              currentCategory === item.name ? "text-foreground" : "text-muted-foreground"
+                            )}
+                            onClick={(e) => {
+                              handleNavClick(e, item)
+                              setMobileMenuOpen(false)
+                            }}
+                          >
+                            {t(item.name)}
+                          </div>
                         </li>
                       ))}
                     </ul>

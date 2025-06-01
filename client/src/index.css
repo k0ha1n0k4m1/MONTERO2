@@ -71,35 +71,66 @@ html {
     @apply text-foreground font-light;
     font-family: 'Inter', sans-serif;
     font-size: 16px;
+    /* Создаем стильный гоночный градиент вместо изображения */
+    background: 
+      linear-gradient(135deg, 
+        #0a0a0a 0%, 
+        #1a1a1a 25%, 
+        #2a2a2a 50%, 
+        #1a1a1a 75%, 
+        #0a0a0a 100%
+      );
+    /* Добавляем текстуру с помощью радиального градиента */
     background-image: 
-      linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-      url('@assets/IMG_2734_resized_1920x1080.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: scroll; /* Изменено с fixed для лучшей производительности на мобильных */
-    background-repeat: no-repeat;
+      radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.01) 0%, transparent 50%),
+      linear-gradient(135deg, 
+        #0a0a0a 0%, 
+        #1a1a1a 25%, 
+        #2a2a2a 50%, 
+        #1a1a1a 75%, 
+        #0a0a0a 100%
+      );
+    background-attachment: fixed;
+    min-height: 100vh;
   }
   
+  /* Добавляем анимированные линии для гоночного эффекта */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 98px,
+        rgba(255, 255, 255, 0.03) 100px,
+        rgba(255, 255, 255, 0.03) 101px,
+        transparent 103px
+      );
+    pointer-events: none;
+    z-index: -1;
+  }
+
   /* Мобильные оптимизации */
   @media (max-width: 768px) {
     body {
       background-attachment: scroll;
-      background-size: cover;
-      /* Добавляем градиент для лучшей читаемости на мобильных */
-      background-image: 
-        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-        url('@assets/IMG_2734_resized_1920x1080.jpg');
+      /* Упрощенный градиент для мобильных */
+      background: 
+        linear-gradient(180deg, 
+          #0a0a0a 0%, 
+          #1a1a1a 50%, 
+          #0a0a0a 100%
+        );
     }
-  }
-  
-  /* Дополнительная оптимизация для очень маленьких экранов */
-  @media (max-width: 480px) {
-    body {
-      /* На очень маленьких экранах используем более темный градиент */
-      background-image: 
-        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url('@assets/IMG_2734_resized_1920x1080.jpg');
-      background-position: center top;
+    
+    body::before {
+      display: none; /* Убираем линии на мобильных для лучшей производительности */
     }
   }
 }

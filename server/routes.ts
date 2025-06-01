@@ -1,6 +1,7 @@
 import type { Express, Request } from "express";
 import express from "express";
 import { createServer, type Server } from "http";
+import { body, validationResult } from "express-validator";
 import { storage } from "./storage";
 import { insertCartItemSchema, loginSchema, registerSchema } from "@shared/schema";
 import session from "express-session";
@@ -13,7 +14,39 @@ declare module 'express-session' {
   }
 }
 
+// Validation middleware
+const handleValidationErrors = (req: any, res: any, next: any) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ 
+      error: "Invalid input data",
+      details: errors.array() 
+    });
+  }
+  next();
+};
+
+// Input sanitization middleware
+const sanitizeInput = (req: any, res: any, next: any) => {
+  if (req.body) {
+    Object.keys(req.body).forEach(key => {
+      if (typeof req.body[key] === 'string') {
+        // Remove potentially dangerous characters
+        req.body[key] = req.body[key]
+          .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+          .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
+          .replace(/javascript:/gi, '')
+          .replace(/on\w+\s*=/gi, '');
+      }
+    });
+  }
+  next();
+};
+
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Add input sanitization
+  app.use(sanitizeInput);
+
   // Enable CORS with credentials
   app.use((req, res, next) => {
     res.header('Access-Control-Allow-Credentials', 'true');
@@ -61,19 +94,36 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json({ message: "API is working!" });
   });
 
-  // Simple Auth routes
-  app.post("/api/auth/register", async (req: Request, res) => {
+  // Enhanced Auth routes with validation
+  app.post("/api/auth/register", [
+    body('email')
+      .isEmail()
+      .normalizeEmail()
+      .isLength({ max: 255 })
+      .withMessage('Valid email is required'),
+    body('password')
+      .isLength({ min: 8, max: 128 })
+      .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/)
+      .withMessage('Password must be 8+ chars with uppercase, lowercase, and number'),
+    body('firstName')
+      .optional()
+      .isLength({ max: 50 })
+      .matches(/^[a-zA-Z\s-']+$/)
+      .withMessage('First name can only contain letters, spaces, hyphens, and apostrophes'),
+    body('lastName')
+      .optional()
+      .isLength({ max: 50 })
+      .matches(/^[a-zA-Z\s-']+$/)
+      .withMessage('Last name can only contain letters, spaces, hyphens, and apostrophes'),
+    handleValidationErrors
+  ], async (req: Request, res) => {
     try {
       const { email, password, firstName, lastName } = req.body;
-      
-      if (!email || !password) {
-        return res.status(400).json({ message: "Email and password required" });
-      }
 
       // Check if user exists
       const existingUser = await storage.getUserByEmail(email);
       if (existingUser) {
-        return res.status(400).json({ message: "User already exists" });
+        return res.status(409).json({ message: "User already exists" });
       }
 
       // Create user
@@ -103,13 +153,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/auth/login", async (req: Request, res) => {
+  app.post("/api/auth/login", [
+    body('email')
+      .isEmail()
+      .normalizeEmail()
+      .isLength({ max: 255 })
+      .withMessage('Valid email is required'),
+    body('password')
+      .isLength({ min: 1, max: 128 })
+      .withMessage('Password is required'),
+    handleValidationErrors
+  ], async (req: Request, res) => {
     try {
       const { email, password } = req.body;
-      
-      if (!email || !password) {
-        return res.status(400).json({ message: "Email and password required" });
-      }
 
       const user = await storage.loginUser({ email, password });
       

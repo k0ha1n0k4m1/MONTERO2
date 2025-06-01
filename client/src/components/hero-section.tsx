@@ -11,7 +11,7 @@ export default function HeroSection() {
   }
 
   return (
-    <section className="pt-16 min-h-[80vh] flex items-center">
+    <section id="hero" className="pt-16 min-h-[80vh] flex items-center">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-16 w-full">
         <div className="text-center fade-in bg-black/20 backdrop-blur rounded-[2rem] p-8 lg:p-12 shadow-2xl">
           <h2 className="text-5xl md:text-7xl lg:text-9xl font-bold tracking-wider mb-8 montero-title text-white">

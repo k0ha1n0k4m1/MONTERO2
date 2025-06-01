@@ -41,10 +41,16 @@ export default function Header() {
 
   const handleNavClick = (e: React.MouseEvent, item: any) => {
     e.preventDefault()
+    
+    // Если мы не на главной странице и нажали "all", вернуться на главную и прокрутить к продуктам
     if (item.name === 'all') {
-      scrollToSection('products')
+      if (window.location.pathname !== '/') {
+        window.location.href = '/'
+      } else {
+        scrollToSection('products')
+      }
     } else {
-      // Для категорий сначала перейти на страницу, затем прокрутить
+      // Для категорий перейти на страницу категории
       window.location.href = item.href
     }
   }

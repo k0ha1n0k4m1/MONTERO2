@@ -17,20 +17,34 @@ const footerLinks = {
 
 export default function Footer() {
   const { t } = useLanguage()
-  const scrollToProducts = () => {
-    const productsSection = document.getElementById('products')
-    if (productsSection) {
-      productsSection.scrollIntoView({ behavior: 'smooth' })
-    } else {
-      // Если секция не найдена, перейти на главную страницу
+  const scrollToSection = (sectionId: string) => {
+    // Если мы не на главной странице, сначала перейти туда
+    if (window.location.pathname !== '/') {
       window.location.href = '/'
+      // Добавить небольшую задержку для загрузки страницы
+      setTimeout(() => {
+        const element = document.getElementById(sectionId)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+      }, 100)
+    } else {
+      // Если уже на главной странице, прокрутить сразу
+      const element = document.getElementById(sectionId)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
     }
   }
 
   const handleShopClick = (e: React.MouseEvent, linkName: string) => {
     e.preventDefault()
-    if (linkName === 'All Products' || linkName === 'New Arrivals' || linkName === 'Sale') {
-      scrollToProducts()
+    if (linkName === 'All Products') {
+      scrollToSection('products')
+    } else if (linkName === 'New Arrivals') {
+      scrollToSection('products')
+    } else if (linkName === 'Sale') {
+      scrollToSection('products')
     }
   }
 

@@ -61,7 +61,7 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
   return (
     <Link href={`/product/${product.id}`}>
       <Card 
-        className={`group hover-lift rounded-[2rem] overflow-hidden border border-white/10 shadow-none cursor-pointer bg-black/20 backdrop-blur transition-all duration-500 hover:border-white/30 hover:transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-white/5`}
+        className={`group hover-lift rounded-lg md:rounded-[2rem] overflow-hidden border border-white/10 shadow-none cursor-pointer bg-black/20 backdrop-blur transition-all duration-500 hover:border-white/30 hover:transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-white/5`}
       >
         <div className={`${featured ? 'aspect-[4/5]' : 'aspect-square'} overflow-hidden relative`}>
           <img 
@@ -72,10 +72,10 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           <button 
             onClick={handleWishlistToggle}
-            className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 w-8 h-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center hover:bg-white/30 hover:scale-110"
+            className="absolute top-2 md:top-4 right-2 md:right-4 opacity-70 md:opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-0 md:translate-x-2 group-hover:translate-x-0 w-7 md:w-8 h-7 md:h-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center hover:bg-white/30 hover:scale-110"
           >
             <svg 
-              className={`w-4 h-4 transition-all duration-300 ${isWishlisted ? 'text-red-400 fill-red-400' : 'text-white'}`} 
+              className={`w-3 md:w-4 h-3 md:h-4 transition-all duration-300 ${isWishlisted ? 'text-red-400 fill-red-400' : 'text-white'}`} 
               fill={isWishlisted ? "currentColor" : "none"} 
               stroke="currentColor" 
               viewBox="0 0 24 24"
@@ -84,27 +84,28 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
             </svg>
           </button>
         </div>
-        <div className={`${featured ? 'p-8' : 'p-6'}`}>
-          <div className="space-y-3">
-            <h4 className={`${featured ? 'text-xl' : 'text-base'} font-light text-white group-hover:text-white/90 transition-colors duration-300`}>
+        <div className={`${featured ? 'p-4 md:p-8' : 'p-3 md:p-6'}`}>
+          <div className="space-y-2 md:space-y-3">
+            <h4 className={`${featured ? 'text-sm md:text-xl' : 'text-xs md:text-base'} font-light text-white group-hover:text-white/90 transition-colors duration-300 line-clamp-2`}>
               {product.name}
             </h4>
             {featured && product.description && (
-              <p className="text-white/70 text-sm font-light leading-relaxed group-hover:text-white/80 transition-colors duration-300">
+              <p className="text-white/70 text-xs md:text-sm font-light leading-relaxed group-hover:text-white/80 transition-colors duration-300 line-clamp-2">
                 {product.description}
               </p>
             )}
-            <div className="flex items-center justify-between pt-2">
-              <p className={`text-white ${featured ? 'text-lg font-light' : 'text-sm font-light'} group-hover:text-white/90 transition-colors duration-300`}>
+            <div className="flex items-center justify-between pt-1 md:pt-2">
+              <p className={`text-white ${featured ? 'text-sm md:text-lg font-light' : 'text-xs md:text-sm font-light'} group-hover:text-white/90 transition-colors duration-300`}>
                 {formatPrice(product.price)}
               </p>
               <Button
                 onClick={handleAddToCart}
                 variant="ghost"
                 size="sm"
-                className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1 group-hover:translate-y-0 text-xs font-light bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/30 rounded-full px-4 py-2"
+                className="opacity-50 md:opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-0 md:translate-y-1 group-hover:translate-y-0 text-xs font-light bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/30 rounded-full px-2 md:px-4 py-1 md:py-2"
               >
-                ADD TO CART
+                <span className="hidden md:inline">ADD TO CART</span>
+                <span className="md:hidden">+</span>
               </Button>
             </div>
           </div>

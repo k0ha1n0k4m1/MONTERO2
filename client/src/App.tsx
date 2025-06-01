@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
 import Product from "@/pages/product";
+import About from "@/pages/about";
 import NotFound from "@/pages/not-found";
 import Orders from "@/pages/orders";
 import Wishlist from "@/pages/wishlist";

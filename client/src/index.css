@@ -83,24 +83,43 @@ html {
     image-rendering: -webkit-optimize-contrast;
   }
   
-  /* Мобильные оптимизации для улучшения качества */
+  /* Отдельный фон для мобильных устройств */
   @media (max-width: 768px) {
     body {
-      background-attachment: scroll; /* Scroll для лучшей производительности */
-      background-size: cover;
-      /* Позиционируем изображение лучше для мобильных */
-      background-position: center center;
-      /* Добавляем небольшое размытие только на очень маленьких экранах для сглаживания */
-      filter: none;
+      background-attachment: scroll;
+      /* Используем красивый градиент вместо изображения на мобильных */
+      background: linear-gradient(
+        135deg, 
+        #0f0f0f 0%, 
+        #1a1a1a 25%, 
+        #2d2d2d 50%, 
+        #1a1a1a 75%, 
+        #0f0f0f 100%
+      );
+      /* Добавляем тонкую текстуру */
+      background-image: 
+        radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.01) 0%, transparent 50%),
+        linear-gradient(
+          135deg, 
+          #0f0f0f 0%, 
+          #1a1a1a 25%, 
+          #2d2d2d 50%, 
+          #1a1a1a 75%, 
+          #0f0f0f 100%
+        );
     }
   }
   
   @media (max-width: 480px) {
     body {
-      /* На очень маленьких экранах немного затемняем фон для лучшей читаемости */
-      background-image: 
-        linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
-        url('@assets/IMG_2734_resized_1920x1080.jpg');
+      /* Упрощенный градиент для очень маленьких экранов */
+      background: linear-gradient(
+        180deg, 
+        #0a0a0a 0%, 
+        #1a1a1a 50%, 
+        #0a0a0a 100%
+      );
     }
   }
 }

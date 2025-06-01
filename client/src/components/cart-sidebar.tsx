@@ -46,8 +46,8 @@ export default function CartSidebar() {
   return (
     <Sheet open={isOpen} onOpenChange={setOpen}>
       <SheetContent className="w-full sm:max-w-lg bg-black/5 backdrop-blur-md">
-        <SheetHeader className="border-b border-border pb-6">
-          <SheetTitle className="text-xl font-light text-foreground">
+        <SheetHeader className="border-b border-white/20 pb-6">
+          <SheetTitle className="text-xl font-light text-white">
             Shopping Cart ({items.length})
           </SheetTitle>
         </SheetHeader>
@@ -56,10 +56,10 @@ export default function CartSidebar() {
           {cartItemsWithProducts.length === 0 ? (
             <div className="flex-1 flex items-center justify-center">
               <div className="text-center">
-                <p className="text-muted-foreground font-light mb-4">Your cart is empty</p>
+                <p className="text-white/70 font-light mb-4">Your cart is empty</p>
                 <Button 
                   onClick={() => setOpen(false)}
-                  className="bg-foreground text-background hover:bg-muted-foreground"
+                  className="bg-white text-black hover:bg-white/90"
                 >
                   Continue Shopping
                 </Button>

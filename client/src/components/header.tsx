@@ -101,7 +101,7 @@ export default function Header() {
               <img 
                 src={logoImage} 
                 alt="MONTERO" 
-                className={cn("h-12 md:h-16 w-auto", isWhitePage && "brightness-0")}
+                className="h-12 md:h-16 w-auto"
               />
             </Link>
           </div>

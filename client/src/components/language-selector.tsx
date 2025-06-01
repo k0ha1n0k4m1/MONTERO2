@@ -11,7 +11,11 @@ const languages = [
   { code: 'ru' as Language, name: 'Русский', flag: '🇷🇺' }
 ]
 
-export default function LanguageSelector() {
+interface LanguageSelectorProps {
+  isWhitePage?: boolean
+}
+
+export default function LanguageSelector({ isWhitePage = false }: LanguageSelectorProps) {
   const { language, setLanguage, t } = useLanguage()
   const [isOpen, setIsOpen] = useState(false)
 
@@ -22,10 +26,14 @@ export default function LanguageSelector() {
     setIsOpen(false)
   }
 
+  const iconClasses = isWhitePage 
+    ? "text-black hover:text-gray-700" 
+    : "text-white hover:text-white/80"
+
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="text-white hover:text-white/80">
+        <Button variant="ghost" size="icon" className={iconClasses}>
           <Globe className="h-5 w-5" />
         </Button>
       </SheetTrigger>

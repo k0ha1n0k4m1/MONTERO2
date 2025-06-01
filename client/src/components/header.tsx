@@ -28,6 +28,17 @@ export default function Header() {
   const { getTotalItems, toggleCart } = useCart()
   const { user, isAuthenticated, logout, isLogoutPending } = useAuth()
   const { t } = useLanguage()
+  
+  // Determine if we're on a page with white background
+  const isWhitePage = location === '/orders' || location === '/wishlist' || location === '/profile' || location === '/support' || location === '/contact' || location === '/size-guide' || location === '/returns' || location.startsWith('/product/')
+  
+  // Dynamic classes based on page background
+  const headerClasses = isWhitePage 
+    ? "text-black border-gray-200" 
+    : "text-white border-white/20"
+  
+  const logoClasses = isWhitePage ? "text-black" : "text-white"
+  const iconClasses = isWhitePage ? "text-black hover:text-gray-700" : "text-white hover:text-white/80"
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -81,7 +92,7 @@ export default function Header() {
   }
 
   return (
-    <header className="bg-transparent fixed w-full top-0 z-50">
+    <header className={cn("bg-transparent fixed w-full top-0 z-50", headerClasses)}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -90,7 +101,7 @@ export default function Header() {
               <img 
                 src={logoImage} 
                 alt="MONTERO" 
-                className="h-16 w-auto"
+                className={cn("h-16 w-auto", isWhitePage && "brightness-0")}
               />
             </Link>
           </div>
@@ -100,10 +111,11 @@ export default function Header() {
             {navigation.map((item) => (
               <div key={item.name} onClick={(e) => handleNavClick(e, item)}>
                 <div className={cn(
-                  "text-base font-bold transition-colors duration-300 relative group cursor-pointer text-white",
+                  "text-base font-bold transition-colors duration-300 relative group cursor-pointer",
+                  isWhitePage ? "text-black" : "text-white",
                   currentCategory === item.name 
-                    ? "text-white" 
-                    : "text-white/80 hover:text-white"
+                    ? (isWhitePage ? "text-black" : "text-white")
+                    : (isWhitePage ? "text-gray-600 hover:text-black" : "text-white/80 hover:text-white")
                 )}>
                   {t(item.name)}
                   <span className={cn(
@@ -117,11 +129,11 @@ export default function Header() {
           
           {/* Actions */}
           <div className="flex items-center space-x-4">
-            <LanguageSelector />
+            <LanguageSelector isWhitePage={isWhitePage} />
             
             <Sheet open={searchOpen} onOpenChange={setSearchOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-white hover:text-white/80">
+                <Button variant="ghost" size="icon" className={iconClasses}>
                   <Search className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
@@ -144,7 +156,7 @@ export default function Header() {
             
             <Sheet open={userMenuOpen} onOpenChange={setUserMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-white hover:text-white/80">
+                <Button variant="ghost" size="icon" className={iconClasses}>
                   <User className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
@@ -251,12 +263,15 @@ export default function Header() {
             <Button 
               variant="ghost" 
               size="icon" 
-              className="text-white hover:text-white/80 relative"
+              className={cn(iconClasses, "relative")}
               onClick={toggleCart}
             >
               <ShoppingBag className="h-5 w-5" />
               {totalItems > 0 && (
-                <span className="absolute -top-2 -right-2 bg-foreground text-background text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                <span className={cn(
+                  "absolute -top-2 -right-2 text-xs rounded-full h-5 w-5 flex items-center justify-center",
+                  isWhitePage ? "bg-black text-white" : "bg-white text-black"
+                )}>
                   {totalItems}
                 </span>
               )}
@@ -265,7 +280,7 @@ export default function Header() {
             {/* Mobile menu button */}
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden text-white hover:text-white/80">
+                <Button variant="ghost" size="icon" className={cn("md:hidden", iconClasses)}>
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>

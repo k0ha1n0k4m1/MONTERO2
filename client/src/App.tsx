@@ -20,6 +20,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/about" component={About} />
       <Route path="/category/:categoryName" component={Home} />
       <Route path="/product/:id" component={Product} />
       <Route path="/orders" component={Orders} />

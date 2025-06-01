@@ -14,6 +14,7 @@ const translations = {
   ko: {
     // Navigation
     all: '전체',
+    about: '소개',
     outerwear: '아우터',
     top: '상의',
     bottom: '하의',
@@ -239,6 +240,7 @@ const translations = {
   en: {
     // Navigation
     all: 'All',
+    about: 'About',
     outerwear: 'Outerwear',
     top: 'Top',
     bottom: 'Bottom',
@@ -464,6 +466,7 @@ const translations = {
   ru: {
     // Navigation
     all: 'Все',
+    about: 'О нас',
     outerwear: 'Верхняя одежда',
     top: 'Верх',
     bottom: 'Низ',

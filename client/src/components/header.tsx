@@ -10,12 +10,14 @@ import { useLanguage } from "@/hooks/useLanguage"
 import { cn } from "@/lib/utils"
 import AuthModal from "./auth-modal"
 import LanguageSelector from "./language-selector"
+import QuickSearch from "./quick-search"
 import { useToast } from "@/hooks/use-toast"
 import logoImage from "@assets/logo2.png"
 import MonteroLogo from "./montero-logo"
 
 const navigation = [
   { name: 'all', href: '/' },
+  { name: 'about', href: '/about' },
   { name: 'outerwear', href: '/category/outerwear' },
   { name: 'top', href: '/category/top' },
   { name: 'bottom', href: '/category/bottom' },

@@ -1,6 +1,6 @@
 import { products, cartItems, users, orders, orderItems, wishlistItems, type Product, type InsertProduct, type CartItem, type InsertCartItem, type User, type InsertUser, type Order, type InsertOrder, type OrderItem, type InsertOrderItem, type LoginData, type RegisterData, type WishlistItem, type InsertWishlistItem } from "@shared/schema";
 import { db } from "./db";
-import { eq } from "drizzle-orm";
+import { eq, and } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 
 export interface IStorage {

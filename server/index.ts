@@ -22,32 +22,35 @@ app.use(helmet({
   crossOriginEmbedderPolicy: false,
 }));
 
-// Rate limiting
+// Rate limiting (more permissive for development)
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
+  max: 1000, // increased limit for normal browsing
   message: { error: "Too many requests, please try again later" },
   standardHeaders: true,
   legacyHeaders: false,
 });
 
-// API rate limiting (stricter)
+// API rate limiting
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 50, // limit each IP to 50 API requests per windowMs
+  max: 500, // increased for API usage
   message: { error: "Too many API requests, please try again later" },
 });
 
-// Auth endpoints rate limiting (very strict)
+// Auth endpoints rate limiting (still protective but usable)
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // limit each IP to 5 auth attempts per windowMs
+  max: 20, // increased for legitimate login attempts
   message: { error: "Too many authentication attempts, please try again later" },
 });
 
-app.use(limiter);
-app.use('/api', apiLimiter);
-app.use('/api/auth', authLimiter);
+// Apply rate limiting only in production or when specifically enabled
+if (process.env.NODE_ENV === 'production' || process.env.ENABLE_RATE_LIMIT === 'true') {
+  app.use(limiter);
+  app.use('/api', apiLimiter);
+  app.use('/api/auth', authLimiter);
+}
 
 // CORS configuration
 app.use(cors({

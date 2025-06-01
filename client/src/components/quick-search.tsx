@@ -15,7 +15,7 @@ export default function QuickSearch({ isOpen, onClose }: QuickSearchProps) {
   const [searchTerm, setSearchTerm] = useState("")
   const [showResults, setShowResults] = useState(false)
 
-  const { data: products = [], isLoading } = useQuery({
+  const { data: products = [], isLoading } = useQuery<Product[]>({
     queryKey: ["/api/products"],
     enabled: searchTerm.length > 2,
   })

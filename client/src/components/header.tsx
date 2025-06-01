@@ -121,28 +121,12 @@ export default function Header() {
           <div className="flex items-center space-x-4">
             <LanguageSelector />
             
-            <Sheet open={searchOpen} onOpenChange={setSearchOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-white hover:text-white/80">
-                  <Search className="h-5 w-5" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="top" className="h-auto bg-black/5 backdrop-blur-md">
-                <div className="max-w-2xl mx-auto py-8">
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input 
-                      placeholder={t('search') + '...'} 
-                      className="pl-10 h-12 text-lg border-border focus:border-foreground"
-                      autoFocus
-                    />
-                  </div>
-                  <p className="text-center text-muted-foreground mt-4 text-sm">
-                    {t('search')}
-                  </p>
-                </div>
-              </SheetContent>
-            </Sheet>
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="p-2 text-white hover:text-white/80 transition-colors"
+            >
+              <Search className="w-5 h-5" />
+            </button>
             
             <Sheet open={userMenuOpen} onOpenChange={setUserMenuOpen}>
               <SheetTrigger asChild>
@@ -307,6 +291,12 @@ export default function Header() {
       <AuthModal 
         isOpen={authModalOpen} 
         onClose={() => setAuthModalOpen(false)} 
+      />
+      
+      {/* Quick Search */}
+      <QuickSearch 
+        isOpen={searchOpen} 
+        onClose={() => setSearchOpen(false)} 
       />
     </header>
   )

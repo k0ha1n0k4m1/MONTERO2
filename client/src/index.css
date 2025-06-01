@@ -72,12 +72,36 @@ html {
     font-family: 'Inter', sans-serif;
     font-size: 16px;
     background-image: 
-      linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-      url('@assets/IMAGE 2025-05-28 19:58:46.jpg');
+      linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+      url('@assets/IMG_2734_resized_1920x1080.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    /* Улучшаем рендеринг изображения */
+    image-rendering: optimizeQuality;
+    image-rendering: -webkit-optimize-contrast;
+  }
+  
+  /* Мобильные оптимизации для улучшения качества */
+  @media (max-width: 768px) {
+    body {
+      background-attachment: scroll; /* Scroll для лучшей производительности */
+      background-size: cover;
+      /* Позиционируем изображение лучше для мобильных */
+      background-position: center center;
+      /* Добавляем небольшое размытие только на очень маленьких экранах для сглаживания */
+      filter: none;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    body {
+      /* На очень маленьких экранах немного затемняем фон для лучшей читаемости */
+      background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+        url('@assets/IMG_2734_resized_1920x1080.jpg');
+    }
   }
 }
 

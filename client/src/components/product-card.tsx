@@ -2,9 +2,12 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { useCart } from "@/hooks/use-cart"
 import { useWishlist } from "@/hooks/use-wishlist"
+import { useAuth } from "@/hooks/useAuth"
 import { useToast } from "@/hooks/use-toast"
 import { formatPrice } from "@/lib/utils"
 import { Link } from "wouter"
+import { useState } from "react"
+import AuthModal from "@/components/auth-modal"
 import type { Product } from "@shared/schema"
 
 interface ProductCardProps {
@@ -15,7 +18,9 @@ interface ProductCardProps {
 export default function ProductCard({ product, featured = false }: ProductCardProps) {
   const { addItem } = useCart()
   const { toggleItem, isInWishlist } = useWishlist()
+  const { isAuthenticated } = useAuth()
   const { toast } = useToast()
+  const [showAuthModal, setShowAuthModal] = useState(false)
   const isWishlisted = isInWishlist(product.id)
 
   const handleAddToCart = (e: React.MouseEvent) => {
@@ -27,6 +32,17 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
   const handleWishlistToggle = (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
+    
+    if (!isAuthenticated) {
+      setShowAuthModal(true)
+      toast({
+        title: "Please log in",
+        description: "You need to be logged in to add items to your wishlist",
+        variant: "destructive",
+      })
+      return
+    }
+    
     toggleItem(product.id)
     
     if (!isWishlisted) {
@@ -94,6 +110,10 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
           </div>
         </div>
       </Card>
+      <AuthModal 
+        isOpen={showAuthModal} 
+        onClose={() => setShowAuthModal(false)} 
+      />
     </Link>
   )
 }

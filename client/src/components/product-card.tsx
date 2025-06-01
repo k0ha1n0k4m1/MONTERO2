@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { useCart } from "@/hooks/use-cart"
+import { useWishlist } from "@/hooks/use-wishlist"
+import { useToast } from "@/hooks/use-toast"
 import { formatPrice } from "@/lib/utils"
 import { Link } from "wouter"
 import type { Product } from "@shared/schema"
@@ -12,11 +14,32 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, featured = false }: ProductCardProps) {
   const { addItem } = useCart()
+  const { toggleItem, isInWishlist } = useWishlist()
+  const { toast } = useToast()
+  const isWishlisted = isInWishlist(product.id)
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
     addItem(product.id)
+  }
+
+  const handleWishlistToggle = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    toggleItem(product.id)
+    
+    if (!isWishlisted) {
+      toast({
+        title: "Added to wishlist",
+        description: `${product.name} has been added to your wishlist`,
+      })
+    } else {
+      toast({
+        title: "Removed from wishlist", 
+        description: `${product.name} has been removed from your wishlist`,
+      })
+    }
   }
 
   return (
@@ -31,13 +54,19 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
             className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 group-hover:brightness-110"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
-            <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center">
-              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
-            </div>
-          </div>
+          <button 
+            onClick={handleWishlistToggle}
+            className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 w-8 h-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center hover:bg-white/30 hover:scale-110"
+          >
+            <svg 
+              className={`w-4 h-4 transition-all duration-300 ${isWishlisted ? 'text-red-400 fill-red-400' : 'text-white'}`} 
+              fill={isWishlisted ? "currentColor" : "none"} 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+          </button>
         </div>
         <div className={`${featured ? 'p-8' : 'p-6'}`}>
           <div className="space-y-3">

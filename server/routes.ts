@@ -26,17 +26,37 @@ const handleValidationErrors = (req: any, res: any, next: any) => {
   next();
 };
 
-// Input sanitization middleware
+// Enhanced input sanitization middleware
 const sanitizeInput = (req: any, res: any, next: any) => {
   if (req.body) {
     Object.keys(req.body).forEach(key => {
       if (typeof req.body[key] === 'string') {
-        // Remove potentially dangerous characters
+        // Enhanced XSS protection
         req.body[key] = req.body[key]
+          // Remove script tags
           .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+          // Remove iframe tags
           .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
+          // Remove object/embed tags
+          .replace(/<(object|embed)\b[^<]*(?:(?!<\/\1>)<[^<]*)*<\/\1>/gi, '')
+          // Remove javascript: links
           .replace(/javascript:/gi, '')
-          .replace(/on\w+\s*=/gi, '');
+          // Remove data: links (can contain base64 encoded scripts)
+          .replace(/data:/gi, '')
+          // Remove event handlers
+          .replace(/on\w+\s*=/gi, '')
+          // Remove vbscript: links
+          .replace(/vbscript:/gi, '')
+          // Remove expression() CSS
+          .replace(/expression\s*\(/gi, '')
+          // Remove -moz-binding CSS
+          .replace(/-moz-binding:/gi, '')
+          // HTML encode potentially dangerous characters
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#x27;')
+          .replace(/\//g, '&#x2F;');
       }
     });
   }

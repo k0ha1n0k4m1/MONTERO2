@@ -93,15 +93,15 @@ export default function Header() {
 
   return (
     <header className={cn("bg-transparent fixed w-full top-0 z-50", headerClasses)}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/">
               <img 
                 src={logoImage} 
                 alt="MONTERO" 
-                className={cn("h-16 w-auto", isWhitePage && "brightness-0")}
+                className={cn("h-12 md:h-16 w-auto", isWhitePage && "brightness-0")}
               />
             </Link>
           </div>
@@ -284,19 +284,21 @@ export default function Header() {
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-full bg-black/5 backdrop-blur-md">
+              <SheetContent side="right" className="w-full bg-black/90 backdrop-blur-md text-white">
                 <div className="flex flex-col h-full">
-                  <div className="flex items-center justify-between p-6 border-b border-border">
-                    <h2 className="text-xl font-light">MONTERO</h2>
+                  <div className="flex items-center justify-between p-4 md:p-6 border-b border-white/20">
+                    <h2 className="text-lg md:text-xl font-light text-white">MONTERO</h2>
                   </div>
-                  <nav className="flex-1 px-6 py-8">
-                    <ul className="space-y-6">
+                  <nav className="flex-1 px-4 md:px-6 py-6 md:py-8">
+                    <ul className="space-y-4 md:space-y-6">
                       {navigation.map((item) => (
                         <li key={item.name}>
                           <div 
                             className={cn(
-                              "text-lg font-light transition-colors duration-300 cursor-pointer",
-                              currentCategory === item.name ? "text-foreground" : "text-muted-foreground"
+                              "text-base md:text-lg font-light transition-colors duration-300 cursor-pointer py-2 px-3 rounded-lg",
+                              currentCategory === item.name 
+                                ? "text-white bg-white/10" 
+                                : "text-white/80 hover:text-white hover:bg-white/5"
                             )}
                             onClick={(e) => {
                               handleNavClick(e, item)

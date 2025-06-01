@@ -76,8 +76,31 @@ html {
       url('@assets/IMG_2734_resized_1920x1080.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: scroll; /* Изменено с fixed для лучшей производительности на мобильных */
     background-repeat: no-repeat;
+  }
+  
+  /* Мобильные оптимизации */
+  @media (max-width: 768px) {
+    body {
+      background-attachment: scroll;
+      background-size: cover;
+      /* Добавляем градиент для лучшей читаемости на мобильных */
+      background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url('@assets/IMG_2734_resized_1920x1080.jpg');
+    }
+  }
+  
+  /* Дополнительная оптимизация для очень маленьких экранов */
+  @media (max-width: 480px) {
+    body {
+      /* На очень маленьких экранах используем более темный градиент */
+      background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('@assets/IMG_2734_resized_1920x1080.jpg');
+      background-position: center top;
+    }
   }
 }
 

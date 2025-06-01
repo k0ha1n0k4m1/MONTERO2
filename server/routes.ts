@@ -327,6 +327,41 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Wishlist routes
+  app.get("/api/wishlist", requireAuth, async (req: Request, res) => {
+    try {
+      const userId = req.session.userId!;
+      const wishlistItems = await storage.getWishlistItems(userId);
+      res.json(wishlistItems);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch wishlist" });
+    }
+  });
+
+  app.post("/api/wishlist", requireAuth, async (req: Request, res) => {
+    try {
+      const userId = req.session.userId!;
+      const { productId } = req.body;
+      
+      const wishlistItem = await storage.addToWishlist({ userId, productId });
+      res.json(wishlistItem);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to add to wishlist" });
+    }
+  });
+
+  app.delete("/api/wishlist/:productId", requireAuth, async (req: Request, res) => {
+    try {
+      const userId = req.session.userId!;
+      const productId = parseInt(req.params.productId);
+      
+      await storage.removeFromWishlist(userId, productId);
+      res.status(204).send();
+    } catch (error) {
+      res.status(500).json({ message: "Failed to remove from wishlist" });
+    }
+  });
+
   // Orders routes
   app.post("/api/checkout", requireAuth, async (req: Request, res) => {
     try {

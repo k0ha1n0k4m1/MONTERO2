@@ -310,6 +310,23 @@ export class MemStorage implements IStorage {
   async updateOrderStatus(id: number, status: string): Promise<Order | undefined> {
     throw new Error("Orders not implemented in MemStorage");
   }
+
+  // Wishlist (заглушки для совместимости)
+  async getWishlistItems(userId: number): Promise<WishlistItem[]> {
+    throw new Error("Wishlist not implemented in MemStorage");
+  }
+
+  async addToWishlist(item: InsertWishlistItem): Promise<WishlistItem> {
+    throw new Error("Wishlist not implemented in MemStorage");
+  }
+
+  async removeFromWishlist(userId: number, productId: number): Promise<void> {
+    throw new Error("Wishlist not implemented in MemStorage");
+  }
+
+  async isInWishlist(userId: number, productId: number): Promise<boolean> {
+    throw new Error("Wishlist not implemented in MemStorage");
+  }
 }
 
 export class DatabaseStorage implements IStorage {
@@ -503,7 +520,7 @@ export class DatabaseStorage implements IStorage {
     const existing = await db
       .select()
       .from(wishlistItems)
-      .where(eq(wishlistItems.userId, item.userId) && eq(wishlistItems.productId, item.productId));
+      .where(and(eq(wishlistItems.userId, item.userId), eq(wishlistItems.productId, item.productId)));
     
     if (existing.length > 0) {
       return existing[0];
@@ -519,14 +536,14 @@ export class DatabaseStorage implements IStorage {
   async removeFromWishlist(userId: number, productId: number): Promise<void> {
     await db
       .delete(wishlistItems)
-      .where(eq(wishlistItems.userId, userId) && eq(wishlistItems.productId, productId));
+      .where(and(eq(wishlistItems.userId, userId), eq(wishlistItems.productId, productId)));
   }
 
   async isInWishlist(userId: number, productId: number): Promise<boolean> {
     const existing = await db
       .select()
       .from(wishlistItems)
-      .where(eq(wishlistItems.userId, userId) && eq(wishlistItems.productId, productId));
+      .where(and(eq(wishlistItems.userId, userId), eq(wishlistItems.productId, productId)));
     return existing.length > 0;
   }
 }

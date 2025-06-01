@@ -12,6 +12,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --background: 0 0% 100%; /* #FFFFFF */
   --foreground: 20 14% 4%; /* #1A1A1A */

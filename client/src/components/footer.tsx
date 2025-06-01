@@ -25,14 +25,14 @@ export default function Footer() {
       setTimeout(() => {
         const element = document.getElementById(sectionId)
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          element.scrollIntoView({ block: 'start' })
         }
       }, 100)
     } else {
       // Если уже на главной странице, прокрутить сразу
       const element = document.getElementById(sectionId)
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        element.scrollIntoView({ block: 'start' })
       }
     }
   }

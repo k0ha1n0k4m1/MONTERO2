@@ -65,6 +65,30 @@ const translations = {
     welcomeToMontero: 'MONTERO에 오신 것을 환영합니다!',
     accountCreated: '계정이 성공적으로 생성되었습니다',
     
+    // Auth modal specific
+    loginTitle: '로그인',
+    registerTitle: '회원가입',
+    loginSubtitle: '계정에 로그인하세요',
+    registerSubtitle: '새 MONTERO 계정을 만드세요',
+    loginButton: '로그인',
+    registerButton: '회원가입',
+    loginLoading: '로그인 중...',
+    registerLoading: '가입 중...',
+    noAccountRegister: '계정이 없으신가요? 회원가입',
+    hasAccountLogin: '이미 계정이 있으신가요? 로그인',
+    loginWelcome: '돌아오신 것을 환영합니다!',
+    loginSuccessMessage: '성공적으로 로그인했습니다',
+    registerWelcome: 'MONTERO에 오신 것을 환영합니다!',
+    registerSuccessMessage: '계정이 성공적으로 생성되었습니다',
+    loginError: '로그인 오류',
+    loginErrorMessage: '로그인 정보를 확인해주세요',
+    registerError: '회원가입 오류',
+    registerErrorMessage: '다시 시도해주세요',
+    
+    // User menu
+    userWelcome: '환영합니다',
+    favorites: '찜 목록',
+    
     // Footer
     newsletter: '뉴스레터',
     stayUpdated: '최신 컬렉션과 독점 혜택을 받아보세요',
@@ -291,6 +315,30 @@ const translations = {
     welcomeToMontero: 'Welcome to MONTERO!',
     accountCreated: 'Your account has been created successfully',
     
+    // Auth modal specific
+    loginTitle: 'Login',
+    registerTitle: 'Register',
+    loginSubtitle: 'Sign in to your account',
+    registerSubtitle: 'Create a new MONTERO account',
+    loginButton: 'Sign In',
+    registerButton: 'Create Account',
+    loginLoading: 'Signing in...',
+    registerLoading: 'Creating account...',
+    noAccountRegister: "Don't have an account? Sign up",
+    hasAccountLogin: 'Already have an account? Sign in',
+    loginWelcome: 'Welcome back!',
+    loginSuccessMessage: 'You have successfully signed in',
+    registerWelcome: 'Welcome to MONTERO!',
+    registerSuccessMessage: 'Your account has been created successfully',
+    loginError: 'Login Error',
+    loginErrorMessage: 'Please check your credentials',
+    registerError: 'Registration Error',
+    registerErrorMessage: 'Please try again',
+    
+    // User menu
+    userWelcome: 'Welcome',
+    favorites: 'Favorites',
+    
     // Footer
     newsletter: 'Newsletter',
     stayUpdated: 'Stay updated with our latest collections and exclusive offers',
@@ -516,6 +564,30 @@ const translations = {
     loginSuccess: 'Вы успешно вошли в систему',
     welcomeToMontero: 'Добро пожаловать в MONTERO!',
     accountCreated: 'Ваш аккаунт успешно создан',
+    
+    // Auth modal specific
+    loginTitle: 'Вход',
+    registerTitle: 'Регистрация',
+    loginSubtitle: 'Войдите в свой аккаунт',
+    registerSubtitle: 'Создайте новый аккаунт в MONTERO',
+    loginButton: 'Войти',
+    registerButton: 'Зарегистрироваться',
+    loginLoading: 'Вход...',
+    registerLoading: 'Регистрация...',
+    noAccountRegister: 'Нет аккаунта? Зарегистрироваться',
+    hasAccountLogin: 'Уже есть аккаунт? Войти',
+    loginWelcome: 'Добро пожаловать!',
+    loginSuccessMessage: 'Вы успешно вошли в систему',
+    registerWelcome: 'Добро пожаловать в MONTERO!',
+    registerSuccessMessage: 'Ваш аккаунт успешно создан',
+    loginError: 'Ошибка входа',
+    loginErrorMessage: 'Проверьте ваши учетные данные',
+    registerError: 'Ошибка регистрации',
+    registerErrorMessage: 'Попробуйте еще раз',
+    
+    // User menu
+    userWelcome: 'Добро пожаловать',
+    favorites: 'Избранное',
     
     // Footer
     newsletter: 'Рассылка',

@@ -167,7 +167,7 @@ export default function Header() {
                     {isAuthenticated ? (
                       <>
                         <div className="text-sm text-muted-foreground mb-4">
-                          Добро пожаловать, {user?.firstName || user?.email}!
+                          {t('userWelcome')}, {user?.firstName || user?.email}!
                         </div>
                         <hr className="border-border" />
                         <div className="space-y-3">
@@ -177,7 +177,7 @@ export default function Header() {
                             asChild
                           >
                             <Link href="/orders" onClick={() => setUserMenuOpen(false)}>
-                              История заказов
+                              {t('orderHistory')}
                             </Link>
                           </Button>
                           <Button 
@@ -186,7 +186,7 @@ export default function Header() {
                             asChild
                           >
                             <Link href="/wishlist" onClick={() => setUserMenuOpen(false)}>
-                              Избранное
+                              {t('favorites')}
                             </Link>
                           </Button>
                           <Button 
@@ -195,7 +195,7 @@ export default function Header() {
                             asChild
                           >
                             <Link href="/profile" onClick={() => setUserMenuOpen(false)}>
-                              Настройки аккаунта
+                              {t('accountSettings')}
                             </Link>
                           </Button>
                           <Button 
@@ -204,7 +204,7 @@ export default function Header() {
                             asChild
                           >
                             <Link href="/support" onClick={() => setUserMenuOpen(false)}>
-                              Помощь и поддержка
+                              {t('helpSupport')}
                             </Link>
                           </Button>
                           <hr className="border-border" />
@@ -215,7 +215,7 @@ export default function Header() {
                             disabled={isLogoutPending}
                           >
                             <LogOut className="h-4 w-4 mr-2" />
-                            {isLogoutPending ? "Выход..." : "Выйти"}
+                            {isLogoutPending ? t('loginLoading') : t('logout')}
                           </Button>
                         </div>
                       </>
@@ -229,7 +229,7 @@ export default function Header() {
                             setUserMenuOpen(false)
                           }}
                         >
-                          Войти
+                          {t('login')}
                         </Button>
                         <Button 
                           variant="outline" 
@@ -239,18 +239,18 @@ export default function Header() {
                             setUserMenuOpen(false)
                           }}
                         >
-                          Создать аккаунт
+                          {t('register')}
                         </Button>
                         <hr className="border-border" />
                         <div className="space-y-3">
                           <Button variant="ghost" className="w-full justify-start text-muted-foreground font-light">
-                            История заказов
+                            {t('orderHistory')}
                           </Button>
                           <Button variant="ghost" className="w-full justify-start text-muted-foreground font-light">
-                            Избранное
+                            {t('favorites')}
                           </Button>
                           <Button variant="ghost" className="w-full justify-start text-muted-foreground font-light">
-                            Помощь и поддержка
+                            {t('helpSupport')}
                           </Button>
                         </div>
                       </>

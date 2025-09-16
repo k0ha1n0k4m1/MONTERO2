@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { useSimpleAuth } from "@/hooks/useSimpleAuth";
 import { loginSchema, registerSchema, type LoginData, type RegisterData } from "@shared/schema";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/hooks/useLanguage";
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -18,6 +19,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [isLogin, setIsLogin] = useState(true);
   const { login, register, isLoading } = useSimpleAuth();
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   const loginForm = useForm<LoginData>({
     resolver: zodResolver(loginSchema),
@@ -42,8 +44,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     try {
       await login(data);
       toast({
-        title: "Добро пожаловать!",
-        description: "Вы успешно вошли в систему",
+        title: t('loginWelcome'),
+        description: t('loginSuccessMessage'),
       });
       onClose();
       // Принудительно обновляем страницу для синхронизации состояния
@@ -52,8 +54,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
       }, 500);
     } catch (error: any) {
       toast({
-        title: "Ошибка входа",
-        description: error.message || "Проверьте ваши учетные данные",
+        title: t('loginError'),
+        description: error.message || t('loginErrorMessage'),
         variant: "destructive",
       });
     }
@@ -63,14 +65,14 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     try {
       await register(data);
       toast({
-        title: "Добро пожаловать в MONTERO!",
-        description: "Ваш аккаунт успешно создан",
+        title: t('registerWelcome'),
+        description: t('registerSuccessMessage'),
       });
       onClose();
     } catch (error: any) {
       toast({
-        title: "Ошибка регистрации",
-        description: error.message || "Попробуйте еще раз",
+        title: t('registerError'),
+        description: error.message || t('registerErrorMessage'),
         variant: "destructive",
       });
     }
@@ -81,17 +83,17 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
       <DialogContent className="sm:max-w-[425px] bg-black/5 backdrop-blur-md" aria-describedby="auth-description">
         <DialogHeader>
           <DialogTitle className="text-center text-2xl font-light">
-            {isLogin ? "Вход" : "Регистрация"}
+            {isLogin ? t('loginTitle') : t('registerTitle')}
           </DialogTitle>
           <DialogDescription id="auth-description" className="text-center text-sm text-muted-foreground">
-            {isLogin ? "Войдите в свой аккаунт" : "Создайте новый аккаунт в MONTERO"}
+            {isLogin ? t('loginSubtitle') : t('registerSubtitle')}
           </DialogDescription>
         </DialogHeader>
 
         {isLogin ? (
           <form onSubmit={loginForm.handleSubmit(handleLogin)} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">{t('email')}</Label>
               <Input
                 id="email"
                 type="email"
@@ -104,7 +106,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">Пароль</Label>
+              <Label htmlFor="password">{t('password')}</Label>
               <Input
                 id="password"
                 type="password"
@@ -121,7 +123,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               className="w-full bg-black text-white hover:bg-gray-800"
               disabled={isLoading}
             >
-              {isLoading ? "Вход..." : "Войти"}
+              {isLoading ? t('loginLoading') : t('loginButton')}
             </Button>
 
             <div className="text-center">
@@ -130,7 +132,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 onClick={() => setIsLogin(false)}
                 className="text-sm text-gray-600 hover:text-black underline"
               >
-                Нет аккаунта? Зарегистрироваться
+                {t('noAccountRegister')}
               </button>
             </div>
           </form>
@@ -138,7 +140,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           <form onSubmit={registerForm.handleSubmit(handleRegister)} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="firstName">Имя</Label>
+                <Label htmlFor="firstName">{t('firstName')}</Label>
                 <Input
                   id="firstName"
                   {...registerForm.register("firstName")}
@@ -150,7 +152,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="lastName">Фамилия</Label>
+                <Label htmlFor="lastName">{t('lastName')}</Label>
                 <Input
                   id="lastName"
                   {...registerForm.register("lastName")}
@@ -163,7 +165,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">{t('email')}</Label>
               <Input
                 id="email"
                 type="email"
@@ -176,7 +178,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">Пароль</Label>
+              <Label htmlFor="password">{t('password')}</Label>
               <Input
                 id="password"
                 type="password"
@@ -189,7 +191,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword">Подтвердить пароль</Label>
+              <Label htmlFor="confirmPassword">{t('confirmPassword')}</Label>
               <Input
                 id="confirmPassword"
                 type="password"
@@ -206,7 +208,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               className="w-full bg-black text-white hover:bg-gray-800"
               disabled={isLoading}
             >
-              {isLoading ? "Регистрация..." : "Зарегистрироваться"}
+              {isLoading ? t('registerLoading') : t('registerButton')}
             </Button>
 
             <div className="text-center">
@@ -215,7 +217,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 onClick={() => setIsLogin(true)}
                 className="text-sm text-gray-600 hover:text-black underline"
               >
-                Уже есть аккаунт? Войти
+                {t('hasAccountLogin')}
               </button>
             </div>
           </form>

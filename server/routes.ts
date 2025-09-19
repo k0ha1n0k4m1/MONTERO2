@@ -18,6 +18,7 @@ declare module 'express-session' {
 const handleValidationErrors = (req: any, res: any, next: any) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
+    console.log("Validation errors:", errors.array());
     return res.status(400).json({ 
       error: "Invalid input data",
       details: errors.array() 
@@ -100,19 +101,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       .isLength({ max: 255 })
       .withMessage('Valid email is required'),
     body('password')
-      .isLength({ min: 8, max: 128 })
-      .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/)
-      .withMessage('Password must be 8+ chars with uppercase, lowercase, and number'),
+      .isLength({ min: 6, max: 128 })
+      .withMessage('Пароль должен содержать минимум 6 символов'),
     body('firstName')
       .optional()
       .isLength({ max: 50 })
-      .matches(/^[a-zA-Z\s-']+$/)
-      .withMessage('First name can only contain letters, spaces, hyphens, and apostrophes'),
+      .withMessage('Имя не должно превышать 50 символов'),
     body('lastName')
       .optional()
       .isLength({ max: 50 })
-      .matches(/^[a-zA-Z\s-']+$/)
-      .withMessage('Last name can only contain letters, spaces, hyphens, and apostrophes'),
+      .withMessage('Фамилия не должна превышать 50 символов'),
     handleValidationErrors
   ], async (req: Request, res: any) => {
     try {

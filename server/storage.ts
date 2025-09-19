@@ -434,8 +434,9 @@ export class DatabaseStorage implements IStorage {
       return null;
     }
     
-    // Simple password comparison for now
-    if (user.password === loginData.password) {
+    // Use bcrypt to compare password
+    const isPasswordValid = await bcrypt.compare(loginData.password, user.password);
+    if (isPasswordValid) {
       console.log("Login successful");
       return user;
     }
@@ -450,8 +451,16 @@ export class DatabaseStorage implements IStorage {
       throw new Error("User with this email already exists");
     }
 
+    // Hash password before creating user
+    const hashedPassword = await bcrypt.hash(registerData.password, 10);
+    
     const { confirmPassword, ...userData } = registerData;
-    return this.createUser(userData);
+    const userToCreate: InsertUser = {
+      ...userData,
+      password: hashedPassword,
+    };
+    
+    return this.createUser(userToCreate);
   }
 
   // Orders methods

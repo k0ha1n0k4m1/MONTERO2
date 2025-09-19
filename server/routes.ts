@@ -26,51 +26,23 @@ const handleValidationErrors = (req: any, res: any, next: any) => {
   next();
 };
 
-// Enhanced input sanitization middleware
-const sanitizeInput = (req: any, res: any, next: any) => {
-  if (req.body) {
-    Object.keys(req.body).forEach(key => {
-      if (typeof req.body[key] === 'string') {
-        // Enhanced XSS protection
-        req.body[key] = req.body[key]
-          // Remove script tags
-          .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
-          // Remove iframe tags
-          .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
-          // Remove object/embed tags
-          .replace(/<(object|embed)\b[^<]*(?:(?!<\/\1>)<[^<]*)*<\/\1>/gi, '')
-          // Remove javascript: links
-          .replace(/javascript:/gi, '')
-          // Remove data: links (can contain base64 encoded scripts)
-          .replace(/data:/gi, '')
-          // Remove event handlers
-          .replace(/on\w+\s*=/gi, '')
-          // Remove vbscript: links
-          .replace(/vbscript:/gi, '')
-          // Remove expression() CSS
-          .replace(/expression\s*\(/gi, '')
-          // Remove -moz-binding CSS
-          .replace(/-moz-binding:/gi, '')
-          // HTML encode potentially dangerous characters
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/"/g, '&quot;')
-          .replace(/'/g, '&#x27;')
-          .replace(/\//g, '&#x2F;');
-      }
-    });
-  }
-  next();
-};
+// Input validation - let express-validator handle validation, not mutation
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Add input sanitization
-  app.use(sanitizeInput);
-
-  // Enable CORS with credentials
+  // CORS configuration with strict security
   app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.header('Access-Control-Allow-Origin', req.headers.origin);
+    const allowedOrigins = [
+      'http://localhost:5000',
+      'http://127.0.0.1:5000',
+      // Add production domains here when deploying
+    ];
+    
+    const origin = req.headers.origin;
+    if (origin && allowedOrigins.includes(origin)) {
+      res.header('Access-Control-Allow-Credentials', 'true');
+      res.header('Access-Control-Allow-Origin', origin);
+    }
+    
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
     
@@ -93,10 +65,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       checkPeriod: 86400000
     }),
     cookie: {
-      secure: false,
+      secure: process.env.NODE_ENV === 'production',
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
-      sameSite: 'lax',
+      sameSite: 'strict', // Stronger CSRF protection
       path: '/'
     }
   }));
@@ -136,20 +108,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       .matches(/^[a-zA-Z\s-']+$/)
       .withMessage('Last name can only contain letters, spaces, hyphens, and apostrophes'),
     handleValidationErrors
-  ], async (req: Request, res) => {
+  ], async (req: Request, res: any) => {
     try {
       const { email, password, firstName, lastName } = req.body;
 
-      // Check if user exists
-      const existingUser = await storage.getUserByEmail(email);
-      if (existingUser) {
-        return res.status(409).json({ message: "User already exists" });
-      }
-
-      // Create user
-      const user = await storage.createUser({
+      // Use the registerUser method which handles password hashing
+      const user = await storage.registerUser({
         email,
         password,
+        confirmPassword: password, // For validation
         firstName: firstName || "User",
         lastName: lastName || "Name"
       });
@@ -183,7 +150,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       .isLength({ min: 1, max: 128 })
       .withMessage('Password is required'),
     handleValidationErrors
-  ], async (req: Request, res) => {
+  ], async (req: Request, res: any) => {
     try {
       const { email, password } = req.body;
 
@@ -217,14 +184,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (err) {
         return res.status(500).json({ message: "Could not log out" });
       }
+      // Clear the session cookie
+      res.clearCookie('montero.sid', { path: '/' });
       res.json({ message: "Logged out successfully" });
     });
   });
 
   app.get("/api/auth/me", async (req: Request, res) => {
     try {
-      console.log("Auth check - Session ID:", req.sessionID);
-      console.log("Auth check - Session userId:", req.session.userId);
+      // Removed session ID logging for security
       
       if (!req.session.userId) {
         return res.status(401).json({ message: "Not authenticated" });

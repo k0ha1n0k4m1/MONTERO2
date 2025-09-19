@@ -57,7 +57,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   const MemoryStoreSession = MemoryStore(session);
   app.use(session({
     name: 'montero.sid',
-    secret: process.env.SESSION_SECRET || 'montero-secret-key-2024',
+    secret: (() => {
+      const secret = process.env.SESSION_SECRET;
+      if (process.env.NODE_ENV === 'production' && !secret) {
+        throw new Error('SESSION_SECRET environment variable is required in production');
+      }
+      return secret || 'montero-dev-fallback-2024';
+    })(),
     resave: false,
     saveUninitialized: false,
     rolling: true,
@@ -121,17 +127,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
         lastName: lastName || "Name"
       });
 
-      // Login user immediately and force session save
-      req.session.userId = user.id;
-      
-      req.session.save((err) => {
+      // Regenerate session to prevent fixation attacks
+      req.session.regenerate((err) => {
         if (err) {
-          console.error("Session save error:", err);
-          return res.status(500).json({ message: "Session error" });
+          console.error("Session regeneration error:", err);
+          return res.status(500).json({ message: "Registration failed" });
         }
         
-        console.log("✅ User registered and logged in:", email, "ID:", req.sessionID);
-        res.json({ user: { id: user.id, email: user.email, firstName: user.firstName, lastName: user.lastName } });
+        req.session.userId = user.id;
+        req.session.save((saveErr) => {
+          if (saveErr) {
+            console.error("Session save error:", saveErr);
+            return res.status(500).json({ message: "Registration failed" });
+          }
+          
+          res.json({ user: { id: user.id, email: user.email, firstName: user.firstName, lastName: user.lastName } });
+        });
       });
       
     } catch (error) {
@@ -160,17 +171,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(401).json({ message: "Invalid credentials" });
       }
 
-      // Login user and force session save
-      req.session.userId = user.id;
-      
-      req.session.save((err) => {
+      // Regenerate session to prevent fixation attacks
+      req.session.regenerate((err) => {
         if (err) {
-          console.error("Session save error:", err);
-          return res.status(500).json({ message: "Session error" });
+          console.error("Session regeneration error:", err);
+          return res.status(500).json({ message: "Login failed" });
         }
         
-        console.log("✅ User logged in with session:", email, "ID:", req.sessionID);
-        res.json({ user: { id: user.id, email: user.email, firstName: user.firstName, lastName: user.lastName } });
+        req.session.userId = user.id;
+        req.session.save((saveErr) => {
+          if (saveErr) {
+            console.error("Session save error:", saveErr);
+            return res.status(500).json({ message: "Login failed" });
+          }
+          
+          res.json({ user: { id: user.id, email: user.email, firstName: user.firstName, lastName: user.lastName } });
+        });
       });
       
     } catch (error) {
@@ -184,8 +200,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (err) {
         return res.status(500).json({ message: "Could not log out" });
       }
-      // Clear the session cookie
-      res.clearCookie('montero.sid', { path: '/' });
+      // Clear the session cookie with same attributes for security
+      res.clearCookie('montero.sid', { 
+        path: '/',
+        httpOnly: true,
+        sameSite: 'strict',
+        secure: process.env.NODE_ENV === 'production'
+      });
       res.json({ message: "Logged out successfully" });
     });
   });

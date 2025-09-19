@@ -75,7 +75,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       secure: process.env.NODE_ENV === 'production',
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
-      sameSite: 'strict', // Stronger CSRF protection
+      sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax', // More relaxed for dev
       path: '/'
     }
   }));
@@ -202,7 +202,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.clearCookie('montero.sid', { 
         path: '/',
         httpOnly: true,
-        sameSite: 'strict',
+        sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
         secure: process.env.NODE_ENV === 'production'
       });
       res.json({ message: "Logged out successfully" });

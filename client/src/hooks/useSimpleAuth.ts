@@ -71,6 +71,13 @@ export function useSimpleAuth() {
 
       if (!response.ok) {
         const error = await response.json();
+        
+        // Если есть детали валидации, показываем их
+        if (error.details && Array.isArray(error.details)) {
+          const validationErrors = error.details.map((detail: any) => detail.msg).join('. ');
+          throw new Error(validationErrors);
+        }
+        
         throw new Error(error.message || "Ошибка регистрации");
       }
 

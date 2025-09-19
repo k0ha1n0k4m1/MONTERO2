@@ -45,17 +45,34 @@ export const insertUserSchema = createInsertSchema(users).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
+}).extend({
+  email: z.string()
+    .min(1, "Email обязателен для заполнения")
+    .email("Пожалуйста, введите корректный email адрес"),
+  password: z.string()
+    .min(6, "Пароль должен содержать минимум 6 символов")
+    .max(128, "Пароль не должен превышать 128 символов"),
+  firstName: z.string()
+    .optional()
+    .refine((val) => !val || val.length <= 50, "Имя не должно превышать 50 символов"),
+  lastName: z.string()
+    .optional() 
+    .refine((val) => !val || val.length <= 50, "Фамилия не должна превышать 50 символов"),
 });
 
 export const loginSchema = z.object({
-  email: z.string().email("Пожалуйста, введите корректный email"),
-  password: z.string().min(6, "Пароль должен содержать минимум 6 символов"),
+  email: z.string()
+    .min(1, "Email обязателен для заполнения") 
+    .email("Пожалуйста, введите корректный email"),
+  password: z.string()
+    .min(1, "Пароль обязателен для заполнения")
+    .min(6, "Пароль должен содержать минимум 6 символов"),
 });
 
 export const registerSchema = insertUserSchema.extend({
-  confirmPassword: z.string(),
+  confirmPassword: z.string().min(1, "Подтверждение пароля обязательно"),
 }).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
+  message: "Пароли не совпадают",
   path: ["confirmPassword"],
 });
 

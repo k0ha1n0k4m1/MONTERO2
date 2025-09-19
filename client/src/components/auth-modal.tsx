@@ -145,6 +145,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   id="firstName"
                   {...registerForm.register("firstName")}
                   className="w-full"
+                  data-testid="input-firstName"
+                  placeholder="Ваше имя"
                 />
                 {registerForm.formState.errors.firstName && (
                   <p className="text-sm text-red-500">{registerForm.formState.errors.firstName.message}</p>
@@ -157,6 +159,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   id="lastName"
                   {...registerForm.register("lastName")}
                   className="w-full"
+                  data-testid="input-lastName"
+                  placeholder="Ваша фамилия"
                 />
                 {registerForm.formState.errors.lastName && (
                   <p className="text-sm text-red-500">{registerForm.formState.errors.lastName.message}</p>
@@ -171,6 +175,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 type="email"
                 {...registerForm.register("email")}
                 className="w-full"
+                data-testid="input-email"
+                placeholder="example@email.com"
               />
               {registerForm.formState.errors.email && (
                 <p className="text-sm text-red-500">{registerForm.formState.errors.email.message}</p>
@@ -184,7 +190,11 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 type="password"
                 {...registerForm.register("password")}
                 className="w-full"
+                data-testid="input-password"
               />
+              <p className="text-xs text-gray-500">
+                Пароль должен содержать минимум 6 символов
+              </p>
               {registerForm.formState.errors.password && (
                 <p className="text-sm text-red-500">{registerForm.formState.errors.password.message}</p>
               )}
@@ -197,6 +207,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 type="password"
                 {...registerForm.register("confirmPassword")}
                 className="w-full"
+                data-testid="input-confirmPassword"
               />
               {registerForm.formState.errors.confirmPassword && (
                 <p className="text-sm text-red-500">{registerForm.formState.errors.confirmPassword.message}</p>
@@ -207,6 +218,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               type="submit" 
               className="w-full bg-black text-white hover:bg-gray-800"
               disabled={isLoading}
+              data-testid="button-register"
             >
               {isLoading ? t('registerLoading') : t('registerButton')}
             </Button>

@@ -80,7 +80,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[425px] bg-black/5 backdrop-blur-md" aria-describedby="auth-description">
+      <DialogContent className="sm:max-w-[425px] bg-white" aria-describedby="auth-description">
         <DialogHeader>
           <DialogTitle className="text-center text-2xl font-light">
             {isLogin ? t('loginTitle') : t('registerTitle')}

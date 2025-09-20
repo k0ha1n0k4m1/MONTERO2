@@ -35,6 +35,8 @@ const translations = {
     freshPieces: '이번 시즌 새로운 아이템',
     featuredSelection: '추천 상품',
     handpicked: '엄선된 스타일',
+    discoverOur: '우리의',
+    essentials: '필수 아이템을 발견하세요',
     
     // Product info
     price: '가격',
@@ -285,6 +287,8 @@ const translations = {
     freshPieces: 'Fresh pieces for the season',
     featuredSelection: 'Featured Selection',
     handpicked: 'Handpicked styles for you',
+    discoverOur: 'Discover our',
+    essentials: 'essentials',
     
     // Product info
     price: 'Price',
@@ -535,6 +539,8 @@ const translations = {
     freshPieces: 'Свежие образы сезона',
     featuredSelection: 'Рекомендуемое',
     handpicked: 'Отобранные для вас стили',
+    discoverOur: 'Откройте для себя нашу',
+    essentials: 'коллекцию',
     
     // Product info
     price: 'Цена',

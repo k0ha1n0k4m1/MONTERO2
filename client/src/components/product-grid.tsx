@@ -55,7 +55,7 @@ export default function ProductGrid() {
                 {category === 'all' ? t('newArrivals') : `${t(category)} ${t('collection')}`}
               </h3>
               <p className="text-white/80 font-medium text-sm md:text-lg">
-                {category === 'all' ? t('freshPieces') : `Discover our ${t(category)} essentials`}
+                {category === 'all' ? t('freshPieces') : `${t('discoverOur')} ${t(category)} ${t('essentials')}`}
               </p>
             </div>
         

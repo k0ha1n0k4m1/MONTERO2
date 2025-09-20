@@ -539,8 +539,8 @@ const translations = {
     freshPieces: 'Свежие образы сезона',
     featuredSelection: 'Рекомендуемое',
     handpicked: 'Отобранные для вас стили',
-    discoverOur: 'Откройте для себя нашу',
-    essentials: 'коллекцию',
+    discoverOur: 'Откройте для себя коллекцию',
+    essentials: '',
     
     // Product info
     price: 'Цена',

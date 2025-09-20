@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -44,8 +50,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     try {
       await login(data);
       toast({
-        title: t('loginWelcome'),
-        description: t('loginSuccessMessage'),
+        title: t("loginWelcome"),
+        description: t("loginSuccessMessage"),
       });
       onClose();
       // Принудительно обновляем страницу для синхронизации состояния
@@ -54,8 +60,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
       }, 500);
     } catch (error: any) {
       toast({
-        title: t('loginError'),
-        description: error.message || t('loginErrorMessage'),
+        title: t("loginError"),
+        description: error.message || t("loginErrorMessage"),
         variant: "destructive",
       });
     }
@@ -65,14 +71,14 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     try {
       await register(data);
       toast({
-        title: t('registerWelcome'),
-        description: t('registerSuccessMessage'),
+        title: t("registerWelcome"),
+        description: t("registerSuccessMessage"),
       });
       onClose();
     } catch (error: any) {
       toast({
-        title: t('registerError'),
-        description: error.message || t('registerErrorMessage'),
+        title: t("registerError"),
+        description: error.message || t("registerErrorMessage"),
         variant: "destructive",
       });
     }
@@ -83,30 +89,28 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
       <DialogContent className="sm:max-w-[425px] bg-white" aria-describedby="auth-description">
         <DialogHeader>
           <DialogTitle className="text-center text-2xl font-light">
-            {isLogin ? t('loginTitle') : t('registerTitle')}
+            {isLogin ? t("loginTitle") : t("registerTitle")}
           </DialogTitle>
-          <DialogDescription id="auth-description" className="text-center text-sm text-muted-foreground">
-            {isLogin ? t('loginSubtitle') : t('registerSubtitle')}
+          <DialogDescription
+            id="auth-description"
+            className="text-center text-sm text-muted-foreground"
+          >
+            {isLogin ? t("loginSubtitle") : t("registerSubtitle")}
           </DialogDescription>
         </DialogHeader>
 
         {isLogin ? (
           <form onSubmit={loginForm.handleSubmit(handleLogin)} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">{t('email')}</Label>
-              <Input
-                id="email"
-                type="email"
-                {...loginForm.register("email")}
-                className="w-full"
-              />
+              <Label htmlFor="email">{t("email")}</Label>
+              <Input id="email" type="email" {...loginForm.register("email")} className="w-full" />
               {loginForm.formState.errors.email && (
                 <p className="text-sm text-red-500">{loginForm.formState.errors.email.message}</p>
               )}
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">{t('password')}</Label>
+              <Label htmlFor="password">{t("password")}</Label>
               <Input
                 id="password"
                 type="password"
@@ -114,16 +118,18 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 className="w-full"
               />
               {loginForm.formState.errors.password && (
-                <p className="text-sm text-red-500">{loginForm.formState.errors.password.message}</p>
+                <p className="text-sm text-red-500">
+                  {loginForm.formState.errors.password.message}
+                </p>
               )}
             </div>
 
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               className="w-full bg-black text-white hover:bg-gray-800"
               disabled={isLoading}
             >
-              {isLoading ? t('loginLoading') : t('loginButton')}
+              {isLoading ? t("loginLoading") : t("loginButton")}
             </Button>
 
             <div className="text-center">
@@ -132,7 +138,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 onClick={() => setIsLogin(false)}
                 className="text-sm text-gray-600 hover:text-black underline"
               >
-                {t('noAccountRegister')}
+                {t("noAccountRegister")}
               </button>
             </div>
           </form>
@@ -140,7 +146,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           <form onSubmit={registerForm.handleSubmit(handleRegister)} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="firstName">{t('firstName')}</Label>
+                <Label htmlFor="firstName">{t("firstName")}</Label>
                 <Input
                   id="firstName"
                   {...registerForm.register("firstName")}
@@ -149,12 +155,14 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   placeholder="Ваше имя"
                 />
                 {registerForm.formState.errors.firstName && (
-                  <p className="text-sm text-red-500">{registerForm.formState.errors.firstName.message}</p>
+                  <p className="text-sm text-red-500">
+                    {registerForm.formState.errors.firstName.message}
+                  </p>
                 )}
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="lastName">{t('lastName')}</Label>
+                <Label htmlFor="lastName">{t("lastName")}</Label>
                 <Input
                   id="lastName"
                   {...registerForm.register("lastName")}
@@ -163,13 +171,15 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   placeholder="Ваша фамилия"
                 />
                 {registerForm.formState.errors.lastName && (
-                  <p className="text-sm text-red-500">{registerForm.formState.errors.lastName.message}</p>
+                  <p className="text-sm text-red-500">
+                    {registerForm.formState.errors.lastName.message}
+                  </p>
                 )}
               </div>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email">{t('email')}</Label>
+              <Label htmlFor="email">{t("email")}</Label>
               <Input
                 id="email"
                 type="email"
@@ -179,12 +189,14 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 placeholder="example@email.com"
               />
               {registerForm.formState.errors.email && (
-                <p className="text-sm text-red-500">{registerForm.formState.errors.email.message}</p>
+                <p className="text-sm text-red-500">
+                  {registerForm.formState.errors.email.message}
+                </p>
               )}
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">{t('password')}</Label>
+              <Label htmlFor="password">{t("password")}</Label>
               <Input
                 id="password"
                 type="password"
@@ -192,16 +204,16 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 className="w-full"
                 data-testid="input-password"
               />
-              <p className="text-xs text-gray-500">
-                Пароль должен содержать минимум 6 символов
-              </p>
+              <p className="text-xs text-gray-500">Пароль должен содержать минимум 6 символов</p>
               {registerForm.formState.errors.password && (
-                <p className="text-sm text-red-500">{registerForm.formState.errors.password.message}</p>
+                <p className="text-sm text-red-500">
+                  {registerForm.formState.errors.password.message}
+                </p>
               )}
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword">{t('confirmPassword')}</Label>
+              <Label htmlFor="confirmPassword">{t("confirmPassword")}</Label>
               <Input
                 id="confirmPassword"
                 type="password"
@@ -210,17 +222,19 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 data-testid="input-confirmPassword"
               />
               {registerForm.formState.errors.confirmPassword && (
-                <p className="text-sm text-red-500">{registerForm.formState.errors.confirmPassword.message}</p>
+                <p className="text-sm text-red-500">
+                  {registerForm.formState.errors.confirmPassword.message}
+                </p>
               )}
             </div>
 
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               className="w-full bg-black text-white hover:bg-gray-800"
               disabled={isLoading}
               data-testid="button-register"
             >
-              {isLoading ? t('registerLoading') : t('registerButton')}
+              {isLoading ? t("registerLoading") : t("registerButton")}
             </Button>
 
             <div className="text-center">
@@ -229,7 +243,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 onClick={() => setIsLogin(true)}
                 className="text-sm text-gray-600 hover:text-black underline"
               >
-                {t('hasAccountLogin')}
+                {t("hasAccountLogin")}
               </button>
             </div>
           </form>

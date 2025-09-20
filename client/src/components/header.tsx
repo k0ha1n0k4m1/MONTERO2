@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Search, User, ShoppingBag, Menu, X, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
 import { useCart } from "@/hooks/use-cart";
 import { useAuth } from "@/hooks/useAuth";
@@ -150,6 +150,10 @@ export default function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="top" className="h-auto bg-white">
+                <SheetHeader>
+                  <SheetTitle className="sr-only">Search Products</SheetTitle>
+                  <SheetDescription className="sr-only">Search for products in our catalog</SheetDescription>
+                </SheetHeader>
                 <div className="max-w-2xl mx-auto py-8">
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -171,8 +175,11 @@ export default function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-full sm:max-w-md bg-white">
+                <SheetHeader>
+                  <SheetTitle className="text-xl font-light text-foreground">{t("account")}</SheetTitle>
+                  <SheetDescription className="sr-only">Manage your account and access order history</SheetDescription>
+                </SheetHeader>
                 <div className="py-6">
-                  <h3 className="text-xl font-light text-foreground mb-6">{t("account")}</h3>
                   <div className="space-y-4">
                     {isAuthenticated ? (
                       <>
@@ -306,10 +313,11 @@ export default function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-full bg-white backdrop-blur-md text-black">
+                <SheetHeader className="p-4 md:p-6 border-b border-gray-200">
+                  <SheetTitle className="text-lg md:text-xl font-light text-black">MONTERO</SheetTitle>
+                  <SheetDescription className="sr-only">Navigation menu for website sections</SheetDescription>
+                </SheetHeader>
                 <div className="flex flex-col h-full">
-                  <div className="flex items-center justify-between p-4 md:p-6 border-b border-gray-200">
-                    <h2 className="text-lg md:text-xl font-light text-black">MONTERO</h2>
-                  </div>
                   <nav className="flex-1 px-4 md:px-6 py-6 md:py-8">
                     <ul className="space-y-4 md:space-y-6">
                       {navigation.map(item => (

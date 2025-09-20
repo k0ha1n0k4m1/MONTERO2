@@ -154,10 +154,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       .isEmail()
       .normalizeEmail()
       .isLength({ max: 255 })
-      .withMessage('Valid email is required'),
+      .withMessage('Пожалуйста, введите корректный email адрес'),
     body('password')
       .isLength({ min: 1, max: 128 })
-      .withMessage('Password is required'),
+      .withMessage('Пароль обязателен для заполнения'),
     handleValidationErrors
   ], async (req: Request, res: any) => {
     try {
@@ -166,7 +166,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const user = await storage.loginUser({ email, password });
       
       if (!user) {
-        return res.status(401).json({ message: "Invalid credentials" });
+        return res.status(401).json({ message: "Неправильный логин или пароль" });
       }
 
       // Regenerate session to prevent fixation attacks

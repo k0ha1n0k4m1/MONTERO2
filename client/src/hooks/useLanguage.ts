@@ -771,7 +771,7 @@ const translations = {
 export const useLanguage = create<LanguageStore>()(
   persist(
     (set, get) => ({
-      language: 'ru' as Language,
+      language: 'ko' as Language,
       setLanguage: (language: Language) => set({ language }),
       t: (key: string) => {
         const { language } = get()

@@ -31,6 +31,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const { t } = useLanguage();
 
   const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY || "";
+  
+  console.log('RECAPTCHA_SITE_KEY:', RECAPTCHA_SITE_KEY ? 'SET' : 'NOT SET');
 
   const loginForm = useForm<LoginData>({
     resolver: zodResolver(loginSchema),
@@ -152,19 +154,25 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               )}
             </div>
 
-            <div className="flex justify-center">
-              <ReCAPTCHA
-                ref={recaptchaRef}
-                sitekey={RECAPTCHA_SITE_KEY}
-                onChange={(token) => setRecaptchaToken(token)}
-                onExpired={() => setRecaptchaToken(null)}
-              />
-            </div>
+            {RECAPTCHA_SITE_KEY ? (
+              <div className="flex justify-center">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={RECAPTCHA_SITE_KEY}
+                  onChange={(token) => setRecaptchaToken(token)}
+                  onExpired={() => setRecaptchaToken(null)}
+                />
+              </div>
+            ) : (
+              <div className="text-center text-sm text-red-500">
+                reCAPTCHA configuration missing (development mode)
+              </div>
+            )}
 
             <Button
               type="submit"
               className="w-full bg-black text-white hover:bg-gray-800"
-              disabled={isLoading || !recaptchaToken}
+              disabled={isLoading || (RECAPTCHA_SITE_KEY && !recaptchaToken)}
             >
               {isLoading ? t("loginLoading") : t("loginButton")}
             </Button>
@@ -265,19 +273,25 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               )}
             </div>
 
-            <div className="flex justify-center">
-              <ReCAPTCHA
-                ref={recaptchaRef}
-                sitekey={RECAPTCHA_SITE_KEY}
-                onChange={(token) => setRecaptchaToken(token)}
-                onExpired={() => setRecaptchaToken(null)}
-              />
-            </div>
+            {RECAPTCHA_SITE_KEY ? (
+              <div className="flex justify-center">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={RECAPTCHA_SITE_KEY}
+                  onChange={(token) => setRecaptchaToken(token)}
+                  onExpired={() => setRecaptchaToken(null)}
+                />
+              </div>
+            ) : (
+              <div className="text-center text-sm text-red-500">
+                reCAPTCHA configuration missing (development mode)
+              </div>
+            )}
 
             <Button
               type="submit"
               className="w-full bg-black text-white hover:bg-gray-800"
-              disabled={isLoading || !recaptchaToken}
+              disabled={isLoading || (RECAPTCHA_SITE_KEY && !recaptchaToken)}
               data-testid="button-register"
             >
               {isLoading ? t("registerLoading") : t("registerButton")}

@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import ReCAPTCHA from "react-google-recaptcha";
 import {
   Dialog,
   DialogContent,
@@ -23,9 +24,13 @@ interface AuthModalProps {
 
 export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [isLogin, setIsLogin] = useState(true);
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
   const { login, register, isLoading } = useSimpleAuth();
   const { toast } = useToast();
   const { t } = useLanguage();
+
+  const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY || "";
 
   const loginForm = useForm<LoginData>({
     resolver: zodResolver(loginSchema),
@@ -47,13 +52,24 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   });
 
   const handleLogin = async (data: LoginData) => {
+    if (!recaptchaToken) {
+      toast({
+        title: t("loginError"),
+        description: "Please complete the reCAPTCHA verification",
+        variant: "destructive",
+      });
+      return;
+    }
+
     try {
-      await login(data);
+      await login({ ...data, recaptchaToken });
       toast({
         title: t("loginWelcome"),
         description: t("loginSuccessMessage"),
       });
       onClose();
+      setRecaptchaToken(null);
+      recaptchaRef.current?.reset();
       // Принудительно обновляем страницу для синхронизации состояния
       setTimeout(() => {
         window.location.reload();
@@ -64,23 +80,38 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         description: error.message || t("loginErrorMessage"),
         variant: "destructive",
       });
+      setRecaptchaToken(null);
+      recaptchaRef.current?.reset();
     }
   };
 
   const handleRegister = async (data: RegisterData) => {
+    if (!recaptchaToken) {
+      toast({
+        title: t("registerError"),
+        description: "Please complete the reCAPTCHA verification",
+        variant: "destructive",
+      });
+      return;
+    }
+
     try {
-      await register(data);
+      await register({ ...data, recaptchaToken });
       toast({
         title: t("registerWelcome"),
         description: t("registerSuccessMessage"),
       });
       onClose();
+      setRecaptchaToken(null);
+      recaptchaRef.current?.reset();
     } catch (error: any) {
       toast({
         title: t("registerError"),
         description: error.message || t("registerErrorMessage"),
         variant: "destructive",
       });
+      setRecaptchaToken(null);
+      recaptchaRef.current?.reset();
     }
   };
 
@@ -121,10 +152,19 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               )}
             </div>
 
+            <div className="flex justify-center">
+              <ReCAPTCHA
+                ref={recaptchaRef}
+                sitekey={RECAPTCHA_SITE_KEY}
+                onChange={(token) => setRecaptchaToken(token)}
+                onExpired={() => setRecaptchaToken(null)}
+              />
+            </div>
+
             <Button
               type="submit"
               className="w-full bg-black text-white hover:bg-gray-800"
-              disabled={isLoading}
+              disabled={isLoading || !recaptchaToken}
             >
               {isLoading ? t("loginLoading") : t("loginButton")}
             </Button>
@@ -225,10 +265,19 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               )}
             </div>
 
+            <div className="flex justify-center">
+              <ReCAPTCHA
+                ref={recaptchaRef}
+                sitekey={RECAPTCHA_SITE_KEY}
+                onChange={(token) => setRecaptchaToken(token)}
+                onExpired={() => setRecaptchaToken(null)}
+              />
+            </div>
+
             <Button
               type="submit"
               className="w-full bg-black text-white hover:bg-gray-800"
-              disabled={isLoading}
+              disabled={isLoading || !recaptchaToken}
               data-testid="button-register"
             >
               {isLoading ? t("registerLoading") : t("registerButton")}

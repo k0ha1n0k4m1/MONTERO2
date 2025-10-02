@@ -195,7 +195,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
     handleValidationErrors
   ], async (req: Request, res: any) => {
     try {
-      const { email, password } = req.body;
+      const { email, password, recaptchaToken } = req.body;
+
+      // Verify reCAPTCHA token
+      if (recaptchaToken) {
+        const isValidRecaptcha = await verifyRecaptcha(recaptchaToken);
+        if (!isValidRecaptcha) {
+          return res.status(400).json({ message: "reCAPTCHA verification failed" });
+        }
+      }
 
       const user = await storage.loginUser({ email, password });
       

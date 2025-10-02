@@ -67,10 +67,15 @@ html {
     @apply border-border;
   }
 
+  html {
+    min-height: 100%;
+  }
+
   body {
     @apply text-foreground font-light;
     font-family: 'Inter', sans-serif;
     font-size: 16px;
+    min-height: 100vh;
     background-image: 
       linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
       url('@assets/IMG_2734_resized_1920x1080.jpg');
@@ -86,14 +91,7 @@ html {
       background-attachment: scroll;
       background-size: cover;
       background-position: center center;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    body {
-      background-attachment: scroll;
-      background-size: auto 100vh;
-      background-position: center top;
+      min-height: 100%;
     }
   }
 }

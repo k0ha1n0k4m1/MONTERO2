@@ -67,10 +67,12 @@ export const loginSchema = z.object({
   password: z.string()
     .min(1, "Пароль обязателен для заполнения")
     .min(6, "Пароль должен содержать минимум 6 символов"),
+  recaptchaToken: z.string().optional(),
 });
 
 export const registerSchema = insertUserSchema.extend({
   confirmPassword: z.string().min(1, "Подтверждение пароля обязательно"),
+  recaptchaToken: z.string().optional(),
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Пароли не совпадают",
   path: ["confirmPassword"],

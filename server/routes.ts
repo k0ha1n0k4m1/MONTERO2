@@ -27,6 +27,32 @@ const handleValidationErrors = (req: any, res: any, next: any) => {
   next();
 };
 
+// reCAPTCHA verification function
+async function verifyRecaptcha(token: string): Promise<boolean> {
+  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+  
+  if (!secretKey) {
+    console.error('RECAPTCHA_SECRET_KEY not configured');
+    return false;
+  }
+
+  try {
+    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `secret=${secretKey}&response=${token}`,
+    });
+
+    const data = await response.json();
+    return data.success === true;
+  } catch (error) {
+    console.error('reCAPTCHA verification error:', error);
+    return false;
+  }
+}
+
 // Input validation - let express-validator handle validation, not mutation
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -114,7 +140,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
     handleValidationErrors
   ], async (req: Request, res: any) => {
     try {
-      const { email, password, firstName, lastName } = req.body;
+      const { email, password, firstName, lastName, recaptchaToken } = req.body;
+
+      // Verify reCAPTCHA token
+      if (recaptchaToken) {
+        const isValidRecaptcha = await verifyRecaptcha(recaptchaToken);
+        if (!isValidRecaptcha) {
+          return res.status(400).json({ message: "reCAPTCHA verification failed" });
+        }
+      }
 
       // Use the registerUser method which handles password hashing
       const user = await storage.registerUser({

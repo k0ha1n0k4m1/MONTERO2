@@ -23,7 +23,7 @@ Preferred communication style: Simple, everyday language.
 - **Session Management**: Express sessions with in-memory store (MemoryStore)
 - **Authentication**: bcryptjs for password hashing with session-based auth
 - **Input Validation**: express-validator with custom sanitization middleware
-- **Security**: Helmet.js for security headers, CORS support, and rate limiting
+- **Security**: Helmet.js for security headers with CSP configured for Google reCAPTCHA, CORS support, and rate limiting
 - **API Design**: RESTful endpoints with consistent error handling
 
 ## Data Storage Solutions
@@ -47,6 +47,7 @@ Preferred communication style: Simple, everyday language.
 - **Session Storage**: MemoryStore (suitable for development, should be Redis in production)
 - **Guest Support**: Cart and basic wishlist functionality for non-authenticated users
 - **Route Protection**: Middleware-based auth checks for protected endpoints
+- **Bot Protection**: Google reCAPTCHA v2 integrated in login and registration forms with server-side verification
 
 ## External Dependencies
 

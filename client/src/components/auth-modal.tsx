@@ -31,8 +31,6 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const { t } = useLanguage();
 
   const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY || "";
-  
-  console.log('RECAPTCHA_SITE_KEY:', RECAPTCHA_SITE_KEY ? 'SET' : 'NOT SET');
 
   const loginForm = useForm<LoginData>({
     resolver: zodResolver(loginSchema),

@@ -55,9 +55,6 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div>
               <h4 className="text-2xl font-light text-white mb-6">MONTERO</h4>
-              <p className="text-white/80 font-light text-sm leading-relaxed">
-                {t('brandDescription')}
-              </p>
             </div>
             
             <div>

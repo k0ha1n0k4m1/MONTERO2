@@ -58,7 +58,7 @@ export default function Footer() {
             </div>
             
             <div>
-              <h5 className="text-sm font-light text-white mb-4 tracking-wide">{t('shop')}</h5>
+              <h5 className="text-sm font-light text-white mb-4 tracking-wide">{t('Shop')}</h5>
               <ul className="space-y-3">
                 <li>
                   <span 

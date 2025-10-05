@@ -44,7 +44,7 @@ export default function Support() {
                   <Phone className="h-5 w-5 text-gray-600" />
                   <div>
                     <p className="font-medium">Телефон</p>
-                    <p className="text-sm text-gray-600">+7 (495) 123-45-67</p>
+                    <p className="text-sm text-gray-600">+821084092796</p>
                   </div>
                 </div>
                 

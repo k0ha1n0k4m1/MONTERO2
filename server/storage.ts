@@ -566,24 +566,24 @@ async function initializeDatabase() {
 
     const initialProducts: InsertProduct[] = [
       {
-        name: "Montero Hoodie White Pink",
-        description: null,
+        name: "Leopard Untamed hoodie White Pink",
+        description: "Keeping the hood vibe alive",
         price: 65000,
         category: "hoodie",
         imageUrl: "/hoodie-white-pink.png",
         featured: 1
       },
       {
-        name: "Montero Hoodie Black",
-        description: null,
+        name: "Leopard Untamed hoodie Black",
+        description: "Keeping the hood vibe alive",
         price: 72000,
         category: "hoodie",
         imageUrl: "/hoodie-black-leopard.png",
         featured: 1
       },
       {
-        name: "Montero Hoodie White",
-        description: null,
+        name: "Leopard Untamed hoodie White",
+        description: "Keeping the hood vibe alive",
         price: 68000,
         category: "hoodie",
         imageUrl: "/hoodie-white-leopard.png",

@@ -260,7 +260,42 @@ const translations = {
     needReturnHelp: '반품 도움이 필요하신가요?',
     needReturnHelpAnswer: '저희 고객지원팀이 반품 처리를 도와드리거나 궁금한 점에 답변해드립니다.',
     contactSupport: '고객지원 연락',
-    myOrders: '내 주문'
+    myOrders: '내 주문',
+    
+    // Support page
+    supportTitle: '도움말 및 지원',
+    supportSubtitle: '궁금하신 점이 있으신가요? 언제든지 도와드리겠습니다',
+    contactMethods: '연락 방법',
+    onlineChat: '온라인 채팅',
+    availableOnSite: '사이트에서 이용 가능',
+    howTrackOrder: '주문을 추적하려면 어떻게 해야 하나요?',
+    howTrackOrderAnswer: '주문이 발송되면 이메일로 추적 번호를 받으실 수 있습니다. 개인 계정의 "주문 내역" 섹션에서도 주문을 추적할 수 있습니다.',
+    whatPaymentMethods: '어떤 결제 방법을 사용할 수 있나요?',
+    whatPaymentMethodsAnswer: '은행 카드, SBP 결제, Apple Pay, Google Pay 및 수령 시 현금 결제를 받습니다.',
+    canReturnProduct: '제품을 반품할 수 있나요?',
+    canReturnProductAnswer: '네, 수령일로부터 14일 이내에 제품을 반품할 수 있습니다. 제품이 사용되지 않았고 원래 포장이 보존되어 있어야 합니다.',
+    howMuchShipping: '배송비는 얼마인가요?',
+    howMuchShippingAnswer: '모스크바 내 배송 - 3000₽ 이상 주문 시 무료. 러시아 전역 - 300₽부터, 5000₽ 이상 주문 시 무료.',
+    backToShopping: '쇼핑 계속하기',
+    
+    // Wishlist page
+    wishlistTitle: '찜 목록',
+    wishlistSubtitle: '좋아하는 제품을 저장하여 빠르게 액세스하세요',
+    mustLogin: '로그인이 필요합니다',
+    mustLoginWishlist: '찜한 제품을 보려면 계정에 로그인해야 합니다',
+    toHome: '홈으로',
+    wishlistEmpty: '찜 목록이 비어 있습니다',
+    wishlistEmptyDesc: '제품 카드의 하트 아이콘을 클릭하여 찜 목록에 제품을 추가하세요',
+    startShopping: '쇼핑 시작',
+    viewProduct: '제품 보기',
+    
+    // Orders page
+    ordersTitle: '주문 내역',
+    ordersSubtitle: '이전 구매 내역 및 배송 상태 확인',
+    mustLoginOrders: '주문 내역을 보려면 계정에 로그인해야 합니다',
+    noOrders: '아직 주문이 없습니다',
+    noOrdersDesc: '카탈로그에서 쇼핑을 시작하여 여기에서 주문 내역을 확인하세요',
+    goToShopping: '쇼핑하러 가기'
   },
   
   en: {
@@ -512,7 +547,42 @@ const translations = {
     needReturnHelp: 'Need help with returns?',
     needReturnHelpAnswer: 'Our support team is ready to help you process your return or answer any questions.',
     contactSupport: 'Contact Support',
-    myOrders: 'My Orders'
+    myOrders: 'My Orders',
+    
+    // Support page
+    supportTitle: 'Help & Support',
+    supportSubtitle: 'We are always ready to help you with any questions',
+    contactMethods: 'Contact Methods',
+    onlineChat: 'Online Chat',
+    availableOnSite: 'Available on site',
+    howTrackOrder: 'How to track my order?',
+    howTrackOrderAnswer: 'After your order is shipped, you will receive a tracking number via email. You can also track your order in the "Order History" section of your account.',
+    whatPaymentMethods: 'What payment methods are available?',
+    whatPaymentMethodsAnswer: 'We accept bank cards, SBP payment, Apple Pay, Google Pay, and cash on delivery.',
+    canReturnProduct: 'Can I return the product?',
+    canReturnProductAnswer: 'Yes, you can return the product within 14 days of receipt, provided it has not been used and the original packaging is preserved.',
+    howMuchShipping: 'How much is shipping?',
+    howMuchShippingAnswer: 'Shipping in Moscow - free for orders over 3000₽. Throughout Russia - from 300₽, free for orders over 5000₽.',
+    backToShopping: 'Back to Shopping',
+    
+    // Wishlist page
+    wishlistTitle: 'Favorites',
+    wishlistSubtitle: 'Save your favorite products for quick access',
+    mustLogin: 'Login Required',
+    mustLoginWishlist: 'You need to log in to your account to view favorited products',
+    toHome: 'To Home',
+    wishlistEmpty: 'Your wishlist is empty',
+    wishlistEmptyDesc: 'Add products to favorites by clicking the heart icon on product cards',
+    startShopping: 'Start Shopping',
+    viewProduct: 'View Product',
+    
+    // Orders page
+    ordersTitle: 'Order History',
+    ordersSubtitle: 'View your previous purchases and shipping status',
+    mustLoginOrders: 'You need to log in to your account to view order history',
+    noOrders: 'You have no orders yet',
+    noOrdersDesc: 'Start shopping in our catalog to see order history here',
+    goToShopping: 'Go Shopping'
   },
   
   ru: {
@@ -764,7 +834,42 @@ const translations = {
     needReturnHelp: 'Нужна помощь с возвратом?',
     needReturnHelpAnswer: 'Наша служба поддержки готова помочь вам с оформлением возврата или ответить на любые вопросы.',
     contactSupport: 'Связаться с поддержкой',
-    myOrders: 'Мои заказы'
+    myOrders: 'Мои заказы',
+    
+    // Support page
+    supportTitle: 'Помощь и поддержка',
+    supportSubtitle: 'Мы всегда готовы помочь вам с любыми вопросами',
+    contactMethods: 'Способы связи',
+    onlineChat: 'Онлайн-чат',
+    availableOnSite: 'Доступен на сайте',
+    howTrackOrder: 'Как отследить мой заказ?',
+    howTrackOrderAnswer: 'После отправки заказа вы получите трек-номер на email. Также можете отследить заказ в разделе "История заказов" в личном кабинете.',
+    whatPaymentMethods: 'Какие способы оплаты доступны?',
+    whatPaymentMethodsAnswer: 'Мы принимаем банковские карты, оплату через СБП, Apple Pay, Google Pay, а также наличными при получении.',
+    canReturnProduct: 'Можно ли вернуть товар?',
+    canReturnProductAnswer: 'Да, вы можете вернуть товар в течение 14 дней с момента получения, если он не был в употреблении и сохранена оригинальная упаковка.',
+    howMuchShipping: 'Сколько стоит доставка?',
+    howMuchShippingAnswer: 'Доставка по Москве - бесплатно при заказе от 3000₽. По России - от 300₽, бесплатно при заказе от 5000₽.',
+    backToShopping: 'Вернуться к покупкам',
+    
+    // Wishlist page
+    wishlistTitle: 'Избранное',
+    wishlistSubtitle: 'Сохраняйте понравившиеся товары для быстрого доступа',
+    mustLogin: 'Необходимо войти в систему',
+    mustLoginWishlist: 'Для просмотра избранных товаров необходимо войти в свой аккаунт',
+    toHome: 'На главную',
+    wishlistEmpty: 'Ваш список избранного пуст',
+    wishlistEmptyDesc: 'Добавляйте товары в избранное, нажимая на иконку сердца на карточках товаров',
+    startShopping: 'Начать покупки',
+    viewProduct: 'Просмотреть',
+    
+    // Orders page
+    ordersTitle: 'История заказов',
+    ordersSubtitle: 'Просматривайте свои предыдущие покупки и статус доставки',
+    mustLoginOrders: 'Для просмотра истории заказов необходимо войти в свой аккаунт',
+    noOrders: 'У вас пока нет заказов',
+    noOrdersDesc: 'Начните покупки в нашем каталоге, чтобы увидеть историю заказов здесь',
+    goToShopping: 'Перейти к покупкам'
   }
 }
 

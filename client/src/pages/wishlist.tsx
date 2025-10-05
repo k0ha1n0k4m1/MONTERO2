@@ -8,11 +8,13 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Heart, X } from "lucide-react";
 import { formatPrice } from "@/lib/utils";
+import { useLanguage } from "@/hooks/useLanguage";
 import type { Product } from "@shared/schema";
 
 export default function Wishlist() {
   const { user, isAuthenticated } = useAuth();
   const { items: wishlistItems, removeItem } = useWishlist();
+  const { t } = useLanguage();
   
   // Get products data for all products
   const { data: products = [] } = useQuery({
@@ -28,13 +30,13 @@ export default function Wishlist() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
             <div className="text-center">
               <h1 className="text-2xl font-light text-gray-900 mb-4">
-                Необходимо войти в систему
+                {t('mustLogin')}
               </h1>
               <p className="text-gray-600 mb-8">
-                Для просмотра избранных товаров необходимо войти в свой аккаунт
+                {t('mustLoginWishlist')}
               </p>
               <Button asChild>
-                <Link href="/">На главную</Link>
+                <Link href="/">{t('toHome')}</Link>
               </Button>
             </div>
           </div>
@@ -46,7 +48,7 @@ export default function Wishlist() {
 
   // Match wishlist items with product data
   const wishlistProducts = wishlistItems.map((item: any) => {
-    const product = products.find((p: Product) => p.id === item.productId);
+    const product = (products as Product[]).find((p: Product) => p.id === item.productId);
     return product ? { ...item, product } : null;
   }).filter(Boolean);
 
@@ -58,10 +60,10 @@ export default function Wishlist() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
           <div className="mb-8">
             <h1 className="text-3xl font-light text-gray-900 mb-2">
-              Избранное
+              {t('wishlistTitle')}
             </h1>
             <p className="text-gray-600">
-              Сохраняйте понравившиеся товары для быстрого доступа
+              {t('wishlistSubtitle')}
             </p>
           </div>
 
@@ -70,13 +72,13 @@ export default function Wishlist() {
               <div className="max-w-md mx-auto">
                 <Heart className="h-16 w-16 text-gray-300 mx-auto mb-6" />
                 <h2 className="text-xl font-light text-gray-900 mb-4">
-                  Ваш список избранного пуст
+                  {t('wishlistEmpty')}
                 </h2>
                 <p className="text-gray-600 mb-8">
-                  Добавляйте товары в избранное, нажимая на иконку сердца на карточках товаров
+                  {t('wishlistEmptyDesc')}
                 </p>
                 <Button asChild className="bg-black text-white hover:bg-gray-800">
-                  <Link href="/">Начать покупки</Link>
+                  <Link href="/">{t('startShopping')}</Link>
                 </Button>
               </div>
             </div>
@@ -106,7 +108,7 @@ export default function Wishlist() {
                     </p>
                     <Button asChild className="w-full bg-black text-white hover:bg-gray-800">
                       <Link href={`/product/${item.product.id}`}>
-                        Просмотреть
+                        {t('viewProduct')}
                       </Link>
                     </Button>
                   </div>

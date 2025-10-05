@@ -560,103 +560,34 @@ export class DatabaseStorage implements IStorage {
 // Initialize products in database
 async function initializeDatabase() {
   try {
-    // Check if products already exist
-    const existingProducts = await db.select().from(products);
-    if (existingProducts.length > 0) {
-      return; // Products already initialized
-    }
+    // Delete all existing products to reset the catalog
+    await db.delete(products);
+    console.log("Cleared existing products");
 
     const initialProducts: InsertProduct[] = [
       {
-        name: "RARE Racing Tee",
-        description: "Premium vintage-style racing t-shirt",
-        price: 28000,
-        category: "top",
-        imageUrl: "/IMG_1417.PNG",
+        name: "Montero Hoodie White Pink",
+        description: null,
+        price: 65000,
+        category: "hoodie",
+        imageUrl: "/hoodie-white-pink.png",
         featured: 1
       },
       {
-        name: "Classic Racing Hoodie",
-        description: "Oversized racing hoodie with vintage graphics",
-        price: 45000,
-        category: "top",
-        imageUrl: "/IMG_1418.PNG",
+        name: "Montero Hoodie Black",
+        description: null,
+        price: 72000,
+        category: "hoodie",
+        imageUrl: "/hoodie-black-leopard.png",
         featured: 1
       },
       {
-        name: "RARE Sport Tee",
-        description: "Limited edition sport t-shirt",
-        price: 52000,
-        category: "top",
-        imageUrl: "/IMG_1417.PNG",
-        featured: 1
-      },
-      {
-        name: "Racing Graphics Hoodie",
-        description: "Premium racing hoodie with graphic details",
-        price: 89000,
-        category: "top",
-        imageUrl: "/IMG_1418.PNG",
-        featured: 1
-      },
-      {
-        name: "Vintage Racing Tee",
-        description: "Classic vintage racing design",
-        price: 165000,
-        category: "top",
-        imageUrl: "/IMG_1417.PNG",
-        featured: 1
-      },
-      {
-        name: "Premium Racing Hoodie",
-        description: "High-quality racing hoodie",
-        price: 78000,
-        category: "top",
-        imageUrl: "/IMG_1418.PNG",
-        featured: 1
-      },
-      {
-        name: "RARE Collection Tee",
-        description: "Exclusive RARE collection t-shirt",
-        price: 125000,
-        category: "top",
-        imageUrl: "/IMG_1417.PNG",
-        featured: 1
-      },
-      {
-        name: "Street Racing Hoodie",
-        description: "Urban racing style hoodie",
+        name: "Montero Hoodie White",
+        description: null,
         price: 68000,
-        category: "top",
-        imageUrl: "/IMG_1418.PNG"
-      },
-      {
-        name: "Limited RARE Tee",
-        description: "Limited edition RARE racing t-shirt",
-        price: 95000,
-        category: "top",
-        imageUrl: "/IMG_1417.PNG"
-      },
-      {
-        name: "Racing Team Hoodie",
-        description: "Professional racing team hoodie",
-        price: 45000,
-        category: "top",
-        imageUrl: "/IMG_1418.PNG"
-      },
-      {
-        name: "Vintage RARE Tee",
-        description: "Retro style RARE racing t-shirt",
-        price: 55000,
-        category: "top",
-        imageUrl: "/IMG_1417.PNG"
-      },
-      {
-        name: "Elite Racing Hoodie",
-        description: "Elite level racing hoodie with premium details",
-        price: 145000,
-        category: "top",
-        imageUrl: "/IMG_1418.PNG"
+        category: "hoodie",
+        imageUrl: "/hoodie-white-leopard.png",
+        featured: 1
       }
     ];
 
@@ -664,7 +595,7 @@ async function initializeDatabase() {
       await db.insert(products).values(product);
     }
     
-    console.log("Database initialized with products");
+    console.log("Database initialized with 3 new Montero hoodies");
   } catch (error) {
     console.error("Error initializing database:", error);
   }

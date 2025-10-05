@@ -104,7 +104,7 @@ export default function Product() {
                 <img
                   src={product.imageUrl}
                   alt={product.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               </div>
             </div>

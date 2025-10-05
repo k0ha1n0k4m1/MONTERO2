@@ -123,36 +123,6 @@ export default function Support() {
                 </div>
               </CardContent>
             </Card>
-
-            {/* Store Location */}
-            <Card className="md:col-span-2">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-xl font-light">
-                  <MapPin className="h-5 w-5" />
-                  Адрес магазина
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-start gap-3">
-                  <MapPin className="h-5 w-5 text-gray-600 mt-1" />
-                  <div>
-                    <p className="font-medium">MONTERO Flagship Store</p>
-                    <p className="text-gray-600">
-                      г. Москва, ул. Тверская, д. 15, стр. 1<br />
-                      Метро: Тверская, Пушкинская
-                    </p>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      className="mt-3"
-                      onClick={() => window.open('https://maps.yandex.ru', '_blank')}
-                    >
-                      Показать на карте
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </div>
 
           <div className="mt-8 text-center">

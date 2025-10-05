@@ -263,21 +263,32 @@ export default function Header() {
                           <Button
                             variant="ghost"
                             className="w-full justify-start text-muted-foreground font-light"
+                            onClick={() => {
+                              setAuthModalOpen(true);
+                              setUserMenuOpen(false);
+                            }}
                           >
                             {t("orderHistory")}
                           </Button>
                           <Button
                             variant="ghost"
                             className="w-full justify-start text-muted-foreground font-light"
+                            onClick={() => {
+                              setAuthModalOpen(true);
+                              setUserMenuOpen(false);
+                            }}
                           >
                             {t("favorites")}
                           </Button>
-                          <Button
-                            variant="ghost"
-                            className="w-full justify-start text-muted-foreground font-light"
-                          >
-                            {t("helpSupport")}
-                          </Button>
+                          <Link href="/support">
+                            <Button
+                              variant="ghost"
+                              className="w-full justify-start text-muted-foreground font-light"
+                              onClick={() => setUserMenuOpen(false)}
+                            >
+                              {t("helpSupport")}
+                            </Button>
+                          </Link>
                         </div>
                       </>
                     )}

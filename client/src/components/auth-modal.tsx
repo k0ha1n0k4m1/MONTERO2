@@ -104,6 +104,10 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
       onClose();
       setRecaptchaToken(null);
       recaptchaRef.current?.reset();
+      // Принудительно обновляем страницу для синхронизации состояния
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
     } catch (error: any) {
       toast({
         title: t("registerError"),

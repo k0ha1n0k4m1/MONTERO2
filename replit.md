@@ -90,3 +90,9 @@ The application uses a monorepo structure with shared TypeScript schemas between
 - **Fixed Account Menu Modal Routing**: Account menu now correctly routes "Login" and "Registration" buttons to their respective forms
 - **Implementation**: Added `authModalMode` state and `initialMode` prop to AuthModal component to control which form displays
 - **User Impact**: Users clicking "Регистрация" now see registration form (not login form)
+
+### Product Size Availability (October 2025)
+- **Disabled Size Options**: For all hoodies in "top" category, sizes XS, S, XL are now disabled (out of stock)
+- **Visual Feedback**: Unavailable sizes display with gray background and text, cursor shows "not-allowed"
+- **Available Sizes**: Only M and L sizes are selectable for top category hoodies
+- **Implementation**: Added conditional logic in product.tsx to disable specific sizes based on product category

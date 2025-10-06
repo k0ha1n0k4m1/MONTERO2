@@ -569,7 +569,7 @@ async function initializeDatabase() {
         name: "Leopard Untamed hoodie White Pink",
         description: "Keeping the hood vibe alive",
         price: 65000,
-        category: "hoodie",
+        category: "top",
         imageUrl: "/hoodie-white-pink.png",
         featured: 1
       },
@@ -577,7 +577,7 @@ async function initializeDatabase() {
         name: "Leopard Untamed hoodie Black",
         description: "Keeping the hood vibe alive",
         price: 72000,
-        category: "hoodie",
+        category: "top",
         imageUrl: "/hoodie-black-leopard.png",
         featured: 1
       },
@@ -585,7 +585,7 @@ async function initializeDatabase() {
         name: "Leopard Untamed hoodie White",
         description: "Keeping the hood vibe alive",
         price: 68000,
-        category: "hoodie",
+        category: "top",
         imageUrl: "/hoodie-white-leopard.png",
         featured: 1
       }

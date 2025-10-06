@@ -131,20 +131,26 @@ export default function Product() {
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('size')}</h3>
                 <div className="grid grid-cols-5 gap-2">
-                  {['XS', 'S', 'M', 'L', 'XL'].map((size) => (
-                    <Button
-                      key={size}
-                      variant={selectedSize === size ? "default" : "outline"}
-                      className={`h-12 transition-all duration-200 ${
-                        selectedSize === size 
-                          ? "bg-gray-900 text-white hover:bg-gray-700" 
-                          : "hover:bg-gray-100"
-                      }`}
-                      onClick={() => setSelectedSize(size)}
-                    >
-                      {size}
-                    </Button>
-                  ))}
+                  {['XS', 'S', 'M', 'L', 'XL'].map((size) => {
+                    const isUnavailable = product.category === 'top' && ['XS', 'S', 'XL'].includes(size);
+                    return (
+                      <Button
+                        key={size}
+                        variant={selectedSize === size ? "default" : "outline"}
+                        disabled={isUnavailable}
+                        className={`h-12 transition-all duration-200 ${
+                          isUnavailable
+                            ? "bg-gray-200 text-gray-400 cursor-not-allowed hover:bg-gray-200"
+                            : selectedSize === size 
+                              ? "bg-gray-900 text-white hover:bg-gray-700" 
+                              : "hover:bg-gray-100"
+                        }`}
+                        onClick={() => !isUnavailable && setSelectedSize(size)}
+                      >
+                        {size}
+                      </Button>
+                    );
+                  })}
                 </div>
               </div>
 

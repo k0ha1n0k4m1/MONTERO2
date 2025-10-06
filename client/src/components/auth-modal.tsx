@@ -55,7 +55,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     if (!recaptchaToken) {
       toast({
         title: t("loginError"),
-        description: "Please complete the reCAPTCHA verification",
+        description: t("completeRecaptcha"),
         variant: "destructive",
       });
       return;
@@ -89,7 +89,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     if (!recaptchaToken) {
       toast({
         title: t("registerError"),
-        description: "Please complete the reCAPTCHA verification",
+        description: t("completeRecaptcha"),
         variant: "destructive",
       });
       return;
@@ -163,7 +163,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               </div>
             ) : (
               <div className="text-center text-sm text-red-500">
-                reCAPTCHA configuration missing (development mode)
+                {t("recaptchaMissing")}
               </div>
             )}
 
@@ -282,7 +282,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               </div>
             ) : (
               <div className="text-center text-sm text-red-500">
-                reCAPTCHA configuration missing (development mode)
+                {t("recaptchaMissing")}
               </div>
             )}
 

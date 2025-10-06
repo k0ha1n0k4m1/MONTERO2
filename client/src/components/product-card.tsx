@@ -4,6 +4,7 @@ import { useCart } from "@/hooks/use-cart"
 import { useWishlist } from "@/hooks/use-wishlist"
 import { useAuth } from "@/hooks/useAuth"
 import { useToast } from "@/hooks/use-toast"
+import { useLanguage } from "@/hooks/useLanguage"
 import { formatPrice } from "@/lib/utils"
 import { Link } from "wouter"
 import { useState } from "react"
@@ -20,6 +21,7 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
   const { toggleItem, isInWishlist } = useWishlist()
   const { isAuthenticated } = useAuth()
   const { toast } = useToast()
+  const { t } = useLanguage()
   const [showAuthModal, setShowAuthModal] = useState(false)
   const isWishlisted = isInWishlist(product.id)
 
@@ -36,8 +38,8 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
     if (!isAuthenticated) {
       setShowAuthModal(true)
       toast({
-        title: "Please log in",
-        description: "You need to be logged in to add items to your wishlist",
+        title: t("pleaseLogin"),
+        description: t("needLoginWishlist"),
         variant: "destructive",
       })
       return
@@ -47,13 +49,13 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
     
     if (!isWishlisted) {
       toast({
-        title: "Added to wishlist",
-        description: `${product.name} has been added to your wishlist`,
+        title: t("addedToWishlist"),
+        description: `${product.name} ${t("addedToWishlistDesc")}`,
       })
     } else {
       toast({
-        title: "Removed from wishlist", 
-        description: `${product.name} has been removed from your wishlist`,
+        title: t("removedFromWishlist"), 
+        description: `${product.name} ${t("removedFromWishlistDesc")}`,
       })
     }
   }
@@ -104,7 +106,7 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
                 size="sm"
                 className="opacity-50 md:opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-0 md:translate-y-1 group-hover:translate-y-0 text-xs font-light bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/30 rounded-full px-2 md:px-4 py-1 md:py-2"
               >
-                <span className="hidden md:inline">ADD TO CART</span>
+                <span className="hidden md:inline">{t('addToCartButton')}</span>
                 <span className="md:hidden">+</span>
               </Button>
             </div>

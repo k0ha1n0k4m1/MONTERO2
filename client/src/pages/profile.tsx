@@ -5,6 +5,7 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import CartSidebar from "@/components/cart-sidebar";
 import { useAuth } from "@/hooks/useAuth";
+import { useLanguage } from "@/hooks/useLanguage";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,17 +14,18 @@ import { Link } from "wouter";
 import { User, Mail, Calendar } from "lucide-react";
 import { z } from "zod";
 
-const profileSchema = z.object({
-  firstName: z.string().min(1, "Имя обязательно"),
-  lastName: z.string().min(1, "Фамилия обязательна"),
-  email: z.string().email("Некорректный email"),
-});
-
-type ProfileData = z.infer<typeof profileSchema>;
-
 export default function Profile() {
   const { user } = useAuth();
+  const { t } = useLanguage();
   const [isEditing, setIsEditing] = useState(false);
+
+  const profileSchema = z.object({
+    firstName: z.string().min(1, t("firstNameRequired")),
+    lastName: z.string().min(1, t("lastNameRequired")),
+    email: z.string().email(t("emailInvalidProfile")),
+  });
+
+  type ProfileData = z.infer<typeof profileSchema>;
 
   const form = useForm<ProfileData>({
     resolver: zodResolver(profileSchema),
@@ -43,13 +45,13 @@ export default function Profile() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
             <div className="text-center">
               <h1 className="text-2xl font-light text-gray-900 mb-4">
-                Необходимо войти в систему
+                {t("mustLoginProfile")}
               </h1>
               <p className="text-gray-600 mb-8">
-                Для просмотра настроек аккаунта необходимо войти в свой аккаунт
+                {t("mustLoginProfileDesc")}
               </p>
               <Button asChild>
-                <Link href="/">На главную</Link>
+                <Link href="/">{t("toHome")}</Link>
               </Button>
             </div>
           </div>
@@ -73,10 +75,10 @@ export default function Profile() {
         <div className="max-w-4xl mx-auto px-6 lg:px-8 py-12">
           <div className="mb-8">
             <h1 className="text-3xl font-light text-gray-900 mb-2">
-              Настройки аккаунта
+              {t("accountSettings")}
             </h1>
             <p className="text-gray-600">
-              Управляйте своей личной информацией и настройками
+              {t("manageInfo")}
             </p>
           </div>
 
@@ -86,7 +88,7 @@ export default function Profile() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-xl font-light">
                   <User className="h-5 w-5" />
-                  Личная информация
+                  {t("personalInfo")}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -94,7 +96,7 @@ export default function Profile() {
                   <form onSubmit={form.handleSubmit(handleSave)} className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="firstName">Имя</Label>
+                        <Label htmlFor="firstName">{t("firstName")}</Label>
                         <Input
                           id="firstName"
                           {...form.register("firstName")}
@@ -107,7 +109,7 @@ export default function Profile() {
                       </div>
 
                       <div className="space-y-2">
-                        <Label htmlFor="lastName">Фамилия</Label>
+                        <Label htmlFor="lastName">{t("lastName")}</Label>
                         <Input
                           id="lastName"
                           {...form.register("lastName")}
@@ -136,14 +138,14 @@ export default function Profile() {
 
                     <div className="flex gap-2">
                       <Button type="submit" className="bg-black text-white hover:bg-gray-800">
-                        Сохранить
+                        {t("save")}
                       </Button>
                       <Button 
                         type="button" 
                         variant="outline" 
                         onClick={() => setIsEditing(false)}
                       >
-                        Отмена
+                        {t("cancel")}
                       </Button>
                     </div>
                   </form>
@@ -151,12 +153,12 @@ export default function Profile() {
                   <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <Label className="text-sm text-gray-500">Имя</Label>
-                        <p className="font-medium">{user.firstName || "Не указано"}</p>
+                        <Label className="text-sm text-gray-500">{t("firstName")}</Label>
+                        <p className="font-medium">{user.firstName || t("notSpecified")}</p>
                       </div>
                       <div>
-                        <Label className="text-sm text-gray-500">Фамилия</Label>
-                        <p className="font-medium">{user.lastName || "Не указано"}</p>
+                        <Label className="text-sm text-gray-500">{t("lastName")}</Label>
+                        <p className="font-medium">{user.lastName || t("notSpecified")}</p>
                       </div>
                     </div>
                     
@@ -169,7 +171,7 @@ export default function Profile() {
                       variant="outline" 
                       onClick={() => setIsEditing(true)}
                     >
-                      Редактировать
+                      {t("edit")}
                     </Button>
                   </div>
                 )}
@@ -181,20 +183,20 @@ export default function Profile() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-xl font-light">
                   <Calendar className="h-5 w-5" />
-                  Информация об аккаунте
+                  {t("accountInfo")}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   <div>
-                    <Label className="text-sm text-gray-500">Дата регистрации</Label>
+                    <Label className="text-sm text-gray-500">{t("registrationDate")}</Label>
                     <p className="font-medium">
-                      {user.createdAt ? new Date(user.createdAt).toLocaleDateString('ru-RU') : "Не указано"}
+                      {user.createdAt ? new Date(user.createdAt).toLocaleDateString('ru-RU') : t("notSpecified")}
                     </p>
                   </div>
                   
                   <div>
-                    <Label className="text-sm text-gray-500">ID пользователя</Label>
+                    <Label className="text-sm text-gray-500">{t("userId")}</Label>
                     <p className="font-medium text-gray-600">#{user.id}</p>
                   </div>
                 </div>

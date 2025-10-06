@@ -160,22 +160,10 @@ export default function Contact() {
                     <Phone className="h-6 w-6 text-gray-600 mt-1" />
                     <div>
                       <h3 className="font-medium">{t('phone')}</h3>
-                      <p className="text-gray-600">+7 (495) 123-45-67</p>
-                      <p className="text-gray-600">+7 (800) 555-67-89</p>
+                      <p className="text-gray-600">+821082288182</p>
+                      <p className="text-gray-600">+821058089313</p>
                     </div>
                   </div>
-
-                  <div className="flex items-start gap-4">
-                    <MapPin className="h-6 w-6 text-gray-600 mt-1" />
-                    <div>
-                      <h3 className="font-medium">{t('address')}</h3>
-                      <p className="text-gray-600">
-                        г. Москва, ул. Тверская, д. 15, стр. 1<br />
-                        Метро: Тверская, Пушкинская
-                      </p>
-                    </div>
-                  </div>
-
                   <div className="flex items-start gap-4">
                     <Clock className="h-6 w-6 text-gray-600 mt-1" />
                     <div>

@@ -6,6 +6,7 @@ import { useCart } from "@/hooks/use-cart"
 import { formatPrice } from "@/lib/utils"
 import { useLocation } from "wouter"
 import { useQuery } from "@tanstack/react-query"
+import { useLanguage } from "@/hooks/useLanguage"
 import type { Product } from "@shared/schema"
 
 export default function CartSidebar() {
@@ -19,6 +20,7 @@ export default function CartSidebar() {
     getTotalPrice 
   } = useCart()
   const [, setLocation] = useLocation()
+  const { t } = useLanguage()
 
   // Fetch product details for cart items
   const { data: products } = useQuery<Product[]>({
@@ -48,7 +50,7 @@ export default function CartSidebar() {
       <SheetContent className="w-full sm:max-w-lg bg-white">
         <SheetHeader className="border-b border-border pb-6">
           <SheetTitle className="text-xl font-light text-foreground">
-            Shopping Cart ({items.length})
+            {t('shoppingCartTitle')} ({items.length})
           </SheetTitle>
         </SheetHeader>
 
@@ -56,12 +58,12 @@ export default function CartSidebar() {
           {cartItemsWithProducts.length === 0 ? (
             <div className="flex-1 flex items-center justify-center">
               <div className="text-center">
-                <p className="text-muted-foreground font-light mb-4">Your cart is empty</p>
+                <p className="text-muted-foreground font-light mb-4">{t('yourCartEmpty')}</p>
                 <Button 
                   onClick={() => setOpen(false)}
                   className="bg-foreground text-background hover:bg-muted-foreground"
                 >
-                  Continue Shopping
+                  {t('continueShopping')}
                 </Button>
               </div>
             </div>
@@ -134,19 +136,19 @@ export default function CartSidebar() {
               <div className="border-t border-border pt-6 space-y-4">
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm text-muted-foreground">
-                    <span>Товаров ({cartItemsWithProducts.reduce((sum, item) => sum + item.quantity, 0)}):</span>
+                    <span>{t('items')} ({cartItemsWithProducts.reduce((sum, item) => sum + item.quantity, 0)}):</span>
                     <span>{formatPrice(totalPrice)}</span>
                   </div>
                   
                   <div className="flex justify-between text-sm text-muted-foreground">
-                    <span>Доставка:</span>
-                    <span className="text-green-600">Бесплатно</span>
+                    <span>{t('shipping')}:</span>
+                    <span className="text-green-600">{t('freeShipping')}</span>
                   </div>
                   
                   <hr className="border-border" />
                   
                   <div className="flex justify-between items-center">
-                    <span className="text-lg font-light text-foreground">Итого:</span>
+                    <span className="text-lg font-light text-foreground">{t('total')}:</span>
                     <span className="text-lg font-light text-foreground">
                       {formatPrice(totalPrice)}
                     </span>
@@ -161,7 +163,7 @@ export default function CartSidebar() {
                     setLocation("/checkout");
                   }}
                 >
-                  Checkout
+                  {t('checkout')}
                 </Button>
                 
                 <Button 
@@ -169,7 +171,7 @@ export default function CartSidebar() {
                   className="w-full font-light"
                   onClick={clearCart}
                 >
-                  Clear Cart
+                  {t('clearCart')}
                 </Button>
               </div>
             </>

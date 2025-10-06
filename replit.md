@@ -1,6 +1,6 @@
 # Overview
 
-MonTero is a modern e-commerce application for a racing-themed streetwear brand. Built as a full-stack web application, it features a sleek React frontend with a Node.js/Express backend, providing a complete online shopping experience with product browsing, cart management, user authentication, and order processing.
+MonTero is a modern e-commerce application for a racing-themed streetwear brand featuring leopard print hoodies. Built as a full-stack web application, it features a sleek React frontend with a Node.js/Express backend, providing a complete online shopping experience with product browsing, cart management, user authentication, and order processing. The site supports three languages (Korean, English, Russian) with comprehensive translation coverage across all pages and components.
 
 # User Preferences
 
@@ -76,3 +76,12 @@ Preferred communication style: Simple, everyday language.
 - **Icons**: Lucide React for consistent iconography
 
 The application uses a monorepo structure with shared TypeScript schemas between client and server, ensuring type safety across the full stack. The architecture supports both development and production deployments with appropriate security measures and performance optimizations.
+
+## Recent Updates
+
+### Translation System (October 2025)
+- **Complete Translation Coverage**: Added 60+ new translation keys covering cart, checkout, profile, auth modal, and product cards
+- **Components Updated**: cart-sidebar.tsx, product-card.tsx, auth-modal.tsx, checkout.tsx, profile.tsx now fully use t() translation function
+- **Fixed Duplicate Keys**: Resolved all duplicate translation key issues in useLanguage.ts
+- **Product Updates**: All hoodies renamed to "Leopard Untamed hoodie (color)" with tagline "Keeping the hood vibe alive"
+- **Image Optimization**: Hoodie images optimized from ~1MB to ~580-640KB (38% reduction), changed display from object-cover to object-contain for proper visibility

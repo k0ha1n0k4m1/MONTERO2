@@ -39,7 +39,7 @@ export default function Support() {
                   <Mail className="h-5 w-5 text-gray-600" />
                   <div>
                     <p className="font-medium">Email</p>
-                    <p className="text-sm text-gray-600">support@montero.com</p>
+                    <p className="text-sm text-gray-600">montero.team.kr@gmail.com</p>
                   </div>
                 </div>
                 

@@ -295,7 +295,67 @@ const translations = {
     mustLoginOrders: '주문 내역을 보려면 계정에 로그인해야 합니다',
     noOrders: '아직 주문이 없습니다',
     noOrdersDesc: '카탈로그에서 쇼핑을 시작하여 여기에서 주문 내역을 확인하세요',
-    goToShopping: '쇼핑하러 가기'
+    goToShopping: '쇼핑하러 가기',
+    
+    // Cart sidebar
+    shoppingCartTitle: '장바구니',
+    yourCartEmpty: '장바구니가 비어 있습니다',
+    
+    // Product card
+    addToCartButton: '장바구니에 추가',
+    pleaseLogin: '로그인해주세요',
+    needLoginWishlist: '위시리스트에 추가하려면 로그인이 필요합니다',
+    addedToWishlist: '위시리스트에 추가됨',
+    addedToWishlistDesc: '위시리스트에 추가되었습니다',
+    removedFromWishlist: '위시리스트에서 제거됨',
+    removedFromWishlistDesc: '위시리스트에서 제거되었습니다',
+    
+    // Auth modal
+    completeRecaptcha: 'reCAPTCHA 인증을 완료해주세요',
+    recaptchaMissing: 'reCAPTCHA 설정이 누락되었습니다 (개발 모드)',
+    passwordHint: '비밀번호는 최소 6자 이상이어야 합니다',
+    
+    // Checkout page
+    checkoutTitle: '주문하기',
+    shippingInfo: '배송 정보',
+    fullName: '성명',
+    fullNamePlaceholder: '이름을 입력해주세요',
+    emailPlaceholder: 'example@email.com',
+    shippingAddress: '배송 주소',
+    addressPlaceholder: '도시, 구/군, 상세주소',
+    orderSummary: '주문 내역',
+    subtotal: '소계',
+    tax: '부가세',
+    taxIncluded: '포함',
+    totalAmount: '총 결제금액',
+    processing: '주문 처리 중...',
+    placeOrder: '주문 확정',
+    orderPlaced: '주문 완료!',
+    orderPlacedDesc: '주문이 성공적으로 생성되었습니다',
+    orderError: '오류',
+    orderErrorDesc: '주문을 처리할 수 없습니다',
+    loginToOrder: '주문하려면 로그인해주세요',
+    cartEmptyCheckout: '장바구니가 비어있습니다',
+    addressRequired: '주소는 최소 10글자 이상 입력해주세요',
+    
+    // Profile page
+    manageInfo: '개인 정보 및 설정 관리',
+    personalInfo: '개인 정보',
+    notSpecified: '지정되지 않음',
+    accountInfo: '계정 정보',
+    registrationDate: '가입일',
+    userId: '사용자 ID',
+    firstNameRequired: '이름은 필수입니다',
+    lastNameRequired: '성은 필수입니다',
+    emailInvalidProfile: '유효하지 않은 이메일',
+    mustLoginProfile: '로그인이 필요합니다',
+    mustLoginProfileDesc: '계정 설정을 보려면 로그인해야 합니다',
+    
+    // Logout
+    goodbye: '안녕히 가세요!',
+    loggedOutSuccess: '로그아웃되었습니다',
+    logoutError: '로그아웃 실패',
+    logoutErrorDesc: '로그아웃할 수 없습니다'
   },
   
   en: {
@@ -582,7 +642,67 @@ const translations = {
     mustLoginOrders: 'You need to log in to your account to view order history',
     noOrders: 'You have no orders yet',
     noOrdersDesc: 'Start shopping in our catalog to see order history here',
-    goToShopping: 'Go Shopping'
+    goToShopping: 'Go Shopping',
+    
+    // Cart sidebar
+    shoppingCartTitle: 'Shopping Cart',
+    yourCartEmpty: 'Your cart is empty',
+    
+    // Product card
+    addToCartButton: 'ADD TO CART',
+    pleaseLogin: 'Please log in',
+    needLoginWishlist: 'You need to be logged in to add items to your wishlist',
+    addedToWishlist: 'Added to wishlist',
+    addedToWishlistDesc: 'has been added to your wishlist',
+    removedFromWishlist: 'Removed from wishlist',
+    removedFromWishlistDesc: 'has been removed from your wishlist',
+    
+    // Auth modal
+    completeRecaptcha: 'Please complete the reCAPTCHA verification',
+    recaptchaMissing: 'reCAPTCHA configuration missing (development mode)',
+    passwordHint: 'Password must be at least 6 characters',
+    
+    // Checkout page
+    checkoutTitle: 'Checkout',
+    shippingInfo: 'Shipping Information',
+    fullName: 'Full Name',
+    fullNamePlaceholder: 'Enter your name',
+    emailPlaceholder: 'example@email.com',
+    shippingAddress: 'Shipping Address',
+    addressPlaceholder: 'City, district, detailed address',
+    orderSummary: 'Order Summary',
+    subtotal: 'Subtotal',
+    tax: 'Tax',
+    taxIncluded: 'Included',
+    totalAmount: 'Total Amount',
+    processing: 'Processing order...',
+    placeOrder: 'Place Order',
+    orderPlaced: 'Order Placed!',
+    orderPlacedDesc: 'successfully created',
+    orderError: 'Error',
+    orderErrorDesc: 'Failed to process order',
+    loginToOrder: 'Please log in to place an order',
+    cartEmptyCheckout: 'Your cart is empty',
+    addressRequired: 'Address must be at least 10 characters',
+    
+    // Profile page
+    manageInfo: 'Manage your personal information and settings',
+    personalInfo: 'Personal Information',
+    notSpecified: 'Not specified',
+    accountInfo: 'Account Information',
+    registrationDate: 'Registration Date',
+    userId: 'User ID',
+    firstNameRequired: 'First name is required',
+    lastNameRequired: 'Last name is required',
+    emailInvalidProfile: 'Invalid email',
+    mustLoginProfile: 'Login Required',
+    mustLoginProfileDesc: 'You need to log in to view account settings',
+    
+    // Logout
+    goodbye: 'Goodbye!',
+    loggedOutSuccess: 'You have been successfully logged out',
+    logoutError: 'Logout Failed',
+    logoutErrorDesc: 'Failed to log out'
   },
   
   ru: {
@@ -869,7 +989,67 @@ const translations = {
     mustLoginOrders: 'Для просмотра истории заказов необходимо войти в свой аккаунт',
     noOrders: 'У вас пока нет заказов',
     noOrdersDesc: 'Начните покупки в нашем каталоге, чтобы увидеть историю заказов здесь',
-    goToShopping: 'Перейти к покупкам'
+    goToShopping: 'Перейти к покупкам',
+    
+    // Cart sidebar
+    shoppingCartTitle: 'Корзина',
+    yourCartEmpty: 'Ваша корзина пуста',
+    
+    // Product card
+    addToCartButton: 'ДОБАВИТЬ В КОРЗИНУ',
+    pleaseLogin: 'Войдите в систему',
+    needLoginWishlist: 'Вам нужно войти в систему, чтобы добавлять товары в избранное',
+    addedToWishlist: 'Добавлено в избранное',
+    addedToWishlistDesc: 'добавлен в избранное',
+    removedFromWishlist: 'Удалено из избранного',
+    removedFromWishlistDesc: 'удален из избранного',
+    
+    // Auth modal
+    completeRecaptcha: 'Пожалуйста, пройдите проверку reCAPTCHA',
+    recaptchaMissing: 'Отсутствует конфигурация reCAPTCHA (режим разработки)',
+    passwordHint: 'Пароль должен содержать минимум 6 символов',
+    
+    // Checkout page
+    checkoutTitle: 'Оформление заказа',
+    shippingInfo: 'Информация о доставке',
+    fullName: 'Полное имя',
+    fullNamePlaceholder: 'Введите ваше имя',
+    emailPlaceholder: 'example@email.com',
+    shippingAddress: 'Адрес доставки',
+    addressPlaceholder: 'Город, район, детальный адрес',
+    orderSummary: 'Детали заказа',
+    subtotal: 'Подытог',
+    tax: 'Налог',
+    taxIncluded: 'Включен',
+    totalAmount: 'Общая сумма',
+    processing: 'Обработка заказа...',
+    placeOrder: 'Подтвердить заказ',
+    orderPlaced: 'Заказ оформлен!',
+    orderPlacedDesc: 'успешно создан',
+    orderError: 'Ошибка',
+    orderErrorDesc: 'Не удалось обработать заказ',
+    loginToOrder: 'Пожалуйста, войдите, чтобы оформить заказ',
+    cartEmptyCheckout: 'Ваша корзина пуста',
+    addressRequired: 'Адрес должен содержать минимум 10 символов',
+    
+    // Profile page
+    manageInfo: 'Управляйте своей личной информацией и настройками',
+    personalInfo: 'Личная информация',
+    notSpecified: 'Не указано',
+    accountInfo: 'Информация об аккаунте',
+    registrationDate: 'Дата регистрации',
+    userId: 'ID пользователя',
+    firstNameRequired: 'Имя обязательно',
+    lastNameRequired: 'Фамилия обязательна',
+    emailInvalidProfile: 'Некорректный email',
+    mustLoginProfile: 'Необходимо войти в систему',
+    mustLoginProfileDesc: 'Для просмотра настроек аккаунта необходимо войти в свой аккаунт',
+    
+    // Logout
+    goodbye: 'До свидания!',
+    loggedOutSuccess: 'Вы успешно вышли из системы',
+    logoutError: 'Ошибка выхода',
+    logoutErrorDesc: 'Не удалось выйти из системы'
   }
 }
 

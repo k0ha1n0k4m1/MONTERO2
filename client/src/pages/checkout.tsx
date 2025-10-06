@@ -14,15 +14,8 @@ import { useToast } from "@/hooks/use-toast";
 import { formatPrice } from "@/lib/utils";
 import { useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
+import { useLanguage } from "@/hooks/useLanguage";
 import type { Product } from "@shared/schema";
-
-const checkoutSchema = z.object({
-  customerName: z.string().min(2, "이름은 최소 2글자 이상 입력해주세요"),
-  customerEmail: z.string().email("올바른 이메일을 입력해주세요"),
-  shippingAddress: z.string().min(10, "주소는 최소 10글자 이상 입력해주세요"),
-});
-
-type CheckoutData = z.infer<typeof checkoutSchema>;
 
 export default function Checkout() {
   const [isLoading, setIsLoading] = useState(false);
@@ -30,6 +23,15 @@ export default function Checkout() {
   const { user, isAuthenticated } = useSimpleAuth();
   const { toast } = useToast();
   const [, setLocation] = useLocation();
+  const { t } = useLanguage();
+
+  const checkoutSchema = z.object({
+    customerName: z.string().min(2, t("nameRequired")),
+    customerEmail: z.string().email(t("invalidEmail")),
+    shippingAddress: z.string().min(10, t("addressRequired")),
+  });
+
+  type CheckoutData = z.infer<typeof checkoutSchema>;
 
   // Fetch product details for cart items
   const { data: products } = useQuery<Product[]>({
@@ -71,13 +73,13 @@ export default function Checkout() {
           <Card>
             <CardContent className="pt-6">
               <p className="text-center text-muted-foreground">
-                주문하려면 로그인해주세요
+                {t("loginToOrder")}
               </p>
               <Button 
                 onClick={() => setLocation("/")}
                 className="w-full mt-4"
               >
-                홈으로 돌아가기
+                {t("toHome")}
               </Button>
             </CardContent>
           </Card>
@@ -93,13 +95,13 @@ export default function Checkout() {
           <Card>
             <CardContent className="pt-6">
               <p className="text-center text-muted-foreground">
-                장바구니가 비어있습니다
+                {t("cartEmptyCheckout")}
               </p>
               <Button 
                 onClick={() => setLocation("/")}
                 className="w-full mt-4"
               >
-                쇼핑하러 가기
+                {t("goToShopping")}
               </Button>
             </CardContent>
           </Card>
@@ -144,22 +146,22 @@ export default function Checkout() {
   return (
     <div className="min-h-screen pt-20 bg-background">
       <div className="max-w-4xl mx-auto px-6 py-12">
-        <h1 className="text-3xl font-light mb-8">주문하기</h1>
+        <h1 className="text-3xl font-light mb-8">{t("checkoutTitle")}</h1>
         
         <div className="grid md:grid-cols-2 gap-8">
           {/* Форма заказа */}
           <Card>
             <CardHeader>
-              <CardTitle className="font-light">배송 정보</CardTitle>
+              <CardTitle className="font-light">{t("shippingInfo")}</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 <div>
-                  <Label htmlFor="customerName">성명</Label>
+                  <Label htmlFor="customerName">{t("fullName")}</Label>
                   <Input
                     id="customerName"
                     {...form.register("customerName")}
-                    placeholder="이름을 입력해주세요"
+                    placeholder={t("fullNamePlaceholder")}
                   />
                   {form.formState.errors.customerName && (
                     <p className="text-sm text-red-500 mt-1">
@@ -174,7 +176,7 @@ export default function Checkout() {
                     id="customerEmail"
                     type="email"
                     {...form.register("customerEmail")}
-                    placeholder="example@email.com"
+                    placeholder={t("emailPlaceholder")}
                   />
                   {form.formState.errors.customerEmail && (
                     <p className="text-sm text-red-500 mt-1">
@@ -184,11 +186,11 @@ export default function Checkout() {
                 </div>
 
                 <div>
-                  <Label htmlFor="shippingAddress">배송 주소</Label>
+                  <Label htmlFor="shippingAddress">{t("shippingAddress")}</Label>
                   <Textarea
                     id="shippingAddress"
                     {...form.register("shippingAddress")}
-                    placeholder="도시, 구/군, 상세주소 (예: 서울시 강남구 테헤란로 123번길 45, 101호)"
+                    placeholder={t("addressPlaceholder")}
                     rows={3}
                   />
                   {form.formState.errors.shippingAddress && (
@@ -203,7 +205,7 @@ export default function Checkout() {
                   className="w-full"
                   disabled={isLoading}
                 >
-                  {isLoading ? "주문 처리 중..." : "주문 확정"}
+                  {isLoading ? t("processing") : t("placeOrder")}
                 </Button>
               </form>
             </CardContent>
@@ -212,7 +214,7 @@ export default function Checkout() {
           {/* Сумма заказа */}
           <Card>
             <CardHeader>
-              <CardTitle className="font-light">주문 내역</CardTitle>
+              <CardTitle className="font-light">{t("orderSummary")}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -234,24 +236,24 @@ export default function Checkout() {
                 
                 <div className="space-y-2 pt-4">
                   <div className="flex justify-between text-sm">
-                    <span>소계 ({cartItemsWithProducts.reduce((sum, item) => sum + item.quantity, 0)}개 상품):</span>
+                    <span>{t("subtotal")} ({cartItemsWithProducts.reduce((sum, item) => sum + item.quantity, 0)}):</span>
                     <span>{formatPrice(totalPrice)}</span>
                   </div>
                   
                   <div className="flex justify-between text-sm">
-                    <span>배송비:</span>
-                    <span className="text-green-600">무료</span>
+                    <span>{t("shipping")}:</span>
+                    <span className="text-green-600">{t("freeShipping")}</span>
                   </div>
                   
                   <div className="flex justify-between text-sm">
-                    <span>부가세:</span>
-                    <span>포함</span>
+                    <span>{t("tax")}:</span>
+                    <span>{t("taxIncluded")}</span>
                   </div>
                   
                   <hr className="border-border" />
                   
                   <div className="flex justify-between items-center text-lg font-medium">
-                    <span>총 결제금액:</span>
+                    <span>{t("totalAmount")}:</span>
                     <span className="text-xl">{formatPrice(totalPrice)}</span>
                   </div>
                 </div>

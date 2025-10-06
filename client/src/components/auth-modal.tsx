@@ -195,7 +195,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   {...registerForm.register("firstName")}
                   className="w-full"
                   data-testid="input-firstName"
-                  placeholder="Ваше имя"
+                  placeholder={t("firstNamePlaceholder")}
                 />
                 {registerForm.formState.errors.firstName && (
                   <p className="text-sm text-red-500">
@@ -211,7 +211,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   {...registerForm.register("lastName")}
                   className="w-full"
                   data-testid="input-lastName"
-                  placeholder="Ваша фамилия"
+                  placeholder={t("lastNamePlaceholder")}
                 />
                 {registerForm.formState.errors.lastName && (
                   <p className="text-sm text-red-500">
@@ -247,7 +247,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 className="w-full"
                 data-testid="input-password"
               />
-              <p className="text-xs text-gray-500">Пароль должен содержать минимум 6 символов</p>
+              <p className="text-xs text-gray-500">{t("passwordHint")}</p>
               {registerForm.formState.errors.password && (
                 <p className="text-sm text-red-500">
                   {registerForm.formState.errors.password.message}

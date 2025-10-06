@@ -85,3 +85,8 @@ The application uses a monorepo structure with shared TypeScript schemas between
 - **Fixed Duplicate Keys**: Resolved all duplicate translation key issues in useLanguage.ts
 - **Product Updates**: All hoodies renamed to "Leopard Untamed hoodie (color)" with tagline "Keeping the hood vibe alive"
 - **Image Optimization**: Hoodie images optimized from ~1MB to ~580-640KB (38% reduction), changed display from object-cover to object-contain for proper visibility
+
+### Authentication UX Fix (October 2025)
+- **Fixed Account Menu Modal Routing**: Account menu now correctly routes "Login" and "Registration" buttons to their respective forms
+- **Implementation**: Added `authModalMode` state and `initialMode` prop to AuthModal component to control which form displays
+- **User Impact**: Users clicking "Регистрация" now see registration form (not login form)

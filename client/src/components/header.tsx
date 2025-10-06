@@ -75,6 +75,7 @@ export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [authModalMode, setAuthModalMode] = useState<'login' | 'register'>('login');
 
   // Extract category from URL path
   const currentCategory = location.startsWith("/category/")
@@ -242,6 +243,7 @@ export default function Header() {
                           variant="outline"
                           className="w-full justify-start font-light"
                           onClick={() => {
+                            setAuthModalMode('login');
                             setAuthModalOpen(true);
                             setUserMenuOpen(false);
                           }}
@@ -252,6 +254,7 @@ export default function Header() {
                           variant="outline"
                           className="w-full justify-start font-light"
                           onClick={() => {
+                            setAuthModalMode('register');
                             setAuthModalOpen(true);
                             setUserMenuOpen(false);
                           }}
@@ -359,7 +362,11 @@ export default function Header() {
       </div>
 
       {/* Auth Modal */}
-      <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
+      <AuthModal 
+        isOpen={authModalOpen} 
+        onClose={() => setAuthModalOpen(false)} 
+        initialMode={authModalMode}
+      />
     </header>
   );
 }

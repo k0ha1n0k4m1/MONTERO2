@@ -175,53 +175,6 @@ export default function Returns() {
               </CardContent>
             </Card>
           </div>
-
-          {/* FAQ */}
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle className="text-xl font-light">{t('faqTitle')}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div>
-                <h3 className="font-medium mb-2">{t('canReturnWithoutPackaging')}</h3>
-                <p className="text-gray-600 text-sm">
-                  {t('canReturnWithoutPackagingAnswer')}
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-medium mb-2">{t('howMuchRefund')}</h3>
-                <p className="text-gray-600 text-sm">
-                  {t('howMuchRefundAnswer')}
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-medium mb-2">{t('howToGetRefund')}</h3>
-                <p className="text-gray-600 text-sm">
-                  {t('howToGetRefundAnswer')}
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Call to Action */}
-          <div className="text-center">
-            <div className="bg-gray-50 rounded-lg p-8">
-              <h2 className="text-xl font-light mb-4">{t('needReturnHelp')}</h2>
-              <p className="text-gray-600 mb-6">
-                {t('needReturnHelpAnswer')}
-              </p>
-              <div className="flex gap-4 justify-center">
-                <Button asChild className="bg-black text-white hover:bg-gray-800">
-                  <Link href="/contact">{t('contactSupport')}</Link>
-                </Button>
-                <Button variant="outline" asChild>
-                  <Link href="/orders">{t('myOrders')}</Link>
-                </Button>
-              </div>
-            </div>
-          </div>
         </div>
       </main>
       <Footer />

@@ -251,33 +251,14 @@ const translations = {
     refundTime: '환불: 7-14 영업일',
     exchangeTime: '교환: 3-5 영업일',
     
-    // FAQ section
-    faqTitle: '자주 묻는 질문',
-    canReturnWithoutPackaging: '포장 없이 반품할 수 있나요?',
-    canReturnWithoutPackagingAnswer: '네, 하지만 제품이 라벨이 부착된 완벽한 상태여야 합니다. 최종 구매 결정까지 포장을 보관하시길 권합니다.',
-    howMuchRefund: '반품 비용은 얼마인가요?',
-    howMuchRefundAnswer: '제품 불량이나 주문 오류가 아닌 경우 반품 배송비는 고객 부담입니다. 10만원 이상 주문 시 사이즈 교환은 무료입니다.',
-    howToGetRefund: '환불은 어떻게 받나요?',
-    howToGetRefundAnswer: '환불은 원래 결제 방법과 동일한 방식으로 처리됩니다. 은행카드의 경우 환불 기간은 7-14 영업일입니다.',
-    needReturnHelp: '반품 도움이 필요하신가요?',
-    needReturnHelpAnswer: '저희 고객지원팀이 반품 처리를 도와드리거나 궁금한 점에 답변해드립니다.',
-    contactSupport: '고객지원 연락',
-    myOrders: '내 주문',
-    
     // Support page
     supportTitle: '도움말 및 지원',
     supportSubtitle: '궁금하신 점이 있으신가요? 언제든지 도와드리겠습니다',
     contactMethods: '연락 방법',
     onlineChat: '온라인 채팅',
     availableOnSite: '사이트에서 이용 가능',
-    howTrackOrder: '주문을 추적하려면 어떻게 해야 하나요?',
-    howTrackOrderAnswer: '주문이 발송되면 이메일로 추적 번호를 받으실 수 있습니다. 개인 계정의 "주문 내역" 섹션에서도 주문을 추적할 수 있습니다.',
-    whatPaymentMethods: '어떤 결제 방법을 사용할 수 있나요?',
-    whatPaymentMethodsAnswer: '은행 카드, SBP 결제, Apple Pay, Google Pay 및 수령 시 현금 결제를 받습니다.',
-    canReturnProduct: '제품을 반품할 수 있나요?',
-    canReturnProductAnswer: '네, 수령일로부터 14일 이내에 제품을 반품할 수 있습니다. 제품이 사용되지 않았고 원래 포장이 보존되어 있어야 합니다.',
-    howMuchShipping: '배송비는 얼마인가요?',
-    howMuchShippingAnswer: '모스크바 내 배송 - 3000₽ 이상 주문 시 무료. 러시아 전역 - 300₽부터, 5000₽ 이상 주문 시 무료.',
+    contactSupport: '고객지원 연락',
+    myOrders: '내 주문',
     backToShopping: '쇼핑 계속하기',
     
     // Wishlist page
@@ -600,33 +581,14 @@ const translations = {
     refundTime: 'Refund: 7-14 business days',
     exchangeTime: 'Exchange: 3-5 business days',
     
-    // FAQ section
-    faqTitle: 'Frequently Asked Questions',
-    canReturnWithoutPackaging: 'Can I return an item without packaging?',
-    canReturnWithoutPackagingAnswer: 'Yes, but the item must be in perfect condition with attached tags. We recommend keeping the packaging until you make a final decision about the purchase.',
-    howMuchRefund: 'How much does a return cost?',
-    howMuchRefundAnswer: 'Return shipping is at the customer\'s expense, except in cases of defects or order errors. Size exchanges are free for orders over $100.',
-    howToGetRefund: 'How do I get my refund?',
-    howToGetRefundAnswer: 'Refunds are processed using the same payment method used for the original purchase. For bank cards, the refund period is 7-14 business days.',
-    needReturnHelp: 'Need help with returns?',
-    needReturnHelpAnswer: 'Our support team is ready to help you process your return or answer any questions.',
-    contactSupport: 'Contact Support',
-    myOrders: 'My Orders',
-    
     // Support page
     supportTitle: 'Help & Support',
     supportSubtitle: 'We are always ready to help you with any questions',
     contactMethods: 'Contact Methods',
     onlineChat: 'Online Chat',
     availableOnSite: 'Available on site',
-    howTrackOrder: 'How to track my order?',
-    howTrackOrderAnswer: 'After your order is shipped, you will receive a tracking number via email. You can also track your order in the "Order History" section of your account.',
-    whatPaymentMethods: 'What payment methods are available?',
-    whatPaymentMethodsAnswer: 'We accept bank cards, SBP payment, Apple Pay, Google Pay, and cash on delivery.',
-    canReturnProduct: 'Can I return the product?',
-    canReturnProductAnswer: 'Yes, you can return the product within 14 days of receipt, provided it has not been used and the original packaging is preserved.',
-    howMuchShipping: 'How much is shipping?',
-    howMuchShippingAnswer: 'Shipping in Moscow - free for orders over 3000₽. Throughout Russia - from 300₽, free for orders over 5000₽.',
+    contactSupport: 'Contact Support',
+    myOrders: 'My Orders',
     backToShopping: 'Back to Shopping',
     
     // Wishlist page
@@ -949,33 +911,14 @@ const translations = {
     refundTime: 'Возврат средств: 7-14 рабочих дней',
     exchangeTime: 'Обмен: 3-5 рабочих дней',
     
-    // FAQ section
-    faqTitle: 'Часто задаваемые вопросы',
-    canReturnWithoutPackaging: 'Можно ли вернуть товар без упаковки?',
-    canReturnWithoutPackagingAnswer: 'Да, но товар должен быть в идеальном состоянии с прикрепленными ярлыками. Мы рекомендуем сохранять упаковку до принятия окончательного решения о покупке.',
-    howMuchRefund: 'Сколько стоит возврат?',
-    howMuchRefundAnswer: 'Возврат товара осуществляется за счет покупателя, кроме случаев брака или ошибки в заказе. Обмен на другой размер - бесплатно при заказе от 3000₽.',
-    howToGetRefund: 'Как получить возврат средств?',
-    howToGetRefundAnswer: 'Средства возвращаются тем же способом, которым была произведена оплата. Для банковских карт срок возврата составляет 7-14 рабочих дней.',
-    needReturnHelp: 'Нужна помощь с возвратом?',
-    needReturnHelpAnswer: 'Наша служба поддержки готова помочь вам с оформлением возврата или ответить на любые вопросы.',
-    contactSupport: 'Связаться с поддержкой',
-    myOrders: 'Мои заказы',
-    
     // Support page
     supportTitle: 'Помощь и поддержка',
     supportSubtitle: 'Мы всегда готовы помочь вам с любыми вопросами',
     contactMethods: 'Способы связи',
     onlineChat: 'Онлайн-чат',
     availableOnSite: 'Доступен на сайте',
-    howTrackOrder: 'Как отследить мой заказ?',
-    howTrackOrderAnswer: 'После отправки заказа вы получите трек-номер на email. Также можете отследить заказ в разделе "История заказов" в личном кабинете.',
-    whatPaymentMethods: 'Какие способы оплаты доступны?',
-    whatPaymentMethodsAnswer: 'Мы принимаем банковские карты, оплату через СБП, Apple Pay, Google Pay, а также наличными при получении.',
-    canReturnProduct: 'Можно ли вернуть товар?',
-    canReturnProductAnswer: 'Да, вы можете вернуть товар в течение 14 дней с момента получения, если он не был в употреблении и сохранена оригинальная упаковка.',
-    howMuchShipping: 'Сколько стоит доставка?',
-    howMuchShippingAnswer: 'Доставка по Москве - бесплатно при заказе от 3000₽. По России - от 300₽, бесплатно при заказе от 5000₽.',
+    contactSupport: 'Связаться с поддержкой',
+    myOrders: 'Мои заказы',
     backToShopping: 'Вернуться к покупкам',
     
     // Wishlist page

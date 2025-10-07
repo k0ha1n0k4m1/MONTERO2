@@ -84,44 +84,6 @@ export default function Support() {
                 </div>
               </CardContent>
             </Card>
-
-            {/* FAQ */}
-            <Card className="md:col-span-2">
-              <CardHeader>
-                <CardTitle className="text-xl font-light">
-                  {t('faqTitle')}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div>
-                  <h3 className="font-medium mb-2">{t('howTrackOrder')}</h3>
-                  <p className="text-gray-600 text-sm">
-                    {t('howTrackOrderAnswer')}
-                  </p>
-                </div>
-                
-                <div>
-                  <h3 className="font-medium mb-2">{t('whatPaymentMethods')}</h3>
-                  <p className="text-gray-600 text-sm">
-                    {t('whatPaymentMethodsAnswer')}
-                  </p>
-                </div>
-                
-                <div>
-                  <h3 className="font-medium mb-2">{t('canReturnProduct')}</h3>
-                  <p className="text-gray-600 text-sm">
-                    {t('canReturnProductAnswer')}
-                  </p>
-                </div>
-                
-                <div>
-                  <h3 className="font-medium mb-2">{t('howMuchShipping')}</h3>
-                  <p className="text-gray-600 text-sm">
-                    {t('howMuchShippingAnswer')}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
           </div>
 
           <div className="mt-8 text-center">

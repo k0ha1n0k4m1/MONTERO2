@@ -35,6 +35,7 @@ const limiter = rateLimit({
   message: { error: "Too many requests, please try again later" },
   standardHeaders: true,
   legacyHeaders: false,
+  validate: { trustProxy: false }, // Disable trust proxy validation for rate limiter
 });
 
 // API rate limiting
@@ -42,6 +43,7 @@ const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 500, // increased for API usage
   message: { error: "Too many API requests, please try again later" },
+  validate: { trustProxy: false }, // Disable trust proxy validation for rate limiter
 });
 
 // Auth endpoints rate limiting (still protective but usable)
@@ -49,6 +51,7 @@ const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 20, // increased for legitimate login attempts
   message: { error: "Too many authentication attempts, please try again later" },
+  validate: { trustProxy: false }, // Disable trust proxy validation for rate limiter
 });
 
 // Apply rate limiting only in production or when specifically enabled

@@ -10,6 +10,7 @@ export const products = pgTable("products", {
   category: text("category").notNull(),
   imageUrl: text("image_url").notNull(),
   featured: integer("featured").default(0),
+  available: integer("available").default(1),
 });
 
 export const cartItems = pgTable("cart_items", {

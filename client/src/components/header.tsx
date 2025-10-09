@@ -29,7 +29,6 @@ export default function Header() {
   const { user, isAuthenticated, logout, isLogoutPending } = useAuth();
   const { t } = useLanguage();
 
-  // Determine if we're on a page with white background
   const isWhitePage =
     location === "/orders" ||
     location === "/wishlist" ||
@@ -40,7 +39,6 @@ export default function Header() {
     location === "/returns" ||
     location.startsWith("/product/");
 
-  // Dynamic classes based on page background
   const headerClasses = isWhitePage ? "text-black border-gray-200" : "text-white border-white/20";
 
   const logoClasses = isWhitePage ? "text-black" : "text-white";
@@ -58,7 +56,6 @@ export default function Header() {
   const handleNavClick = (e: React.MouseEvent, item: any) => {
     e.preventDefault();
 
-    // Если мы не на главной странице и нажали "all", вернуться на главную и прокрутить к продуктам
     if (item.name === "all") {
       if (window.location.pathname !== "/") {
         window.location.href = "/";
@@ -66,7 +63,7 @@ export default function Header() {
         scrollToSection("products");
       }
     } else {
-      // Для категорий перейти на страницу категории
+
       window.location.href = item.href;
     }
   };
@@ -77,7 +74,6 @@ export default function Header() {
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authModalMode, setAuthModalMode] = useState<'login' | 'register'>('login');
 
-  // Extract category from URL path
   const currentCategory = location.startsWith("/category/")
     ? location.split("/category/")[1]
     : "all";
@@ -104,14 +100,14 @@ export default function Header() {
     <header className={cn("bg-transparent fixed w-full top-0 z-50", headerClasses)}>
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
+          {}
           <div className="flex-shrink-0">
             <Link href="/">
               <img src={logoImage} alt="MONTERO" className="h-12 md:h-16 w-auto" />
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
+          {}
           <nav className="hidden md:flex space-x-12">
             {navigation.map(item => (
               <div key={item.name} onClick={e => handleNavClick(e, item)}>
@@ -140,7 +136,7 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Actions */}
+          {}
           <div className="flex items-center space-x-4">
             <LanguageSelector isWhitePage={isWhitePage} />
 
@@ -319,7 +315,7 @@ export default function Header() {
               )}
             </Button>
 
-            {/* Mobile menu button */}
+            {}
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className={cn("md:hidden", iconClasses)}>
@@ -361,10 +357,10 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Auth Modal */}
-      <AuthModal 
-        isOpen={authModalOpen} 
-        onClose={() => setAuthModalOpen(false)} 
+      {}
+      <AuthModal
+        isOpen={authModalOpen}
+        onClose={() => setAuthModalOpen(false)}
         initialMode={authModalMode}
       />
     </header>

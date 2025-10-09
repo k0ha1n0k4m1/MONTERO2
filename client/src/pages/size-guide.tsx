@@ -165,7 +165,7 @@ export default function SizeGuide() {
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="bg-gray-50 rounded-lg p-4 mt-6">
                   <p className="text-sm text-gray-700">
                     <strong>{t('sizeHelp')}</strong> {t('sizeHelpDesc')}

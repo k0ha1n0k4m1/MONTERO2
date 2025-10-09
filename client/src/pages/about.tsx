@@ -5,7 +5,7 @@ export default function About() {
 
   return (
     <div className="min-h-screen pt-20">
-      {/* Hero Section */}
+      {}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center bg-black/20 backdrop-blur rounded-[2rem] p-12 lg:p-16 border border-white/10">
@@ -24,29 +24,29 @@ export default function About() {
         </div>
       </section>
 
-      {/* Story Section */}
+      {}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="bg-black/20 backdrop-blur rounded-[2rem] p-8 border border-white/10">
               <h2 className="text-3xl font-light text-white mb-6">The Racing Heritage</h2>
               <p className="text-white/70 font-light leading-relaxed mb-6">
-                Every piece in our collection tells a story of adrenaline, precision, and the relentless pursuit of perfection. 
+                Every piece in our collection tells a story of adrenaline, precision, and the relentless pursuit of perfection.
                 Inspired by the legendary racing circuits and the fearless drivers who conquer them.
               </p>
               <p className="text-white/70 font-light leading-relaxed">
-                From the checkered flag to the podium celebration, MonTero captures the essence of victory 
+                From the checkered flag to the podium celebration, MonTero captures the essence of victory
                 and translates it into wearable art that speaks to the champion within you.
               </p>
             </div>
             <div className="bg-black/20 backdrop-blur rounded-[2rem] p-8 border border-white/10">
               <h2 className="text-3xl font-light text-white mb-6">Crafted for Champions</h2>
               <p className="text-white/70 font-light leading-relaxed mb-6">
-                Our rare racing collection features meticulously crafted pieces that embody the spirit of motorsport. 
+                Our rare racing collection features meticulously crafted pieces that embody the spirit of motorsport.
                 Each garment is designed with the same attention to detail found in championship-winning race cars.
               </p>
               <p className="text-white/70 font-light leading-relaxed">
-                Premium materials, cutting-edge design, and limited edition releases ensure that wearing MonTero 
+                Premium materials, cutting-edge design, and limited edition releases ensure that wearing MonTero
                 is not just a fashion statement—it's a declaration of your racing soul.
               </p>
             </div>

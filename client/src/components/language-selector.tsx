@@ -26,8 +26,8 @@ export default function LanguageSelector({ isWhitePage = false }: LanguageSelect
     setIsOpen(false)
   }
 
-  const iconClasses = isWhitePage 
-    ? "text-black hover:text-gray-700" 
+  const iconClasses = isWhitePage
+    ? "text-black hover:text-gray-700"
     : "text-white hover:text-white/80"
 
   return (
@@ -43,7 +43,7 @@ export default function LanguageSelector({ isWhitePage = false }: LanguageSelect
             {t('language')}
           </SheetTitle>
         </SheetHeader>
-        
+
         <div className="py-6">
           <div className="space-y-3">
             {languages.map((lang) => (
@@ -52,8 +52,8 @@ export default function LanguageSelector({ isWhitePage = false }: LanguageSelect
                 variant="ghost"
                 className={cn(
                   "w-full justify-start text-left font-light h-auto py-4 px-4",
-                  language === lang.code 
-                    ? "bg-muted text-foreground" 
+                  language === lang.code
+                    ? "bg-muted text-foreground"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                 )}
                 onClick={() => handleLanguageChange(lang.code)}
@@ -66,7 +66,7 @@ export default function LanguageSelector({ isWhitePage = false }: LanguageSelect
               </Button>
             ))}
           </div>
-          
+
           <div className="mt-8 pt-6 border-t border-border">
             <p className="text-sm text-muted-foreground text-center">
               Current: <span className="font-medium">{currentLanguage?.flag} {currentLanguage?.name}</span>

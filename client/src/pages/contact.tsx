@@ -55,7 +55,7 @@ export default function Contact() {
       }
 
       const result = await response.json();
-      
+
       if (!result.emailSent) {
         toast({
           title: t('messageSent'),
@@ -96,7 +96,7 @@ export default function Contact() {
           </div>
 
           <div className="grid gap-8 lg:grid-cols-2">
-            {/* Contact Form */}
+            {}
             <Card>
               <CardHeader>
                 <CardTitle className="text-2xl font-light">
@@ -167,7 +167,7 @@ export default function Contact() {
               </CardContent>
             </Card>
 
-            {/* Contact Information */}
+            {}
             <div className="space-y-8">
               <Card>
                 <CardHeader>

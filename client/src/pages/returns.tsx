@@ -62,7 +62,7 @@ export default function Returns() {
             </p>
           </div>
 
-          {/* Return Policy Overview */}
+          {}
           <div className="grid gap-8 lg:grid-cols-3 mb-12">
             <Card className="text-center">
               <CardContent className="pt-6">
@@ -95,7 +95,7 @@ export default function Returns() {
             </Card>
           </div>
 
-          {/* Return Process */}
+          {}
           <div className="mb-12">
             <Card>
               <CardHeader>
@@ -125,7 +125,7 @@ export default function Returns() {
             </Card>
           </div>
 
-          {/* What Can Be Returned */}
+          {}
           <div className="grid gap-8 lg:grid-cols-2 mb-12">
             <Card>
               <CardHeader>

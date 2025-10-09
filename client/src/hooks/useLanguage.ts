@@ -9,10 +9,9 @@ interface LanguageStore {
   t: (key: string) => string
 }
 
-// Переводы
 const translations = {
   ko: {
-    // Navigation
+
     all: '전체',
     about: '소개',
     outerwear: '아우터',
@@ -20,29 +19,24 @@ const translations = {
     bottom: '하의',
     best: '베스트',
     accessories: '액세서리',
-    
-    // Header actions
+
     search: '검색',
     account: '계정',
     cart: '장바구니',
-    
-    // Hero section
+
     heroTitle: '(MonTero)',
     exploreCollection: '컬렉션 둘러보기',
-    
-    // Product sections
+
     newArrivals: '신상품',
     freshPieces: '이번 시즌 새로운 아이템',
     featuredSelection: '추천 상품',
     handpicked: '엄선된 스타일',
     discoverOur: '우리의',
     essentials: '필수 아이템을 발견하세요',
-    
-    // Product info
+
     price: '가격',
     addToCart: '장바구니 담기',
-    
-    // Cart
+
     shoppingCart: '장바구니',
     cartEmpty: '장바구니가 비어있습니다',
     continueShopping: '계속 쇼핑하기',
@@ -52,8 +46,7 @@ const translations = {
     total: '총합',
     checkout: '결제하기',
     clearCart: '장바구니 비우기',
-    
-    // Auth
+
     login: '로그인',
     register: '회원가입',
     logout: '로그아웃',
@@ -68,8 +61,7 @@ const translations = {
     loginSuccess: '성공적으로 로그인했습니다',
     welcomeToMontero: 'MONTERO에 오신 것을 환영합니다!',
     accountCreated: '계정이 성공적으로 생성되었습니다',
-    
-    // Auth modal specific
+
     loginTitle: '로그인',
     registerTitle: '회원가입',
     loginSubtitle: '계정에 로그인하세요',
@@ -88,35 +80,29 @@ const translations = {
     loginErrorMessage: '로그인 정보를 확인해주세요',
     registerError: '회원가입 오류',
     registerErrorMessage: '다시 시도해주세요',
-    
-    // User menu
+
     userWelcome: '환영합니다',
     favorites: '찜 목록',
-    
-    // Footer
+
     newsletter: '뉴스레터',
     stayUpdated: '최신 컬렉션과 독점 혜택을 받아보세요',
     subscribeNewsletter: '뉴스레터 구독',
     enterEmail: '이메일을 입력하세요',
     subscribe: '구독하기',
-    
-    // Menu items
+
     orderHistory: '주문 내역',
     wishlist: '위시리스트',
     accountSettings: '계정 설정',
     helpSupport: '도움말 및 지원',
-    
-    // Language selector
+
     language: '언어',
     korean: '한국어',
     english: 'English',
     russian: 'Русский',
-    
-    // Newsletter
+
     subscribing: '구독 중...',
     subscribed: '구독해 주셔서 감사합니다!',
-    
-    // Footer
+
     brandDescription: '현대인을 위한 울트라 미니멀리즘 패션',
     allProducts: '모든 제품',
     sale: '세일',
@@ -126,11 +112,9 @@ const translations = {
     sizeGuide: '사이즈 가이드',
     returns: '반품/교환',
     copyright: '© 2024 MONTERO. 모든 권리 보유.',
-    
-    // Collection text
+
     collection: '컬렉션',
-    
-    // Product page
+
     backToProducts: '제품으로 돌아가기',
     productNotFound: '제품을 찾을 수 없습니다',
     productNotFoundDesc: '요청하신 제품을 찾을 수 없습니다.',
@@ -142,8 +126,7 @@ const translations = {
     freeShipping: '무료 배송',
     returns30Days: '30일 반품 가능',
     authenticity: '정품 보장',
-    
-    // Contact page
+
     contactTitle: '문의하기',
     contactSubtitle: '궁금한 점이 있으신가요? 편리한 방법으로 연락주세요.',
     sendMessage: '메시지 보내기',
@@ -165,8 +148,7 @@ const translations = {
     mondayToFriday: '월-금: 9:00 - 21:00',
     saturday: '토: 10:00 - 18:00',
     sunday: '일: 12:00 - 17:00',
-    
-    // Size Guide page
+
     sizeGuideTitle: '사이즈 가이드',
     sizeGuideSubtitle: '각 MONTERO 제품에 완벽한 핏을 찾기 위해 자세한 사이즈 차트를 활용하세요.',
     howToMeasure: '올바른 측정 방법',
@@ -196,8 +178,7 @@ const translations = {
     oversizedModelsDesc: '"Oversized" 표시가 있는 제품은 평소 사이즈나 한 사이즈 작게 선택하여 원하는 효과를 얻으세요.',
     sizeHelp: '사이즈를 결정하기 어려우신가요?',
     sizeHelpDesc: '고객지원팀에 문의하시면 완벽한 핏을 찾도록 도와드립니다. 또한 편리한 교환 및 반품 정책도 제공합니다.',
-    
-    // Returns page
+
     returnsTitle: '반품 및 교환',
     returnsSubtitle: '고객 만족을 위해 최선을 다하고 있습니다. 반품 및 교환 정책을 확인해보세요.',
     returnsPolicy: '반품 정책',
@@ -216,8 +197,7 @@ const translations = {
     returnStep3Desc: '택배 서비스를 이용하거나 매장에 직접 가져오기',
     returnStep4: '환불 처리',
     returnStep4Desc: '7-14 영업일 내 환불 처리',
-    
-    // Returnable items
+
     returnableItems: '반품 가능 제품',
     nonReturnableItems: '반품 불가 제품',
     clothingUndamaged: '손상되지 않은 의류',
@@ -228,8 +208,7 @@ const translations = {
     swimwear: '수영복',
     usedItems: '사용 흔적이 있는 제품',
     itemsWithoutTags: '라벨이 없는 제품',
-    
-    // Return guarantees
+
     thirtyDayGuarantee: '30일 보장',
     thirtyDayGuaranteeDesc: '30일 내 반품 또는 교환',
     freeExchangeService: '무료 교환',
@@ -237,8 +216,7 @@ const translations = {
     fullRefundPolicy: '전액 환불',
     fullRefundPolicyDesc: '조건 충족 시 100% 환불',
     returnProcessTitle: '반품 절차',
-    
-    // Return conditions
+
     whatCanReturn: '반품 가능 제품',
     returnConditions: '반품 조건',
     itemMustBe: '제품 조건:',
@@ -250,8 +228,7 @@ const translations = {
     fourteenDays: '수령 후 14일',
     refundTime: '환불: 7-14 영업일',
     exchangeTime: '교환: 3-5 영업일',
-    
-    // Support page
+
     supportTitle: '도움말 및 지원',
     supportSubtitle: '궁금하신 점이 있으신가요? 언제든지 도와드리겠습니다',
     contactMethods: '연락 방법',
@@ -260,8 +237,7 @@ const translations = {
     contactSupport: '고객지원 연락',
     myOrders: '내 주문',
     backToShopping: '쇼핑 계속하기',
-    
-    // Wishlist page
+
     wishlistTitle: '찜 목록',
     wishlistSubtitle: '좋아하는 제품을 저장하여 빠르게 액세스하세요',
     mustLogin: '로그인이 필요합니다',
@@ -271,20 +247,17 @@ const translations = {
     wishlistEmptyDesc: '제품 카드의 하트 아이콘을 클릭하여 찜 목록에 제품을 추가하세요',
     startShopping: '쇼핑 시작',
     viewProduct: '제품 보기',
-    
-    // Orders page
+
     ordersTitle: '주문 내역',
     ordersSubtitle: '이전 구매 내역 및 배송 상태 확인',
     mustLoginOrders: '주문 내역을 보려면 계정에 로그인해야 합니다',
     noOrders: '아직 주문이 없습니다',
     noOrdersDesc: '카탈로그에서 쇼핑을 시작하여 여기에서 주문 내역을 확인하세요',
     goToShopping: '쇼핑하러 가기',
-    
-    // Cart sidebar
+
     shoppingCartTitle: '장바구니',
     yourCartEmpty: '장바구니가 비어 있습니다',
-    
-    // Product card
+
     addToCartButton: '장바구니에 추가',
     pleaseLogin: '로그인해주세요',
     needLoginWishlist: '위시리스트에 추가하려면 로그인이 필요합니다',
@@ -292,13 +265,11 @@ const translations = {
     addedToWishlistDesc: '위시리스트에 추가되었습니다',
     removedFromWishlist: '위시리스트에서 제거됨',
     removedFromWishlistDesc: '위시리스트에서 제거되었습니다',
-    
-    // Auth modal
+
     completeRecaptcha: 'reCAPTCHA 인증을 완료해주세요',
     recaptchaMissing: 'reCAPTCHA 설정이 누락되었습니다 (개발 모드)',
     passwordHint: '비밀번호는 최소 6자 이상이어야 합니다',
-    
-    // Checkout page
+
     checkoutTitle: '주문하기',
     shippingInfo: '배송 정보',
     fullName: '성명',
@@ -320,8 +291,7 @@ const translations = {
     loginToOrder: '주문하려면 로그인해주세요',
     cartEmptyCheckout: '장바구니가 비어있습니다',
     addressRequired: '주소는 최소 10글자 이상 입력해주세요',
-    
-    // Profile page
+
     manageInfo: '개인 정보 및 설정 관리',
     personalInfo: '개인 정보',
     notSpecified: '지정되지 않음',
@@ -333,16 +303,15 @@ const translations = {
     emailInvalidProfile: '유효하지 않은 이메일',
     mustLoginProfile: '로그인이 필요합니다',
     mustLoginProfileDesc: '계정 설정을 보려면 로그인해야 합니다',
-    
-    // Logout
+
     goodbye: '안녕히 가세요!',
     loggedOutSuccess: '로그아웃되었습니다',
     logoutError: '로그아웃 실패',
     logoutErrorDesc: '로그아웃할 수 없습니다'
   },
-  
+
   en: {
-    // Navigation
+
     all: 'All',
     about: 'About',
     outerwear: 'Outerwear',
@@ -350,29 +319,24 @@ const translations = {
     bottom: 'Bottom',
     best: 'Best',
     accessories: 'Accessories',
-    
-    // Header actions
+
     search: 'Search',
     account: 'Account',
     cart: 'Cart',
-    
-    // Hero section
+
     heroTitle: '(MonTero)',
     exploreCollection: 'EXPLORE COLLECTION',
-    
-    // Product sections
+
     newArrivals: 'New Arrivals',
     freshPieces: 'Fresh pieces for the season',
     featuredSelection: 'Featured Selection',
     handpicked: 'Handpicked styles for you',
     discoverOur: 'Discover our',
     essentials: 'essentials',
-    
-    // Product info
+
     price: 'Price',
     addToCart: 'Add to Cart',
-    
-    // Cart
+
     shoppingCart: 'Shopping Cart',
     cartEmpty: 'Your cart is empty',
     continueShopping: 'Continue Shopping',
@@ -382,8 +346,7 @@ const translations = {
     total: 'Total',
     checkout: 'Checkout',
     clearCart: 'Clear Cart',
-    
-    // Auth
+
     login: 'Login',
     register: 'Register',
     logout: 'Logout',
@@ -398,8 +361,7 @@ const translations = {
     loginSuccess: 'Successfully logged in',
     welcomeToMontero: 'Welcome to MONTERO!',
     accountCreated: 'Your account has been created successfully',
-    
-    // Auth modal specific
+
     loginTitle: 'Login',
     registerTitle: 'Register',
     loginSubtitle: 'Sign in to your account',
@@ -418,35 +380,29 @@ const translations = {
     loginErrorMessage: 'Please check your credentials',
     registerError: 'Registration Error',
     registerErrorMessage: 'Please try again',
-    
-    // User menu
+
     userWelcome: 'Welcome',
     favorites: 'Favorites',
-    
-    // Footer
+
     newsletter: 'Newsletter',
     stayUpdated: 'Stay updated with our latest collections and exclusive offers',
     subscribeNewsletter: 'Subscribe to Newsletter',
     enterEmail: 'Enter your email',
     subscribe: 'Subscribe',
-    
-    // Menu items
+
     orderHistory: 'Order History',
     wishlist: 'Wishlist',
     accountSettings: 'Account Settings',
     helpSupport: 'Help & Support',
-    
-    // Language selector
+
     language: 'Language',
     korean: '한국어',
     english: 'English',
     russian: 'Русский',
-    
-    // Newsletter
+
     subscribing: 'Subscribing...',
     subscribed: 'Thank you for subscribing!',
-    
-    // Footer
+
     brandDescription: 'Ultra-minimalist fashion for the modern individual',
     allProducts: 'All Products',
     sale: 'Sale',
@@ -456,11 +412,9 @@ const translations = {
     sizeGuide: 'Size Guide',
     returns: 'Returns',
     copyright: '© 2024 MONTERO. All rights reserved.',
-    
-    // Collection text
+
     collection: 'Collection',
-    
-    // Product page
+
     backToProducts: 'Back to Products',
     productNotFound: 'Product Not Found',
     productNotFoundDesc: 'The product you are looking for could not be found.',
@@ -472,8 +426,7 @@ const translations = {
     freeShipping: 'Free shipping',
     returns30Days: '30-day returns',
     authenticity: 'Authenticity guaranteed',
-    
-    // Contact page
+
     contactTitle: 'Contact Us',
     contactSubtitle: 'Have a question? We\'d love to help. Contact us in any convenient way.',
     sendMessage: 'Send Message',
@@ -495,8 +448,7 @@ const translations = {
     mondayToFriday: 'Mon-Fri: 9:00 - 21:00',
     saturday: 'Sat: 10:00 - 18:00',
     sunday: 'Sun: 12:00 - 17:00',
-    
-    // Size Guide page
+
     sizeGuideTitle: 'Size Guide',
     sizeGuideSubtitle: 'Use our detailed size charts to find the perfect fit for every MONTERO item.',
     howToMeasure: 'How to Measure Correctly',
@@ -526,8 +478,7 @@ const translations = {
     oversizedModelsDesc: 'For items marked "Oversized", we recommend choosing your usual size or even one size smaller to achieve the desired effect.',
     sizeHelp: 'Can\'t decide on size?',
     sizeHelpDesc: 'Contact our support team and we will help you choose the perfect fit. We also have a convenient exchange and return policy.',
-    
-    // Returns page
+
     returnsTitle: 'Returns & Exchange',
     returnsSubtitle: 'We strive to ensure complete satisfaction with your purchase. Learn about our return and exchange policy.',
     returnsPolicy: 'Return Policy',
@@ -546,8 +497,7 @@ const translations = {
     returnStep3Desc: 'Send via courier service or bring to store',
     returnStep4: 'Refund',
     returnStep4Desc: 'Receive refund within 7-14 business days',
-    
-    // Returnable items
+
     returnableItems: 'Returnable Items',
     nonReturnableItems: 'Non-Returnable Items',
     clothingUndamaged: 'Undamaged clothing',
@@ -558,8 +508,7 @@ const translations = {
     swimwear: 'Swimwear',
     usedItems: 'Items with signs of use',
     itemsWithoutTags: 'Items without tags',
-    
-    // Return guarantees
+
     thirtyDayGuarantee: '30-Day Guarantee',
     thirtyDayGuaranteeDesc: 'Return or exchange within 30 days',
     freeExchangeService: 'Free Exchange',
@@ -567,8 +516,7 @@ const translations = {
     fullRefundPolicy: 'Full Refund',
     fullRefundPolicyDesc: '100% refund when conditions are met',
     returnProcessTitle: 'Return Process',
-    
-    // Return conditions
+
     whatCanReturn: 'What Can Be Returned',
     returnConditions: 'Return Conditions',
     itemMustBe: 'Item must be:',
@@ -580,8 +528,7 @@ const translations = {
     fourteenDays: '14 days from receipt',
     refundTime: 'Refund: 7-14 business days',
     exchangeTime: 'Exchange: 3-5 business days',
-    
-    // Support page
+
     supportTitle: 'Help & Support',
     supportSubtitle: 'We are always ready to help you with any questions',
     contactMethods: 'Contact Methods',
@@ -590,8 +537,7 @@ const translations = {
     contactSupport: 'Contact Support',
     myOrders: 'My Orders',
     backToShopping: 'Back to Shopping',
-    
-    // Wishlist page
+
     wishlistTitle: 'Favorites',
     wishlistSubtitle: 'Save your favorite products for quick access',
     mustLogin: 'Login Required',
@@ -601,20 +547,17 @@ const translations = {
     wishlistEmptyDesc: 'Add products to favorites by clicking the heart icon on product cards',
     startShopping: 'Start Shopping',
     viewProduct: 'View Product',
-    
-    // Orders page
+
     ordersTitle: 'Order History',
     ordersSubtitle: 'View your previous purchases and shipping status',
     mustLoginOrders: 'You need to log in to your account to view order history',
     noOrders: 'You have no orders yet',
     noOrdersDesc: 'Start shopping in our catalog to see order history here',
     goToShopping: 'Go Shopping',
-    
-    // Cart sidebar
+
     shoppingCartTitle: 'Shopping Cart',
     yourCartEmpty: 'Your cart is empty',
-    
-    // Product card
+
     addToCartButton: 'ADD TO CART',
     pleaseLogin: 'Please log in',
     needLoginWishlist: 'You need to be logged in to add items to your wishlist',
@@ -622,13 +565,11 @@ const translations = {
     addedToWishlistDesc: 'has been added to your wishlist',
     removedFromWishlist: 'Removed from wishlist',
     removedFromWishlistDesc: 'has been removed from your wishlist',
-    
-    // Auth modal
+
     completeRecaptcha: 'Please complete the reCAPTCHA verification',
     recaptchaMissing: 'reCAPTCHA configuration missing (development mode)',
     passwordHint: 'Password must be at least 6 characters',
-    
-    // Checkout page
+
     checkoutTitle: 'Checkout',
     shippingInfo: 'Shipping Information',
     fullName: 'Full Name',
@@ -650,8 +591,7 @@ const translations = {
     loginToOrder: 'Please log in to place an order',
     cartEmptyCheckout: 'Your cart is empty',
     addressRequired: 'Address must be at least 10 characters',
-    
-    // Profile page
+
     manageInfo: 'Manage your personal information and settings',
     personalInfo: 'Personal Information',
     notSpecified: 'Not specified',
@@ -663,16 +603,15 @@ const translations = {
     emailInvalidProfile: 'Invalid email',
     mustLoginProfile: 'Login Required',
     mustLoginProfileDesc: 'You need to log in to view account settings',
-    
-    // Logout
+
     goodbye: 'Goodbye!',
     loggedOutSuccess: 'You have been successfully logged out',
     logoutError: 'Logout Failed',
     logoutErrorDesc: 'Failed to log out'
   },
-  
+
   ru: {
-    // Navigation
+
     all: 'Все',
     about: 'О нас',
     outerwear: 'Верхняя одежда',
@@ -680,29 +619,24 @@ const translations = {
     bottom: 'Низ',
     best: 'Лучшее',
     accessories: 'Аксессуары',
-    
-    // Header actions
+
     search: 'Поиск',
     account: 'Аккаунт',
     cart: 'Корзина',
-    
-    // Hero section
+
     heroTitle: '(MonTero)',
     exploreCollection: 'ИЗУЧИТЬ КОЛЛЕКЦИЮ',
-    
-    // Product sections
+
     newArrivals: 'Новинки',
     freshPieces: 'Свежие образы сезона',
     featuredSelection: 'Рекомендуемое',
     handpicked: 'Отобранные для вас стили',
     discoverOur: 'Откройте для себя коллекцию',
     essentials: '',
-    
-    // Product info
+
     price: 'Цена',
     addToCart: 'В корзину',
-    
-    // Cart
+
     shoppingCart: 'Корзина',
     cartEmpty: 'Ваша корзина пуста',
     continueShopping: 'Продолжить покупки',
@@ -712,8 +646,7 @@ const translations = {
     total: 'Итого',
     checkout: 'Оформить заказ',
     clearCart: 'Очистить корзину',
-    
-    // Auth
+
     login: 'Вход',
     register: 'Регистрация',
     logout: 'Выйти',
@@ -728,8 +661,7 @@ const translations = {
     loginSuccess: 'Вы успешно вошли в систему',
     welcomeToMontero: 'Добро пожаловать в MONTERO!',
     accountCreated: 'Ваш аккаунт успешно создан',
-    
-    // Auth modal specific
+
     loginTitle: 'Вход',
     registerTitle: 'Регистрация',
     loginSubtitle: 'Войдите в свой аккаунт',
@@ -748,35 +680,29 @@ const translations = {
     loginErrorMessage: 'Проверьте ваши учетные данные',
     registerError: 'Ошибка регистрации',
     registerErrorMessage: 'Попробуйте еще раз',
-    
-    // User menu
+
     userWelcome: 'Добро пожаловать',
     favorites: 'Избранное',
-    
-    // Footer
+
     newsletter: 'Рассылка',
     stayUpdated: 'Будьте в курсе наших последних коллекций и эксклюзивных предложений',
     subscribeNewsletter: 'Подписаться на рассылку',
     enterEmail: 'Введите ваш email',
     subscribe: 'Подписаться',
-    
-    // Menu items
+
     orderHistory: 'История заказов',
     wishlist: 'Избранное',
     accountSettings: 'Настройки аккаунта',
     helpSupport: 'Помощь и поддержка',
-    
-    // Language selector
+
     language: 'Язык',
     korean: '한국어',
     english: 'English',
     russian: 'Русский',
-    
-    // Newsletter
+
     subscribing: 'Подписываемся...',
     subscribed: 'Спасибо за подписку!',
-    
-    // Footer
+
     brandDescription: 'Ультра-минималистичная мода для современного человека',
     allProducts: 'Все товары',
     sale: 'Распродажа',
@@ -786,11 +712,9 @@ const translations = {
     sizeGuide: 'Размерная сетка',
     returns: 'Возврат товара',
     copyright: '© 2024 MONTERO. Все права защищены.',
-    
-    // Collection text
+
     collection: 'Коллекция',
-    
-    // Product page
+
     backToProducts: 'Вернуться к товарам',
     productNotFound: 'Товар не найден',
     productNotFoundDesc: 'Запрашиваемый товар не найден.',
@@ -802,8 +726,7 @@ const translations = {
     freeShipping: 'Бесплатная доставка',
     returns30Days: 'Возврат в течение 30 дней',
     authenticity: 'Гарантия подлинности',
-    
-    // Contact page
+
     contactTitle: 'Связаться с нами',
     contactSubtitle: 'У вас есть вопросы? Мы будем рады помочь. Свяжитесь с нами любым удобным способом.',
     sendMessage: 'Отправить сообщение',
@@ -825,8 +748,7 @@ const translations = {
     mondayToFriday: 'Пн-Пт: 9:00 - 21:00',
     saturday: 'Сб: 10:00 - 18:00',
     sunday: 'Вс: 12:00 - 17:00',
-    
-    // Size Guide page
+
     sizeGuideTitle: 'Таблица размеров',
     sizeGuideSubtitle: 'Используйте наши подробные таблицы размеров, чтобы найти идеальную посадку для каждого изделия MONTERO.',
     howToMeasure: 'Как правильно снять мерки',
@@ -856,8 +778,7 @@ const translations = {
     oversizedModelsDesc: 'Для изделий с пометкой "Oversized" рекомендуем выбирать ваш обычный размер или даже на размер меньше для достижения желаемого эффекта.',
     sizeHelp: 'Не можете определиться с размером?',
     sizeHelpDesc: 'Свяжитесь с нашей службой поддержки, и мы поможем вам выбрать идеальную посадку. Также у нас действует удобная политика обмена и возврата.',
-    
-    // Returns page
+
     returnsTitle: 'Возврат и обмен',
     returnsSubtitle: 'Мы стремимся обеспечить полное удовлетворение от покупки. Ознакомьтесь с нашей политикой возврата и обмена.',
     returnsPolicy: 'Политика возврата',
@@ -876,8 +797,7 @@ const translations = {
     returnStep3Desc: 'Отправьте товар курьерской службой или принесите в магазин',
     returnStep4: 'Возврат средств',
     returnStep4Desc: 'Получите возврат средств в течение 7-14 рабочих дней',
-    
-    // Returnable items
+
     returnableItems: 'Возможен возврат',
     nonReturnableItems: 'Возврат невозможен',
     clothingUndamaged: 'Одежда без повреждений',
@@ -888,8 +808,7 @@ const translations = {
     swimwear: 'Купальники',
     usedItems: 'Товары со следами использования',
     itemsWithoutTags: 'Товары без ярлыков',
-    
-    // Return guarantees
+
     thirtyDayGuarantee: '30-дневная гарантия',
     thirtyDayGuaranteeDesc: 'Возврат или обмен в течение 30 дней',
     freeExchangeService: 'Бесплатный обмен',
@@ -897,8 +816,7 @@ const translations = {
     fullRefundPolicy: 'Полный возврат',
     fullRefundPolicyDesc: '100% возврат средств при соблюдении условий',
     returnProcessTitle: 'Процесс возврата',
-    
-    // Return conditions
+
     whatCanReturn: 'Что можно вернуть',
     returnConditions: 'Условия возврата',
     itemMustBe: 'Товар должен быть:',
@@ -910,8 +828,7 @@ const translations = {
     fourteenDays: '14 дней с момента получения',
     refundTime: 'Возврат средств: 7-14 рабочих дней',
     exchangeTime: 'Обмен: 3-5 рабочих дней',
-    
-    // Support page
+
     supportTitle: 'Помощь и поддержка',
     supportSubtitle: 'Мы всегда готовы помочь вам с любыми вопросами',
     contactMethods: 'Способы связи',
@@ -920,8 +837,7 @@ const translations = {
     contactSupport: 'Связаться с поддержкой',
     myOrders: 'Мои заказы',
     backToShopping: 'Вернуться к покупкам',
-    
-    // Wishlist page
+
     wishlistTitle: 'Избранное',
     wishlistSubtitle: 'Сохраняйте понравившиеся товары для быстрого доступа',
     mustLogin: 'Необходимо войти в систему',
@@ -931,20 +847,17 @@ const translations = {
     wishlistEmptyDesc: 'Добавляйте товары в избранное, нажимая на иконку сердца на карточках товаров',
     startShopping: 'Начать покупки',
     viewProduct: 'Просмотреть',
-    
-    // Orders page
+
     ordersTitle: 'История заказов',
     ordersSubtitle: 'Просматривайте свои предыдущие покупки и статус доставки',
     mustLoginOrders: 'Для просмотра истории заказов необходимо войти в свой аккаунт',
     noOrders: 'У вас пока нет заказов',
     noOrdersDesc: 'Начните покупки в нашем каталоге, чтобы увидеть историю заказов здесь',
     goToShopping: 'Перейти к покупкам',
-    
-    // Cart sidebar
+
     shoppingCartTitle: 'Корзина',
     yourCartEmpty: 'Ваша корзина пуста',
-    
-    // Product card
+
     addToCartButton: 'ДОБАВИТЬ В КОРЗИНУ',
     pleaseLogin: 'Войдите в систему',
     needLoginWishlist: 'Вам нужно войти в систему, чтобы добавлять товары в избранное',
@@ -952,13 +865,11 @@ const translations = {
     addedToWishlistDesc: 'добавлен в избранное',
     removedFromWishlist: 'Удалено из избранного',
     removedFromWishlistDesc: 'удален из избранного',
-    
-    // Auth modal
+
     completeRecaptcha: 'Пожалуйста, пройдите проверку reCAPTCHA',
     recaptchaMissing: 'Отсутствует конфигурация reCAPTCHA (режим разработки)',
     passwordHint: 'Пароль должен содержать минимум 6 символов',
-    
-    // Checkout page
+
     checkoutTitle: 'Оформление заказа',
     shippingInfo: 'Информация о доставке',
     fullName: 'Полное имя',
@@ -980,8 +891,7 @@ const translations = {
     loginToOrder: 'Пожалуйста, войдите, чтобы оформить заказ',
     cartEmptyCheckout: 'Ваша корзина пуста',
     addressRequired: 'Адрес должен содержать минимум 10 символов',
-    
-    // Profile page
+
     manageInfo: 'Управляйте своей личной информацией и настройками',
     personalInfo: 'Личная информация',
     notSpecified: 'Не указано',
@@ -993,8 +903,7 @@ const translations = {
     emailInvalidProfile: 'Некорректный email',
     mustLoginProfile: 'Необходимо войти в систему',
     mustLoginProfileDesc: 'Для просмотра настроек аккаунта необходимо войти в свой аккаунт',
-    
-    // Logout
+
     goodbye: 'До свидания!',
     loggedOutSuccess: 'Вы успешно вышли из системы',
     logoutError: 'Ошибка выхода',

@@ -9,11 +9,11 @@ import type { Product } from "@shared/schema"
 export default function ProductGrid() {
   const [location] = useLocation()
   const { t } = useLanguage()
-  // Extract category from URL path
-  const category = location.startsWith('/category/') 
-    ? location.split('/category/')[1] 
+
+  const category = location.startsWith('/category/')
+    ? location.split('/category/')[1]
     : 'all'
-  
+
   const { data: products, isLoading, error } = useQuery<Product[]>({
     queryKey: ['/api/products', category],
     queryFn: async () => {
@@ -46,7 +46,7 @@ export default function ProductGrid() {
 
   return (
     <div className="space-y-12 md:space-y-20">
-      {/* New Arrivals Section */}
+      {}
       <section className="py-12 md:py-20" id="products">
         <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
           <div className="bg-black/30 md:bg-black/20 backdrop-blur rounded-xl md:rounded-[2rem] p-6 md:p-8 lg:p-12 shadow-lg">
@@ -58,7 +58,7 @@ export default function ProductGrid() {
                 {category === 'all' ? t('freshPieces') : `${t('discoverOur')} ${t(category)} ${t('essentials')}`}
               </p>
             </div>
-        
+
             {isLoading ? (
               <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 lg:gap-8">
                 {Array.from({ length: 4 }).map((_, i) => (
@@ -80,7 +80,7 @@ export default function ProductGrid() {
         </div>
       </section>
 
-      {/* Featured Collection - Only show on "all" page */}
+      {}
       {category === 'all' && (
         <section className="py-12 md:py-20">
           <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
@@ -89,7 +89,7 @@ export default function ProductGrid() {
                 <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6">{t('featuredSelection')}</h3>
                 <p className="text-white/80 font-medium text-sm md:text-lg">{t('handpicked')}</p>
               </div>
-              
+
               {featuredLoading ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
                   {Array.from({ length: 3 }).map((_, i) => (

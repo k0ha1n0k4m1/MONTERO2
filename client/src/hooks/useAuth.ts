@@ -6,7 +6,7 @@ export function useAuth() {
   const { data: user, isLoading } = useQuery({
     queryKey: ["/api/auth/me"],
     retry: false,
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: 5 * 60 * 1000,
   });
 
   const loginMutation = useMutation({
@@ -19,12 +19,12 @@ export function useAuth() {
         },
         credentials: "include",
       });
-      
+
       if (!response.ok) {
         const error = await response.json();
         throw new Error(error.message || "Login failed");
       }
-      
+
       return response.json();
     },
     onSuccess: () => {
@@ -42,11 +42,11 @@ export function useAuth() {
         },
         credentials: "include",
       });
-      
+
       const responseText = await response.text();
       console.log("Response status:", response.status);
       console.log("Response text:", responseText);
-      
+
       if (!response.ok) {
         try {
           const error = JSON.parse(responseText);
@@ -55,7 +55,7 @@ export function useAuth() {
           throw new Error("Registration failed - server error");
         }
       }
-      
+
       try {
         return JSON.parse(responseText);
       } catch (e) {
@@ -72,12 +72,12 @@ export function useAuth() {
       const response = await fetch("/api/auth/logout", {
         method: "POST",
       });
-      
+
       if (!response.ok) {
         const error = await response.json();
         throw new Error(error.message || "Logout failed");
       }
-      
+
       return response.json();
     },
     onSuccess: () => {

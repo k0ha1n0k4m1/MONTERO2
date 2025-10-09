@@ -9,7 +9,7 @@ import { useLanguage } from "@/hooks/useLanguage";
 
 export default function Support() {
   const { t } = useLanguage();
-  
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -26,7 +26,7 @@ export default function Support() {
           </div>
 
           <div className="grid gap-6 md:grid-cols-2">
-            {/* Contact Methods */}
+            {}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-xl font-light">
@@ -42,7 +42,7 @@ export default function Support() {
                     <p className="text-sm text-gray-600">montero.team.kr@gmail.com</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
                   <Phone className="h-5 w-5 text-gray-600" />
                   <div>
@@ -50,7 +50,7 @@ export default function Support() {
                     <p className="text-sm text-gray-600">+821084092796</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
                   <MessageCircle className="h-5 w-5 text-gray-600" />
                   <div>
@@ -61,7 +61,7 @@ export default function Support() {
               </CardContent>
             </Card>
 
-            {/* Working Hours */}
+            {}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-xl font-light">

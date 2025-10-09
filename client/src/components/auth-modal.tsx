@@ -25,8 +25,7 @@ interface AuthModalProps {
 
 export default function AuthModal({ isOpen, onClose, initialMode = 'login' }: AuthModalProps) {
   const [isLogin, setIsLogin] = useState(initialMode === 'login');
-  
-  // Update form mode when initialMode changes
+
   useEffect(() => {
     if (isOpen) {
       setIsLogin(initialMode === 'login');
@@ -78,7 +77,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }: Au
       onClose();
       setRecaptchaToken(null);
       recaptchaRef.current?.reset();
-      // Принудительно обновляем страницу для синхронизации состояния
+
       setTimeout(() => {
         window.location.reload();
       }, 500);
@@ -112,7 +111,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }: Au
       onClose();
       setRecaptchaToken(null);
       recaptchaRef.current?.reset();
-      // Принудительно обновляем страницу для синхронизации состояния
+
       setTimeout(() => {
         window.location.reload();
       }, 500);

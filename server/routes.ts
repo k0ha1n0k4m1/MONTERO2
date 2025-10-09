@@ -8,30 +8,27 @@ import session from "express-session";
 import MemoryStore from "memorystore";
 import { sendContactEmail } from "./email";
 
-// Extend session data interface
 declare module 'express-session' {
   interface SessionData {
     userId: number;
   }
 }
 
-// Validation middleware
 const handleValidationErrors = (req: any, res: any, next: any) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     console.log("Validation errors:", errors.array());
-    return res.status(400).json({ 
+    return res.status(400).json({
       error: "Invalid input data",
-      details: errors.array() 
+      details: errors.array()
     });
   }
   next();
 };
 
-// reCAPTCHA verification function
 async function verifyRecaptcha(token: string): Promise<boolean> {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
-  
+
   if (!secretKey) {
     console.error('RECAPTCHA_SECRET_KEY not configured');
     return false;
@@ -54,26 +51,24 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
   }
 }
 
-// Input validation - let express-validator handle validation, not mutation
-
 export async function registerRoutes(app: Express): Promise<Server> {
-  // CORS configuration with strict security
+
   app.use((req, res, next) => {
     const allowedOrigins = [
       'http://localhost:5000',
       'http://127.0.0.1:5000',
-      // Add production domains here when deploying
+
     ];
-    
+
     const origin = req.headers.origin;
     if (origin && allowedOrigins.includes(origin)) {
       res.header('Access-Control-Allow-Credentials', 'true');
       res.header('Access-Control-Allow-Origin', origin);
     }
-    
+
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-    
+
     if (req.method === 'OPTIONS') {
       res.sendStatus(200);
     } else {
@@ -81,7 +76,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Setup sessions with proper cookie settings
   const MemoryStoreSession = MemoryStore(session);
   app.use(session({
     name: 'montero.sid',
@@ -102,12 +96,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       secure: process.env.NODE_ENV === 'production',
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
-      sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax', // More relaxed for dev
+      sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
       path: '/'
     }
   }));
 
-  // Authentication middleware
   const requireAuth = (req: Request, res: any, next: any) => {
     if (!req.session.userId) {
       return res.status(401).json({ message: "Authentication required" });
@@ -115,12 +108,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     next();
   };
 
-  // Test endpoint
   app.get("/api/test", (req, res) => {
     res.json({ message: "API is working!" });
   });
 
-  // Enhanced Auth routes with validation
   app.post("/api/auth/register", [
     body('email')
       .isEmail()
@@ -143,7 +134,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { email, password, firstName, lastName, recaptchaToken } = req.body;
 
-      // Verify reCAPTCHA token
       if (recaptchaToken) {
         const isValidRecaptcha = await verifyRecaptcha(recaptchaToken);
         if (!isValidRecaptcha) {
@@ -151,33 +141,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       }
 
-      // Use the registerUser method which handles password hashing
       const user = await storage.registerUser({
         email,
         password,
-        confirmPassword: password, // For validation
+        confirmPassword: password,
         firstName: firstName || "User",
         lastName: lastName || "Name"
       });
 
-      // Regenerate session to prevent fixation attacks
       req.session.regenerate((err) => {
         if (err) {
           console.error("Session regeneration error:", err);
           return res.status(500).json({ message: "Registration failed" });
         }
-        
+
         req.session.userId = user.id;
         req.session.save((saveErr) => {
           if (saveErr) {
             console.error("Session save error:", saveErr);
             return res.status(500).json({ message: "Registration failed" });
           }
-          
+
           res.json({ user: { id: user.id, email: user.email, firstName: user.firstName, lastName: user.lastName } });
         });
       });
-      
+
     } catch (error) {
       console.error("Registration error:", error);
       res.status(500).json({ message: "Registration failed" });
@@ -198,7 +186,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { email, password, recaptchaToken } = req.body;
 
-      // Verify reCAPTCHA token
       if (recaptchaToken) {
         const isValidRecaptcha = await verifyRecaptcha(recaptchaToken);
         if (!isValidRecaptcha) {
@@ -207,29 +194,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const user = await storage.loginUser({ email, password });
-      
+
       if (!user) {
         return res.status(401).json({ message: "Неправильный логин или пароль" });
       }
 
-      // Regenerate session to prevent fixation attacks
       req.session.regenerate((err) => {
         if (err) {
           console.error("Session regeneration error:", err);
           return res.status(500).json({ message: "Login failed" });
         }
-        
+
         req.session.userId = user.id;
         req.session.save((saveErr) => {
           if (saveErr) {
             console.error("Session save error:", saveErr);
             return res.status(500).json({ message: "Login failed" });
           }
-          
+
           res.json({ user: { id: user.id, email: user.email, firstName: user.firstName, lastName: user.lastName } });
         });
       });
-      
+
     } catch (error) {
       console.error("Login error:", error);
       res.status(500).json({ message: "Login failed" });
@@ -241,8 +227,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (err) {
         return res.status(500).json({ message: "Could not log out" });
       }
-      // Clear the session cookie with same attributes for security
-      res.clearCookie('montero.sid', { 
+
+      res.clearCookie('montero.sid', {
         path: '/',
         httpOnly: true,
         sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
@@ -254,8 +240,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get("/api/auth/me", async (req: Request, res) => {
     try {
-      // Removed session ID logging for security
-      
+
       if (!req.session.userId) {
         return res.status(401).json({ message: "Not authenticated" });
       }
@@ -265,7 +250,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "User not found" });
       }
 
-      // Remove password from response
       const { password: _, ...userWithoutPassword } = user;
       res.json({ user: userWithoutPassword });
     } catch (error) {
@@ -274,11 +258,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Products routes
   app.get("/api/products", async (req, res) => {
     try {
       const category = req.query.category as string;
-      const products = category 
+      const products = category
         ? await storage.getProductsByCategory(category)
         : await storage.getProducts();
       res.json(products);
@@ -309,7 +292,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Cart routes
   app.get("/api/cart", async (req, res) => {
     try {
       const cartItems = await storage.getCartItems();
@@ -342,7 +324,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const id = parseInt(req.params.id);
       const { quantity } = req.body;
-      
+
       if (!quantity || quantity < 1) {
         return res.status(400).json({ message: "Invalid quantity" });
       }
@@ -351,7 +333,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (!updatedItem) {
         return res.status(404).json({ message: "Cart item not found" });
       }
-      
+
       res.json(updatedItem);
     } catch (error) {
       res.status(500).json({ message: "Failed to update cart item" });
@@ -377,7 +359,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Wishlist routes
   app.get("/api/wishlist", requireAuth, async (req: Request, res) => {
     try {
       const userId = req.session.userId!;
@@ -392,7 +373,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const userId = req.session.userId!;
       const { productId } = req.body;
-      
+
       const wishlistItem = await storage.addToWishlist({ userId, productId });
       res.json(wishlistItem);
     } catch (error) {
@@ -404,7 +385,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const userId = req.session.userId!;
       const productId = parseInt(req.params.productId);
-      
+
       await storage.removeFromWishlist(userId, productId);
       res.status(204).send();
     } catch (error) {
@@ -412,7 +393,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Orders routes
   app.post("/api/checkout", requireAuth, async (req: Request, res) => {
     try {
       const userId = req.session.userId!;
@@ -422,7 +402,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "No items in order" });
       }
 
-      // Проверяем все товары и вычисляем общую стоимость
       let totalAmount = 0;
       const orderItems = [];
 
@@ -442,7 +421,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      // Создаем заказ
       const order = await storage.createOrder({
         userId,
         status: "confirmed",
@@ -452,14 +430,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
         shippingAddress
       }, orderItems.map(item => ({
         ...item,
-        orderId: 0 // будет заменен в createOrder
+        orderId: 0
       })));
 
-      // Очищаем корзину после оформления заказа
       await storage.clearCart();
 
-      res.json({ 
-        message: "Order created successfully", 
+      res.json({
+        message: "Order created successfully",
         order: {
           id: order.id,
           status: order.status,
@@ -473,7 +450,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Получить заказы пользователя
   app.get("/api/orders", requireAuth, async (req: Request, res) => {
     try {
       const userId = req.session.userId!;
@@ -484,12 +460,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Получить детали заказа
   app.get("/api/orders/:id", requireAuth, async (req: Request, res) => {
     try {
       const orderId = parseInt(req.params.id);
       const order = await storage.getOrder(orderId);
-      
+
       if (!order) {
         return res.status(404).json({ message: "Order not found" });
       }
@@ -501,7 +476,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Contact form endpoint
   app.post("/api/contact", [
     body('name').trim().notEmpty().withMessage('Name is required'),
     body('email').trim().isEmail().withMessage('Valid email is required'),
@@ -512,7 +486,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { name, email, subject, message } = req.body;
 
-      // Save to database
       const contactMessage = await storage.createContactMessage({
         name,
         email,
@@ -520,7 +493,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         message
       });
 
-      // Send email
       const emailSent = await sendContactEmail({
         name,
         email,
@@ -529,26 +501,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
 
       if (!emailSent) {
-        // Email failed but message is saved
+
         console.warn('Contact message saved to DB but email failed to send');
-        return res.status(200).json({ 
+        return res.status(200).json({
           success: true,
           emailSent: false,
           message: "Message saved but email notification failed. We'll contact you soon."
         });
       }
 
-      res.json({ 
+      res.json({
         success: true,
         emailSent: true,
         message: "Message received successfully"
       });
     } catch (error) {
       console.error("Contact form error:", error);
-      res.status(500).json({ 
+      res.status(500).json({
         success: false,
         emailSent: false,
-        message: "Failed to send message" 
+        message: "Failed to send message"
       });
     }
   });

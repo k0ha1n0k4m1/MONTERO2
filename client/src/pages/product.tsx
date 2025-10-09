@@ -98,7 +98,7 @@ export default function Product() {
           </Link>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Product Image */}
+            {}
             <div className="space-y-4">
               <div className="aspect-square rounded-2xl overflow-hidden bg-gray-100">
                 <img
@@ -109,7 +109,7 @@ export default function Product() {
               </div>
             </div>
 
-            {/* Product Info */}
+            {}
             <div className="space-y-6">
               <div>
                 <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
@@ -127,7 +127,7 @@ export default function Product() {
                 </p>
               </div>
 
-              {/* Size Selection */}
+              {}
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('size')}</h3>
                 <div className="grid grid-cols-5 gap-2">
@@ -141,8 +141,8 @@ export default function Product() {
                         className={`h-12 transition-all duration-200 ${
                           isUnavailable
                             ? "bg-gray-200 text-gray-400 cursor-not-allowed hover:bg-gray-200"
-                            : selectedSize === size 
-                              ? "bg-gray-900 text-white hover:bg-gray-700" 
+                            : selectedSize === size
+                              ? "bg-gray-900 text-white hover:bg-gray-700"
                               : "hover:bg-gray-100"
                         }`}
                         onClick={() => !isUnavailable && setSelectedSize(size)}
@@ -154,7 +154,7 @@ export default function Product() {
                 </div>
               </div>
 
-              {/* Quantity Selection */}
+              {}
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('quantity')}</h3>
                 <div className="flex items-center space-x-3">
@@ -179,7 +179,7 @@ export default function Product() {
                 </div>
               </div>
 
-              {/* Add to Cart Button */}
+              {}
               <div className="space-y-4">
                 <Button
                   onClick={handleAddToCart}
@@ -187,7 +187,7 @@ export default function Product() {
                 >
                   {t('addToCart')} - ₩{(product.price * quantity).toLocaleString()}
                 </Button>
-                
+
                 <div className="text-sm text-gray-600 space-y-1">
                   <p>• {t('freeShipping')}</p>
                   <p>• {t('returns30Days')}</p>

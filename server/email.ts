@@ -17,7 +17,6 @@ export interface ContactEmailData {
   message: string;
 }
 
-// Create transporter using environment variables
 export function createEmailTransporter() {
   const config: EmailConfig = {
     host: process.env.SMTP_HOST || 'smtp.gmail.com',
@@ -29,7 +28,6 @@ export function createEmailTransporter() {
     },
   };
 
-  // Check if email is configured
   if (!config.auth.user || !config.auth.pass) {
     console.warn('Email not configured. Set SMTP_USER and SMTP_PASS environment variables.');
     return null;
@@ -38,10 +36,9 @@ export function createEmailTransporter() {
   return nodemailer.createTransport(config);
 }
 
-// Send contact form email
 export async function sendContactEmail(data: ContactEmailData): Promise<boolean> {
   const transporter = createEmailTransporter();
-  
+
   if (!transporter) {
     console.log('Email transporter not configured, skipping email send');
     return false;

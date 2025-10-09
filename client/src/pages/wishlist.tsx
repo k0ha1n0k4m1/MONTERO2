@@ -15,8 +15,7 @@ export default function Wishlist() {
   const { user, isAuthenticated } = useAuth();
   const { items: wishlistItems, removeItem } = useWishlist();
   const { t } = useLanguage();
-  
-  // Get products data for all products
+
   const { data: products = [] } = useQuery({
     queryKey: ["/api/products"],
   });
@@ -46,7 +45,6 @@ export default function Wishlist() {
     );
   }
 
-  // Match wishlist items with product data
   const wishlistProducts = wishlistItems.map((item: any) => {
     const product = (products as Product[]).find((p: Product) => p.id === item.productId);
     return product ? { ...item, product } : null;

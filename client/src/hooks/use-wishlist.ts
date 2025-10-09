@@ -6,14 +6,12 @@ export function useWishlist() {
   const { isAuthenticated, user } = useAuth()
   const queryClient = useQueryClient()
 
-  // Always fetch wishlist but only when authenticated
   const { data: serverWishlist = [] } = useQuery({
     queryKey: ['/api/wishlist'],
     enabled: !!isAuthenticated,
     retry: false,
   })
 
-  // Get local wishlist from localStorage for non-authenticated users
   const getLocalWishlist = () => {
     if (typeof window === 'undefined') return []
     try {
@@ -29,7 +27,6 @@ export function useWishlist() {
     localStorage.setItem('montero-wishlist', JSON.stringify({ state: { items } }))
   }
 
-  // Add to wishlist mutation
   const addMutation = useMutation({
     mutationFn: async (productId: number) => {
       if (isAuthenticated) {
@@ -49,7 +46,6 @@ export function useWishlist() {
     },
   })
 
-  // Remove from wishlist mutation
   const removeMutation = useMutation({
     mutationFn: async (productId: number) => {
       if (isAuthenticated) {
@@ -85,7 +81,7 @@ export function useWishlist() {
     getTotalItems: () => currentItems.length,
     clearWishlist: () => {
       if (isAuthenticated) {
-        // Would need a clear endpoint on server
+
       } else {
         setLocalWishlist([])
       }

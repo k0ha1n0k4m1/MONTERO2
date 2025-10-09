@@ -62,7 +62,7 @@ export default function Profile() {
   }
 
   const handleSave = (data: ProfileData) => {
-    // TODO: Implement profile update API
+
     console.log("Saving profile data:", data);
     setIsEditing(false);
   };
@@ -83,7 +83,7 @@ export default function Profile() {
           </div>
 
           <div className="grid gap-6">
-            {/* Profile Information */}
+            {}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-xl font-light">
@@ -140,9 +140,9 @@ export default function Profile() {
                       <Button type="submit" className="bg-black text-white hover:bg-gray-800">
                         {t("save")}
                       </Button>
-                      <Button 
-                        type="button" 
-                        variant="outline" 
+                      <Button
+                        type="button"
+                        variant="outline"
                         onClick={() => setIsEditing(false)}
                       >
                         {t("cancel")}
@@ -161,14 +161,14 @@ export default function Profile() {
                         <p className="font-medium">{user.lastName || t("notSpecified")}</p>
                       </div>
                     </div>
-                    
+
                     <div>
                       <Label className="text-sm text-gray-500">Email</Label>
                       <p className="font-medium">{user.email}</p>
                     </div>
 
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       onClick={() => setIsEditing(true)}
                     >
                       {t("edit")}
@@ -178,7 +178,7 @@ export default function Profile() {
               </CardContent>
             </Card>
 
-            {/* Account Information */}
+            {}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-xl font-light">
@@ -194,7 +194,7 @@ export default function Profile() {
                       {user.createdAt ? new Date(user.createdAt).toLocaleDateString('ru-RU') : t("notSpecified")}
                     </p>
                   </div>
-                  
+
                   <div>
                     <Label className="text-sm text-gray-500">{t("userId")}</Label>
                     <p className="font-medium text-gray-600">#{user.id}</p>

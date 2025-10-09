@@ -31,11 +31,11 @@ export const useCart = create<CartStore>()(
     (set, get) => ({
       items: [],
       isOpen: false,
-      
+
       addItem: (productId: number, quantity = 1) => {
         set((state) => {
           const existingItem = state.items.find(item => item.productId === productId)
-          
+
           if (existingItem) {
             return {
               ...state,
@@ -57,20 +57,20 @@ export const useCart = create<CartStore>()(
           }
         })
       },
-      
+
       removeItem: (id: number) => {
         set((state) => ({
           ...state,
           items: state.items.filter(item => item.id !== id)
         }))
       },
-      
+
       updateQuantity: (id: number, quantity: number) => {
         if (quantity <= 0) {
           get().removeItem(id)
           return
         }
-        
+
         set((state) => ({
           ...state,
           items: state.items.map(item =>
@@ -78,25 +78,25 @@ export const useCart = create<CartStore>()(
           )
         }))
       },
-      
+
       clearCart: () => {
         set({ items: [] })
       },
-      
+
       getTotalItems: () => {
         return get().items.reduce((total, item) => total + item.quantity, 0)
       },
-      
+
       getTotalPrice: () => {
         return get().items.reduce((total, item) => {
           return total + (item.product?.price || 0) * item.quantity
         }, 0)
       },
-      
+
       toggleCart: () => {
         set((state) => ({ ...state, isOpen: !state.isOpen }))
       },
-      
+
       setOpen: (open: boolean) => {
         set((state) => ({ ...state, isOpen: open }))
       }

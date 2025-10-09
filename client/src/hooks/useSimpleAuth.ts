@@ -5,20 +5,19 @@ export function useSimpleAuth() {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Проверяем сессию на сервере при загрузке
   useEffect(() => {
     const checkSession = async () => {
       try {
         const response = await fetch("/api/auth/me", {
           credentials: "include",
         });
-        
+
         if (response.ok) {
           const userData = await response.json();
           setUser(userData);
           localStorage.setItem('montero_user', JSON.stringify(userData));
         } else {
-          // Если сессия недействительна, очищаем localStorage
+
           localStorage.removeItem('montero_user');
           setUser(null);
         }
@@ -27,7 +26,7 @@ export function useSimpleAuth() {
         setUser(null);
       }
     };
-    
+
     checkSession();
   }, []);
 
@@ -43,23 +42,21 @@ export function useSimpleAuth() {
 
       if (!response.ok) {
         const error = await response.json();
-        
-        // Если есть детали валидации, показываем их
+
         if (error.details && Array.isArray(error.details)) {
           const validationErrors = error.details.map((detail: any) => detail.msg).join('. ');
           throw new Error(validationErrors);
         }
-        
+
         throw new Error(error.message || "Ошибка входа");
       }
 
       const result = await response.json();
       const userData = result.user;
-      
-      // Сохраняем пользователя локально
+
       localStorage.setItem('montero_user', JSON.stringify(userData));
       setUser(userData);
-      
+
       return userData;
     } finally {
       setIsLoading(false);
@@ -78,23 +75,21 @@ export function useSimpleAuth() {
 
       if (!response.ok) {
         const error = await response.json();
-        
-        // Если есть детали валидации, показываем их
+
         if (error.details && Array.isArray(error.details)) {
           const validationErrors = error.details.map((detail: any) => detail.msg).join('. ');
           throw new Error(validationErrors);
         }
-        
+
         throw new Error(error.message || "Ошибка регистрации");
       }
 
       const result = await response.json();
       const userData = result.user;
-      
-      // Сохраняем пользователя локально
+
       localStorage.setItem('montero_user', JSON.stringify(userData));
       setUser(userData);
-      
+
       return userData;
     } finally {
       setIsLoading(false);
@@ -104,12 +99,11 @@ export function useSimpleAuth() {
   const logout = () => {
     localStorage.removeItem('montero_user');
     setUser(null);
-    
-    // Уведомляем сервер о выходе
+
     fetch("/api/auth/logout", {
       method: "POST",
       credentials: "include",
-    }).catch(() => {}); // Игнорируем ошибки
+    }).catch(() => {});
   };
 
   return {

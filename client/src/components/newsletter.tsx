@@ -15,15 +15,14 @@ export default function Newsletter() {
     if (!email) return
 
     setIsLoading(true)
-    
-    // Simulate newsletter subscription
+
     await new Promise(resolve => setTimeout(resolve, 1000))
-    
+
     toast({
       title: t('subscribed'),
       description: t('stayUpdated'),
     })
-    
+
     setEmail("")
     setIsLoading(false)
   }
@@ -37,15 +36,15 @@ export default function Newsletter() {
             {t('stayUpdated')}
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <Input 
-              type="email" 
+            <Input
+              type="email"
               placeholder={t('enterEmail')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="flex-1 bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:border-gray-500"
               required
             />
-            <Button 
+            <Button
               type="submit"
               disabled={isLoading}
               className="bg-gray-900 text-white hover:bg-gray-700 font-light"

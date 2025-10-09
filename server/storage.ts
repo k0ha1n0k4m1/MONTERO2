@@ -4,41 +4,36 @@ import { eq, and } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 
 export interface IStorage {
-  // Products
+
   getProducts(): Promise<Product[]>;
   getProductsByCategory(category: string): Promise<Product[]>;
   getProduct(id: number): Promise<Product | undefined>;
   createProduct(product: InsertProduct): Promise<Product>;
   getFeaturedProducts(): Promise<Product[]>;
-  
-  // Cart
+
   getCartItems(): Promise<CartItem[]>;
   addToCart(item: InsertCartItem): Promise<CartItem>;
   removeFromCart(id: number): Promise<void>;
   updateCartItem(id: number, quantity: number): Promise<CartItem | undefined>;
   clearCart(): Promise<void>;
-  
-  // Users
+
   getUser(id: number): Promise<User | undefined>;
   getUserByEmail(email: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
   loginUser(loginData: LoginData): Promise<User | null>;
   registerUser(registerData: RegisterData): Promise<User>;
 
-  // Orders
   createOrder(order: InsertOrder, items: InsertOrderItem[]): Promise<Order>;
   getUserOrders(userId: number): Promise<Order[]>;
   getOrder(id: number): Promise<Order | undefined>;
   getOrderItems(orderId: number): Promise<OrderItem[]>;
   updateOrderStatus(id: number, status: string): Promise<Order | undefined>;
 
-  // Wishlist
   getWishlistItems(userId: number): Promise<WishlistItem[]>;
   addToWishlist(item: InsertWishlistItem): Promise<WishlistItem>;
   removeFromWishlist(userId: number, productId: number): Promise<void>;
   isInWishlist(userId: number, productId: number): Promise<boolean>;
 
-  // Contact Messages
   createContactMessage(message: InsertContactMessage): Promise<ContactMessage>;
 }
 
@@ -57,8 +52,7 @@ export class MemStorage implements IStorage {
     this.currentProductId = 1;
     this.currentCartId = 1;
     this.currentUserId = 1;
-    
-    // Initialize with MONTERO products
+
     this.initializeProducts();
   }
 
@@ -181,8 +175,8 @@ export class MemStorage implements IStorage {
 
   async createProduct(insertProduct: InsertProduct): Promise<Product> {
     const id = this.currentProductId++;
-    const product: Product = { 
-      ...insertProduct, 
+    const product: Product = {
+      ...insertProduct,
       id,
       description: insertProduct.description ?? null,
       featured: insertProduct.featured ?? null
@@ -202,18 +196,18 @@ export class MemStorage implements IStorage {
   }
 
   async addToCart(insertCartItem: InsertCartItem): Promise<CartItem> {
-    // Check if item already exists in cart
+
     const existingItem = Array.from(this.cartItems.values()).find(
       (item) => item.productId === insertCartItem.productId
     );
-    
+
     if (existingItem) {
-      // Update quantity
+
       existingItem.quantity += insertCartItem.quantity || 1;
       this.cartItems.set(existingItem.id, existingItem);
       return existingItem;
     } else {
-      // Add new item
+
       const id = this.currentCartId++;
       const cartItem: CartItem = { ...insertCartItem, id, quantity: insertCartItem.quantity || 1 };
       this.cartItems.set(id, cartItem);
@@ -251,8 +245,8 @@ export class MemStorage implements IStorage {
 
   async createUser(insertUser: InsertUser): Promise<User> {
     const id = this.currentUserId++;
-    const user: User = { 
-      ...insertUser, 
+    const user: User = {
+      ...insertUser,
       id,
       firstName: insertUser.firstName || null,
       lastName: insertUser.lastName || null,
@@ -266,34 +260,31 @@ export class MemStorage implements IStorage {
   async loginUser(loginData: LoginData): Promise<User | null> {
     const user = await this.getUserByEmail(loginData.email);
     if (!user) return null;
-    
+
     const isPasswordValid = await bcrypt.compare(loginData.password, user.password);
     if (!isPasswordValid) return null;
-    
+
     return user;
   }
 
   async registerUser(registerData: RegisterData): Promise<User> {
-    // Check if user already exists
+
     const existingUser = await this.getUserByEmail(registerData.email);
     if (existingUser) {
       throw new Error("User with this email already exists");
     }
 
-    // Hash password
     const hashedPassword = await bcrypt.hash(registerData.password, 10);
-    
-    // Create user
+
     const { confirmPassword, ...userData } = registerData;
     const userToCreate: InsertUser = {
       ...userData,
       password: hashedPassword,
     };
-    
+
     return this.createUser(userToCreate);
   }
 
-  // Orders (заглушки для совместимости)
   async createOrder(order: InsertOrder, items: InsertOrderItem[]): Promise<Order> {
     throw new Error("Orders not implemented in MemStorage");
   }
@@ -314,7 +305,6 @@ export class MemStorage implements IStorage {
     throw new Error("Orders not implemented in MemStorage");
   }
 
-  // Wishlist (заглушки для совместимости)
   async getWishlistItems(userId: number): Promise<WishlistItem[]> {
     throw new Error("Wishlist not implemented in MemStorage");
   }
@@ -337,7 +327,7 @@ export class MemStorage implements IStorage {
 }
 
 export class DatabaseStorage implements IStorage {
-  // Products
+
   async getProducts(): Promise<Product[]> {
     return db.select().from(products);
   }
@@ -366,20 +356,19 @@ export class DatabaseStorage implements IStorage {
     return db.select().from(products).where(eq(products.featured, 1));
   }
 
-  // Cart
   async getCartItems(): Promise<CartItem[]> {
     return db.select().from(cartItems);
   }
 
   async addToCart(insertCartItem: InsertCartItem): Promise<CartItem> {
-    // Check if item already exists in cart
+
     const existingItems = await db
       .select()
       .from(cartItems)
       .where(eq(cartItems.productId, insertCartItem.productId));
-    
+
     if (existingItems.length > 0) {
-      // Update quantity
+
       const [updatedItem] = await db
         .update(cartItems)
         .set({ quantity: existingItems[0].quantity + (insertCartItem.quantity || 1) })
@@ -387,7 +376,7 @@ export class DatabaseStorage implements IStorage {
         .returning();
       return updatedItem;
     } else {
-      // Add new item
+
       const [cartItem] = await db
         .insert(cartItems)
         .values({ ...insertCartItem, quantity: insertCartItem.quantity || 1 })
@@ -413,7 +402,6 @@ export class DatabaseStorage implements IStorage {
     await db.delete(cartItems);
   }
 
-  // Users
   async getUser(id: number): Promise<User | undefined> {
     const [user] = await db.select().from(users).where(eq(users.id, id));
     return user;
@@ -434,20 +422,19 @@ export class DatabaseStorage implements IStorage {
 
   async loginUser(loginData: LoginData): Promise<User | null> {
     console.log("Login attempt for:", loginData.email);
-    
+
     const user = await this.getUserByEmail(loginData.email);
     if (!user) {
       console.log("User not found");
       return null;
     }
-    
-    // Use bcrypt to compare password
+
     const isPasswordValid = await bcrypt.compare(loginData.password, user.password);
     if (isPasswordValid) {
       console.log("Login successful");
       return user;
     }
-    
+
     console.log("Password mismatch");
     return null;
   }
@@ -458,32 +445,29 @@ export class DatabaseStorage implements IStorage {
       throw new Error("User with this email already exists");
     }
 
-    // Hash password before creating user
     const hashedPassword = await bcrypt.hash(registerData.password, 10);
-    
+
     const { confirmPassword, ...userData } = registerData;
     const userToCreate: InsertUser = {
       ...userData,
       password: hashedPassword,
     };
-    
+
     return this.createUser(userToCreate);
   }
 
-  // Orders methods
   async createOrder(order: InsertOrder, items: InsertOrderItem[]): Promise<Order> {
     const [newOrder] = await db
       .insert(orders)
       .values(order)
       .returning();
 
-    // Add order items
     if (items.length > 0) {
       const orderItemsWithOrderId = items.map(item => ({
         ...item,
         orderId: newOrder.id
       }));
-      
+
       await db
         .insert(orderItems)
         .values(orderItemsWithOrderId);
@@ -523,7 +507,6 @@ export class DatabaseStorage implements IStorage {
     return updatedOrder;
   }
 
-  // Wishlist methods
   async getWishlistItems(userId: number): Promise<WishlistItem[]> {
     return await db
       .select()
@@ -532,12 +515,12 @@ export class DatabaseStorage implements IStorage {
   }
 
   async addToWishlist(item: InsertWishlistItem): Promise<WishlistItem> {
-    // Check if item already exists
+
     const existing = await db
       .select()
       .from(wishlistItems)
       .where(and(eq(wishlistItems.userId, item.userId), eq(wishlistItems.productId, item.productId)));
-    
+
     if (existing.length > 0) {
       return existing[0];
     }
@@ -572,10 +555,9 @@ export class DatabaseStorage implements IStorage {
   }
 }
 
-// Initialize products in database
 async function initializeDatabase() {
   try {
-    // Delete all existing products to reset the catalog
+
     await db.delete(products);
     console.log("Cleared existing products");
 
@@ -609,7 +591,7 @@ async function initializeDatabase() {
     for (const product of initialProducts) {
       await db.insert(products).values(product);
     }
-    
+
     console.log("Database initialized with 3 new Montero hoodies");
   } catch (error) {
     console.error("Error initializing database:", error);
@@ -618,5 +600,4 @@ async function initializeDatabase() {
 
 export const storage = new DatabaseStorage();
 
-// Initialize database on startup
 initializeDatabase();

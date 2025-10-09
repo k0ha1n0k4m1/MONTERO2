@@ -18,10 +18,10 @@ const footerLinks = {
 export default function Footer() {
   const { t } = useLanguage()
   const scrollToSection = (sectionId: string) => {
-    // Если мы не на главной странице, сначала перейти туда
+
     if (window.location.pathname !== '/') {
       window.location.href = '/'
-      // Добавить небольшую задержку для загрузки страницы
+
       setTimeout(() => {
         const element = document.getElementById(sectionId)
         if (element) {
@@ -29,7 +29,7 @@ export default function Footer() {
         }
       }, 100)
     } else {
-      // Если уже на главной странице, прокрутить сразу
+
       const element = document.getElementById(sectionId)
       if (element) {
         element.scrollIntoView({ block: 'start' })
@@ -56,12 +56,12 @@ export default function Footer() {
             <div>
               <h4 className="text-2xl font-light text-white mb-6">MONTERO</h4>
             </div>
-            
+
             <div>
               <h5 className="text-sm font-light text-white mb-4 tracking-wide">{t('Shop')}</h5>
               <ul className="space-y-3">
                 <li>
-                  <span 
+                  <span
                     onClick={(e) => handleShopClick(e, 'All Products')}
                     className="text-white/80 hover:text-white transition-colors duration-300 text-sm font-light cursor-pointer"
                   >
@@ -69,7 +69,7 @@ export default function Footer() {
                   </span>
                 </li>
                 <li>
-                  <span 
+                  <span
                     onClick={(e) => handleShopClick(e, 'New Arrivals')}
                     className="text-white/80 hover:text-white transition-colors duration-300 text-sm font-light cursor-pointer"
                   >
@@ -77,7 +77,7 @@ export default function Footer() {
                   </span>
                 </li>
                 <li>
-                  <span 
+                  <span
                     onClick={(e) => handleShopClick(e, 'Sale')}
                     className="text-white/80 hover:text-white transition-colors duration-300 text-sm font-light cursor-pointer"
                   >
@@ -86,7 +86,7 @@ export default function Footer() {
                 </li>
               </ul>
             </div>
-            
+
             <div>
               <h5 className="text-sm font-light text-white mb-4 tracking-wide">{t('support')}</h5>
               <ul className="space-y-3">
@@ -113,31 +113,31 @@ export default function Footer() {
                 </li>
               </ul>
             </div>
-            
+
             <div>
               <h5 className="text-sm font-light text-white mb-4 tracking-wide">{t('connect')}</h5>
               <div className="flex space-x-4">
-                <a 
-                  href="https://www.instagram.com/montero.co.kr" 
-                  target="_blank" 
+                <a
+                  href="https://www.instagram.com/montero.co.kr"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/80 hover:text-white transition-colors duration-300"
                   aria-label="Следите за нами в Instagram"
                 >
                   <Instagram className="h-5 w-5" />
                 </a>
-                <a 
-                  href="https://twitter.com/montero_fashion" 
-                  target="_blank" 
+                <a
+                  href="https://twitter.com/montero_fashion"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/80 hover:text-white transition-colors duration-300"
                   aria-label="Следите за нами в Twitter"
                 >
                   <Twitter className="h-5 w-5" />
                 </a>
-                <a 
-                  href="https://facebook.com/montero.fashion" 
-                  target="_blank" 
+                <a
+                  href="https://facebook.com/montero.fashion"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/80 hover:text-white transition-colors duration-300"
                   aria-label="Следите за нами в Facebook"
@@ -147,7 +147,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-        
+
           <div className="border-t border-white/20 pt-8">
             <p className="text-white/80 text-sm font-light text-center">
               {t('copyright')}

@@ -6,10 +6,10 @@ export const products = pgTable("products", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   description: text("description"),
-  price: integer("price").notNull(), // price in cents
+  price: integer("price").notNull(),
   category: text("category").notNull(),
   imageUrl: text("image_url").notNull(),
-  featured: integer("featured").default(0), // 0 = false, 1 = true
+  featured: integer("featured").default(0),
 });
 
 export const cartItems = pgTable("cart_items", {
@@ -56,13 +56,13 @@ export const insertUserSchema = createInsertSchema(users).omit({
     .optional()
     .refine((val) => !val || val.length <= 50, "Имя не должно превышать 50 символов"),
   lastName: z.string()
-    .optional() 
+    .optional()
     .refine((val) => !val || val.length <= 50, "Фамилия не должна превышать 50 символов"),
 });
 
 export const loginSchema = z.object({
   email: z.string()
-    .min(1, "Email обязателен для заполнения") 
+    .min(1, "Email обязателен для заполнения")
     .email("Пожалуйста, введите корректный email"),
   password: z.string()
     .min(1, "Пароль обязателен для заполнения")
@@ -83,7 +83,6 @@ export type User = typeof users.$inferSelect;
 export type LoginData = z.infer<typeof loginSchema>;
 export type RegisterData = z.infer<typeof registerSchema>;
 
-// Orders schema
 export const orders = pgTable("orders", {
   id: serial("id").primaryKey(),
   userId: integer("user_id").notNull(),
@@ -121,7 +120,6 @@ export type InsertOrder = z.infer<typeof insertOrderSchema>;
 export type OrderItem = typeof orderItems.$inferSelect;
 export type InsertOrderItem = z.infer<typeof insertOrderItemSchema>;
 
-// Wishlist tables
 export const wishlistItems = pgTable("wishlist_items", {
   id: serial("id").primaryKey(),
   userId: integer("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
@@ -137,7 +135,6 @@ export const insertWishlistItemSchema = createInsertSchema(wishlistItems).omit({
 export type WishlistItem = typeof wishlistItems.$inferSelect;
 export type InsertWishlistItem = z.infer<typeof insertWishlistItemSchema>;
 
-// Contact messages table
 export const contactMessages = pgTable("contact_messages", {
   id: serial("id").primaryKey(),
   name: varchar("name", { length: 255 }).notNull(),

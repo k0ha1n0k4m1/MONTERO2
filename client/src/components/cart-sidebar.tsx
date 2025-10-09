@@ -10,19 +10,18 @@ import { useLanguage } from "@/hooks/useLanguage"
 import type { Product } from "@shared/schema"
 
 export default function CartSidebar() {
-  const { 
-    items, 
-    isOpen, 
-    setOpen, 
-    updateQuantity, 
-    removeItem, 
-    clearCart, 
-    getTotalPrice 
+  const {
+    items,
+    isOpen,
+    setOpen,
+    updateQuantity,
+    removeItem,
+    clearCart,
+    getTotalPrice
   } = useCart()
   const [, setLocation] = useLocation()
   const { t } = useLanguage()
 
-  // Fetch product details for cart items
   const { data: products } = useQuery<Product[]>({
     queryKey: ['/api/products'],
     queryFn: async () => {
@@ -32,14 +31,13 @@ export default function CartSidebar() {
     }
   })
 
-  // Merge cart items with product data
   const cartItemsWithProducts = items.map(item => {
     const product = products?.find(p => p.id === item.productId)
     return {
       ...item,
       product
     }
-  }).filter(item => item.product) // Only show items where we found the product
+  }).filter(item => item.product)
 
   const totalPrice = cartItemsWithProducts.reduce((total, item) => {
     return total + (item.product?.price || 0) * item.quantity
@@ -59,7 +57,7 @@ export default function CartSidebar() {
             <div className="flex-1 flex items-center justify-center">
               <div className="text-center">
                 <p className="text-muted-foreground font-light mb-4">{t('yourCartEmpty')}</p>
-                <Button 
+                <Button
                   onClick={() => setOpen(false)}
                   className="bg-foreground text-background hover:bg-muted-foreground"
                 >
@@ -80,7 +78,7 @@ export default function CartSidebar() {
                           className="w-full h-full object-contain"
                         />
                       </div>
-                      
+
                       <div className="flex-1 min-w-0">
                         <h4 className="font-light text-foreground text-sm mb-1">
                           {item.product?.name}
@@ -88,7 +86,7 @@ export default function CartSidebar() {
                         <p className="text-muted-foreground text-sm font-light">
                           {formatPrice(item.product?.price || 0)}
                         </p>
-                        
+
                         <div className="flex items-center gap-3 mt-3">
                           <div className="flex items-center border border-border rounded-md">
                             <Button
@@ -111,7 +109,7 @@ export default function CartSidebar() {
                               <Plus className="h-3 w-3" />
                             </Button>
                           </div>
-                          
+
                           <Button
                             variant="ghost"
                             size="sm"
@@ -122,7 +120,7 @@ export default function CartSidebar() {
                           </Button>
                         </div>
                       </div>
-                      
+
                       <div className="text-right">
                         <p className="font-light text-foreground">
                           {formatPrice((item.product?.price || 0) * item.quantity)}
@@ -139,14 +137,14 @@ export default function CartSidebar() {
                     <span>{t('items')} ({cartItemsWithProducts.reduce((sum, item) => sum + item.quantity, 0)}):</span>
                     <span>{formatPrice(totalPrice)}</span>
                   </div>
-                  
+
                   <div className="flex justify-between text-sm text-muted-foreground">
                     <span>{t('shipping')}:</span>
                     <span className="text-green-600">{t('freeShipping')}</span>
                   </div>
-                  
+
                   <hr className="border-border" />
-                  
+
                   <div className="flex justify-between items-center">
                     <span className="text-lg font-light text-foreground">{t('total')}:</span>
                     <span className="text-lg font-light text-foreground">
@@ -154,8 +152,8 @@ export default function CartSidebar() {
                     </span>
                   </div>
                 </div>
-                
-                <Button 
+
+                <Button
                   className="w-full bg-foreground text-background hover:bg-muted-foreground font-light"
                   size="lg"
                   onClick={() => {
@@ -165,9 +163,9 @@ export default function CartSidebar() {
                 >
                   {t('checkout')}
                 </Button>
-                
-                <Button 
-                  variant="outline" 
+
+                <Button
+                  variant="outline"
                   className="w-full font-light"
                   onClick={clearCart}
                 >

@@ -33,7 +33,6 @@ export default function Checkout() {
 
   type CheckoutData = z.infer<typeof checkoutSchema>;
 
-  // Fetch product details for cart items
   const { data: products } = useQuery<Product[]>({
     queryKey: ['/api/products'],
     queryFn: async () => {
@@ -43,17 +42,15 @@ export default function Checkout() {
     }
   })
 
-  // Merge cart items with product data
   const cartItemsWithProducts = items.map(item => {
     const product = products?.find(p => p.id === item.productId)
     return {
       ...item,
       product
     }
-  }).filter(item => item.product) // Only show items where we found the product
+  }).filter(item => item.product)
 
-  // Calculate total with actual product prices
-  const totalPrice = cartItemsWithProducts.reduce((sum, item) => 
+  const totalPrice = cartItemsWithProducts.reduce((sum, item) =>
     sum + (item.product?.price || 0) * item.quantity, 0
   );
 
@@ -75,7 +72,7 @@ export default function Checkout() {
               <p className="text-center text-muted-foreground">
                 {t("loginToOrder")}
               </p>
-              <Button 
+              <Button
                 onClick={() => setLocation("/")}
                 className="w-full mt-4"
               >
@@ -97,7 +94,7 @@ export default function Checkout() {
               <p className="text-center text-muted-foreground">
                 {t("cartEmptyCheckout")}
               </p>
-              <Button 
+              <Button
                 onClick={() => setLocation("/")}
                 className="w-full mt-4"
               >
@@ -124,7 +121,7 @@ export default function Checkout() {
       });
 
       const result = await response.json();
-      
+
       toast({
         title: "Заказ оформлен!",
         description: `Заказ #${result.order.id} успешно создан`,
@@ -147,9 +144,9 @@ export default function Checkout() {
     <div className="min-h-screen pt-20 bg-background">
       <div className="max-w-4xl mx-auto px-6 py-12">
         <h1 className="text-3xl font-light mb-8">{t("checkoutTitle")}</h1>
-        
+
         <div className="grid md:grid-cols-2 gap-8">
-          {/* Форма заказа */}
+          {}
           <Card>
             <CardHeader>
               <CardTitle className="font-light">{t("shippingInfo")}</CardTitle>
@@ -200,8 +197,8 @@ export default function Checkout() {
                   )}
                 </div>
 
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   className="w-full"
                   disabled={isLoading}
                 >
@@ -211,7 +208,7 @@ export default function Checkout() {
             </CardContent>
           </Card>
 
-          {/* Сумма заказа */}
+          {}
           <Card>
             <CardHeader>
               <CardTitle className="font-light">{t("orderSummary")}</CardTitle>
@@ -233,31 +230,31 @@ export default function Checkout() {
                     </div>
                   </div>
                 ))}
-                
+
                 <div className="space-y-2 pt-4">
                   <div className="flex justify-between text-sm">
                     <span>{t("subtotal")} ({cartItemsWithProducts.reduce((sum, item) => sum + item.quantity, 0)}):</span>
                     <span>{formatPrice(totalPrice)}</span>
                   </div>
-                  
+
                   <div className="flex justify-between text-sm">
                     <span>{t("shipping")}:</span>
                     <span className="text-green-600">{t("freeShipping")}</span>
                   </div>
-                  
+
                   <div className="flex justify-between text-sm">
                     <span>{t("tax")}:</span>
                     <span>{t("taxIncluded")}</span>
                   </div>
-                  
+
                   <hr className="border-border" />
-                  
+
                   <div className="flex justify-between items-center text-lg font-medium">
                     <span>{t("totalAmount")}:</span>
                     <span className="text-xl">{formatPrice(totalPrice)}</span>
                   </div>
                 </div>
-                
+
                 <div className="bg-muted/50 p-3 rounded-lg text-sm text-muted-foreground">
                   <p>✓ 50,000원 이상 주문 시 무료배송</p>
                   <p>✓ 30일 이내 교환/반품 가능</p>

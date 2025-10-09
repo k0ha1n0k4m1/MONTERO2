@@ -18,7 +18,7 @@ export default function HeroSection() {
             {t('heroTitle')}
           </h2>
           <div className="mt-6 md:mt-8">
-            <Button 
+            <Button
               onClick={scrollToProducts}
               className="bg-black text-white px-6 md:px-10 py-3 md:py-4 text-sm md:text-base font-medium tracking-wide hover:bg-gray-800 transition-colors duration-300 shadow-lg rounded-lg"
             >

@@ -3,9 +3,10 @@ import express from "express";
 import { createServer, type Server } from "http";
 import { body, validationResult } from "express-validator";
 import { storage } from "./storage";
-import { insertCartItemSchema, loginSchema, registerSchema } from "@shared/schema";
+import { insertCartItemSchema, loginSchema, registerSchema, insertContactMessageSchema } from "@shared/schema";
 import session from "express-session";
 import MemoryStore from "memorystore";
+import { sendContactEmail } from "./email";
 
 // Extend session data interface
 declare module 'express-session' {
@@ -497,6 +498,58 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ ...order, items });
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch order" });
+    }
+  });
+
+  // Contact form endpoint
+  app.post("/api/contact", [
+    body('name').trim().notEmpty().withMessage('Name is required'),
+    body('email').trim().isEmail().withMessage('Valid email is required'),
+    body('subject').trim().notEmpty().withMessage('Subject is required'),
+    body('message').trim().notEmpty().withMessage('Message is required'),
+    handleValidationErrors
+  ], async (req: Request, res: any) => {
+    try {
+      const { name, email, subject, message } = req.body;
+
+      // Save to database
+      const contactMessage = await storage.createContactMessage({
+        name,
+        email,
+        subject,
+        message
+      });
+
+      // Send email
+      const emailSent = await sendContactEmail({
+        name,
+        email,
+        subject,
+        message
+      });
+
+      if (!emailSent) {
+        // Email failed but message is saved
+        console.warn('Contact message saved to DB but email failed to send');
+        return res.status(200).json({ 
+          success: true,
+          emailSent: false,
+          message: "Message saved but email notification failed. We'll contact you soon."
+        });
+      }
+
+      res.json({ 
+        success: true,
+        emailSent: true,
+        message: "Message received successfully"
+      });
+    } catch (error) {
+      console.error("Contact form error:", error);
+      res.status(500).json({ 
+        success: false,
+        emailSent: false,
+        message: "Failed to send message" 
+      });
     }
   });
 

@@ -1,4 +1,4 @@
-import { products, cartItems, users, orders, orderItems, wishlistItems, type Product, type InsertProduct, type CartItem, type InsertCartItem, type User, type InsertUser, type Order, type InsertOrder, type OrderItem, type InsertOrderItem, type LoginData, type RegisterData, type WishlistItem, type InsertWishlistItem } from "@shared/schema";
+import { products, cartItems, users, orders, orderItems, wishlistItems, contactMessages, type Product, type InsertProduct, type CartItem, type InsertCartItem, type User, type InsertUser, type Order, type InsertOrder, type OrderItem, type InsertOrderItem, type LoginData, type RegisterData, type WishlistItem, type InsertWishlistItem, type ContactMessage, type InsertContactMessage } from "@shared/schema";
 import { db } from "./db";
 import { eq, and } from "drizzle-orm";
 import bcrypt from "bcryptjs";
@@ -37,6 +37,9 @@ export interface IStorage {
   addToWishlist(item: InsertWishlistItem): Promise<WishlistItem>;
   removeFromWishlist(userId: number, productId: number): Promise<void>;
   isInWishlist(userId: number, productId: number): Promise<boolean>;
+
+  // Contact Messages
+  createContactMessage(message: InsertContactMessage): Promise<ContactMessage>;
 }
 
 export class MemStorage implements IStorage {
@@ -327,6 +330,10 @@ export class MemStorage implements IStorage {
   async isInWishlist(userId: number, productId: number): Promise<boolean> {
     throw new Error("Wishlist not implemented in MemStorage");
   }
+
+  async createContactMessage(message: InsertContactMessage): Promise<ContactMessage> {
+    throw new Error("Contact messages not implemented in MemStorage");
+  }
 }
 
 export class DatabaseStorage implements IStorage {
@@ -554,6 +561,14 @@ export class DatabaseStorage implements IStorage {
       .from(wishlistItems)
       .where(and(eq(wishlistItems.userId, userId), eq(wishlistItems.productId, productId)));
     return existing.length > 0;
+  }
+
+  async createContactMessage(message: InsertContactMessage): Promise<ContactMessage> {
+    const [newMessage] = await db
+      .insert(contactMessages)
+      .values(message)
+      .returning();
+    return newMessage;
   }
 }
 

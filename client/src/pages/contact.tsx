@@ -41,15 +41,43 @@ export default function Contact() {
   const handleSubmit = async (data: ContactData) => {
     setIsSubmitting(true);
 
-    // Симуляция отправки сообщения
-    setTimeout(() => {
-      toast({
-        title: t('messageSent'),
-        description: t('messageSentDesc'),
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      const result = await response.json();
+      
+      if (!result.emailSent) {
+        toast({
+          title: t('messageSent'),
+          description: result.message || t('messageSentDesc'),
+          variant: 'default',
+        });
+      } else {
+        toast({
+          title: t('messageSent'),
+          description: t('messageSentDesc'),
+        });
+      }
       form.reset();
+    } catch (error) {
+      toast({
+        title: t('error') || 'Error',
+        description: t('messageSendError') || 'Failed to send message. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (

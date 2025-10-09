@@ -116,7 +116,7 @@ export default function Product() {
                   {product.name}
                 </h1>
                 <p className="text-2xl font-bold text-gray-900">
-                  {product.available === 0 ? t('priceNotDetermined') : `₩${product.price.toLocaleString()}`}
+                  {product.available === 0 ? t('outOfStock') : `₩${product.price.toLocaleString()}`}
                 </p>
               </div>
 
@@ -186,7 +186,7 @@ export default function Product() {
                   disabled={product.available === 0}
                   className="w-full h-12 text-lg font-semibold bg-gray-900 text-white hover:bg-gray-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
                 >
-                  {product.available === 0 ? t('priceNotDetermined') : `${t('addToCart')} - ₩${(product.price * quantity).toLocaleString()}`}
+                  {product.available === 0 ? t('outOfStock') : `${t('addToCart')} - ₩${(product.price * quantity).toLocaleString()}`}
                 </Button>
 
                 <div className="text-sm text-gray-600 space-y-1">

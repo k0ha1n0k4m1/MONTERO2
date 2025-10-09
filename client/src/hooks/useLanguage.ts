@@ -36,6 +36,7 @@ const translations = {
 
     price: '가격',
     priceNotDetermined: '가격 미정',
+    outOfStock: '품절',
     addToCart: '장바구니 담기',
 
     shoppingCart: '장바구니',
@@ -337,6 +338,7 @@ const translations = {
 
     price: 'Price',
     priceNotDetermined: 'Price not yet determined',
+    outOfStock: 'Out of stock',
     addToCart: 'Add to Cart',
 
     shoppingCart: 'Shopping Cart',
@@ -638,6 +640,7 @@ const translations = {
 
     price: 'Цена',
     priceNotDetermined: 'Цена еще не определена',
+    outOfStock: 'Нет в наличии',
     addToCart: 'В корзину',
 
     shoppingCart: 'Корзина',

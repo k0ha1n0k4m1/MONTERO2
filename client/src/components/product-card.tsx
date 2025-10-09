@@ -98,7 +98,7 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
             )}
             <div className="flex items-center justify-between pt-1 md:pt-2">
               <p className={`text-white ${featured ? 'text-sm md:text-lg font-light' : 'text-xs md:text-sm font-light'} group-hover:text-white/90 transition-colors duration-300`}>
-                {product.available === 0 ? t('priceNotDetermined') : formatPrice(product.price)}
+                {product.available === 0 ? t('outOfStock') : formatPrice(product.price)}
               </p>
               <Button
                 onClick={handleAddToCart}

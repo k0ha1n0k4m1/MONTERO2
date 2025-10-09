@@ -116,7 +116,7 @@ export default function Product() {
                   {product.name}
                 </h1>
                 <p className="text-2xl font-bold text-gray-900">
-                  ₩{product.price.toLocaleString()}
+                  {product.available === 0 ? t('priceNotDetermined') : `₩${product.price.toLocaleString()}`}
                 </p>
               </div>
 
@@ -183,9 +183,10 @@ export default function Product() {
               <div className="space-y-4">
                 <Button
                   onClick={handleAddToCart}
-                  className="w-full h-12 text-lg font-semibold bg-gray-900 text-white hover:bg-gray-700"
+                  disabled={product.available === 0}
+                  className="w-full h-12 text-lg font-semibold bg-gray-900 text-white hover:bg-gray-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
                 >
-                  {t('addToCart')} - ₩{(product.price * quantity).toLocaleString()}
+                  {product.available === 0 ? t('priceNotDetermined') : `${t('addToCart')} - ₩${(product.price * quantity).toLocaleString()}`}
                 </Button>
 
                 <div className="text-sm text-gray-600 space-y-1">

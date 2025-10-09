@@ -35,6 +35,7 @@ const translations = {
     essentials: '필수 아이템을 발견하세요',
 
     price: '가격',
+    priceNotDetermined: '가격 미정',
     addToCart: '장바구니 담기',
 
     shoppingCart: '장바구니',
@@ -335,6 +336,7 @@ const translations = {
     essentials: 'essentials',
 
     price: 'Price',
+    priceNotDetermined: 'Price not yet determined',
     addToCart: 'Add to Cart',
 
     shoppingCart: 'Shopping Cart',
@@ -635,6 +637,7 @@ const translations = {
     essentials: '',
 
     price: 'Цена',
+    priceNotDetermined: 'Цена еще не определена',
     addToCart: 'В корзину',
 
     shoppingCart: 'Корзина',

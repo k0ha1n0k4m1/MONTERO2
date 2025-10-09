@@ -98,13 +98,14 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
             )}
             <div className="flex items-center justify-between pt-1 md:pt-2">
               <p className={`text-white ${featured ? 'text-sm md:text-lg font-light' : 'text-xs md:text-sm font-light'} group-hover:text-white/90 transition-colors duration-300`}>
-                {formatPrice(product.price)}
+                {product.available === 0 ? t('priceNotDetermined') : formatPrice(product.price)}
               </p>
               <Button
                 onClick={handleAddToCart}
                 variant="ghost"
                 size="sm"
-                className="opacity-50 md:opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-0 md:translate-y-1 group-hover:translate-y-0 text-xs font-light bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/30 rounded-full px-2 md:px-4 py-1 md:py-2"
+                disabled={product.available === 0}
+                className="opacity-50 md:opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-0 md:translate-y-1 group-hover:translate-y-0 text-xs font-light bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/30 rounded-full px-2 md:px-4 py-1 md:py-2 disabled:opacity-30 disabled:cursor-not-allowed"
               >
                 <span className="hidden md:inline">{t('addToCartButton')}</span>
                 <span className="md:hidden">+</span>

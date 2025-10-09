@@ -40,6 +40,7 @@ Preferred communication style: Simple, everyday language.
 - **Orders**: Order management with customer details and status tracking
 - **Order Items**: Line items for individual order products
 - **Wishlist**: User-specific product favorites
+- **Contact Messages**: Customer inquiries from contact form with email notification support
 
 ## Authentication & Authorization
 - **Strategy**: Session-based authentication using express-session
@@ -60,6 +61,7 @@ Preferred communication style: Simple, everyday language.
 - **Express Middleware**: helmet, cors, express-rate-limit, express-validator
 - **Database**: @neondatabase/serverless, drizzle-orm, drizzle-kit
 - **Authentication**: bcryptjs, express-session, memorystore
+- **Email**: nodemailer for contact form email notifications
 
 ### Development Tools
 - **Build Tools**: Vite with React plugin, esbuild for server bundling
@@ -96,3 +98,12 @@ The application uses a monorepo structure with shared TypeScript schemas between
 - **Visual Feedback**: Unavailable sizes display with gray background and text, cursor shows "not-allowed"
 - **Available Sizes**: Only M and L sizes are selectable for top category hoodies
 - **Implementation**: Added conditional logic in product.tsx to disable specific sizes based on product category
+
+### Contact Form with Email Notifications (October 2025)
+- **Database Schema**: Added `contact_messages` table to store customer inquiries (name, email, subject, message, status, created_at)
+- **Email Integration**: Implemented nodemailer for sending email notifications to Montero.team.kr@gmail.com
+- **API Endpoint**: POST /api/contact validates input, saves to database, and attempts email delivery
+- **Error Handling**: Messages are always saved to DB; if email fails (SMTP not configured), user is notified but message is preserved
+- **Frontend**: Contact form at /contact with proper validation, loading states, and success/error notifications
+- **Configuration**: Requires SMTP environment variables (SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS) for email delivery
+- **Deployment Ready**: System gracefully handles missing SMTP config - stores messages without email until configured

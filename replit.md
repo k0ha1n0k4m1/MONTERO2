@@ -107,3 +107,11 @@ The application uses a monorepo structure with shared TypeScript schemas between
 - **Frontend**: Contact form at /contact with proper validation, loading states, and success/error notifications
 - **Configuration**: Requires SMTP environment variables (SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS) for email delivery
 - **Deployment Ready**: System gracefully handles missing SMTP config - stores messages without email until configured
+
+### Product Availability System (October 2025)
+- **Database Schema**: Added `available` field to products table (0 = out of stock, 1 = available)
+- **Product Status**: Only Black hoodie (₩72,000) is available; White Pink and White hoodies marked as out of stock
+- **Frontend Display**: Unavailable products show "Нет в наличии" (Russian), "Out of stock" (English), "품절" (Korean)
+- **UI Behavior**: "Add to Cart" buttons disabled for unavailable products
+- **Implementation**: Product cards and detail pages check `product.available === 0` to show stock status
+- **Translation Keys**: Added `outOfStock` translation key in useLanguage.ts for all three languages

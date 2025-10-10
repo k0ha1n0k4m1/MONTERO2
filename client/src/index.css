@@ -159,10 +159,18 @@ html {
   iframe[src*="recaptcha"] {
     position: relative !important;
     z-index: 9999 !important;
+    pointer-events: auto !important;
   }
 
   div:has(> iframe[src*="google.com/recaptcha"]) {
     position: relative !important;
+    z-index: 9999 !important;
+    pointer-events: auto !important;
+  }
+
+  .rc-anchor,
+  .g-recaptcha {
+    pointer-events: auto !important;
     z-index: 9999 !important;
   }
 

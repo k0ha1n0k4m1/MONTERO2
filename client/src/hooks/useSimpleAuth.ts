@@ -13,11 +13,15 @@ export function useSimpleAuth() {
         });
 
         if (response.ok) {
-          const userData = await response.json();
-          setUser(userData);
-          localStorage.setItem('montero_user', JSON.stringify(userData));
+          const data = await response.json();
+          if (data && data.user !== null) {
+            setUser(data.user || data);
+            localStorage.setItem('montero_user', JSON.stringify(data.user || data));
+          } else {
+            localStorage.removeItem('montero_user');
+            setUser(null);
+          }
         } else {
-
           localStorage.removeItem('montero_user');
           setUser(null);
         }

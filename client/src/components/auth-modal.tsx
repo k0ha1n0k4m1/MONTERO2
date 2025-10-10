@@ -164,7 +164,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }: Au
             </div>
 
             {RECAPTCHA_SITE_KEY ? (
-              <div className="flex justify-center">
+              <div className="flex justify-center relative z-[100]">
                 <ReCAPTCHA
                   ref={recaptchaRef}
                   sitekey={RECAPTCHA_SITE_KEY}
@@ -283,7 +283,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }: Au
             </div>
 
             {RECAPTCHA_SITE_KEY ? (
-              <div className="flex justify-center">
+              <div className="flex justify-center relative z-[100]">
                 <ReCAPTCHA
                   ref={recaptchaRef}
                   sitekey={RECAPTCHA_SITE_KEY}

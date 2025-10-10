@@ -1,0 +1,27 @@
+root@grgreerr:~/MONTERO2/MONTERO2# pm2 logs montero --lines 20
+[TAILING] Tailing last 20 lines for [montero] process (change the value with --lines option)
+/root/.pm2/logs/montero-error.log last 20 lines:
+0|montero  | RECAPTCHA_SECRET_KEY not configured
+0|montero  | RECAPTCHA_SECRET_KEY not configured
+
+/root/.pm2/logs/montero-out.log last 20 lines:
+0|montero  | 8:58:55 PM [express] POST /api/auth/login 401 in 234ms :: {"message":"Неправильный логин или пароль"}
+0|montero  | Login attempt for: monterotest@gmail.com
+0|montero  | Password mismatch
+0|montero  | 8:59:14 PM [express] POST /api/auth/login 401 in 383ms :: {"message":"Неправильный логин или пароль"}
+0|montero  | 8:59:18 PM [express] GET /api/products 200 in 2ms :: [{"id":43,"name":"Leopard Untamed hoodie White …
+0|montero  | 8:59:18 PM [express] GET /api/products/featured 200 in 1ms :: [{"id":43,"name":"Leopard Untamed hood…
+0|montero  | 8:59:18 PM [express] GET /api/auth/me 401 in 2ms :: {"message":"Not authenticated"}
+0|montero  | 8:59:18 PM [express] GET /api/auth/me 401 in 1ms :: {"message":"Not authenticated"}
+0|montero  | 8:59:18 PM [express] GET /api/products 200 in 3ms :: [{"id":43,"name":"Leopard Untamed hoodie White …
+0|montero  | 8:59:18 PM [express] GET /api/auth/me 401 in 0ms :: {"message":"Not authenticated"}
+0|montero  | 8:59:18 PM [express] GET /api/auth/me 401 in 0ms :: {"message":"Not authenticated"}
+0|montero  | 8:59:18 PM [express] GET /api/auth/me 401 in 1ms :: {"message":"Not authenticated"}
+0|montero  | 8:59:18 PM [express] GET /api/auth/me 401 in 1ms :: {"message":"Not authenticated"}
+0|montero  | 8:59:31 PM [express] POST /api/auth/register 200 in 393ms :: {"user":{"id":2,"email":"ctaccctac104@g…
+0|montero  | 8:59:31 PM [express] GET /api/products 304 in 3ms :: [{"id":43,"name":"Leopard Untamed hoodie White …
+0|montero  | 8:59:31 PM [express] GET /api/products/featured 304 in 2ms :: [{"id":43,"name":"Leopard Untamed hood…
+0|montero  | 8:59:31 PM [express] GET /api/products 304 in 16ms :: [{"id":43,"name":"Leopard Untamed hoodie White…
+0|montero  | 9:02:07 PM [express] serving on port 5000
+0|montero  | Cleared existing products
+0|montero  | Database initialized with 3 new Montero hoodies

@@ -155,5 +155,15 @@ html {
     filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3));
   }
 
+  iframe[src*="google.com/recaptcha"],
+  iframe[src*="recaptcha"] {
+    position: relative !important;
+    z-index: 9999 !important;
+  }
+
+  div:has(> iframe[src*="google.com/recaptcha"]) {
+    position: relative !important;
+    z-index: 9999 !important;
+  }
 
 }
